@@ -1,18 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import Header from "./components/Header/header"
 import Home from "./components/Home/home"
-import { Box,Button ,styled,Typography } from "@mui/material";
-
+import { Box} from "@mui/material";
+import Header from './components/Header';
 
 function App() {
-  return (
+  return (<>
     <div >
       <Header />
       <Box style={{marginTop:"52px"}}>
           <Home />
       </Box>
     </div>
+    </>
   );
 }
 
