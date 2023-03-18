@@ -5,7 +5,9 @@ import { Box , styled } from '@mui/material';
 
 const Image=styled('img')({
     width:"100%",
-    height:"220px"
+    height:"220px",
+    marginTop:"8px",
+    marginBottom:"6px"
 })
 
 function data(info){
@@ -16,7 +18,7 @@ function data(info){
 function Mycarousel(){
 
     return(
-        <>
+        <div style={{backgroundColor:"#EAEEEB" }}>
         <Carousel responsive={{
     desktop:{
         breakpoint:{max:3000 ,min:1024},
@@ -38,7 +40,7 @@ function Mycarousel(){
         >
             {carouselImgs.map(data)}
         </Carousel>
-        </>
+        </div>
     )
 }
 

@@ -35,4 +35,3 @@ function nav(){
     )
 }
 export default nav;
-//a

@@ -26,3 +26,7 @@ code {
   border-radius: 4px;
   text-decoration: none;
 }
+
+.products_slider::-webkit-scrollbar {
+  display: none;
+}
