@@ -1,4 +1,4 @@
-const Products = [
+const ElectronicData = [
     
     { 
         key: 'product1',
@@ -51,7 +51,7 @@ const Products = [
     },
     { 
         key: 'product4',
-        url: 'https://www.bing.com/images/blob?bcid=r5ClR4vi7V4FrXFGqmFOGq.6iP3k.....3Y', 
+        url: 'https://rukminim1.flixcart.com/image/200/200/knyxqq80/dslr-camera/r/y/x/digital-camera-eos-m50-mark-ii-eos-m50-mark-ii-canon-original-imag2gzkexzqhyhu.jpeg?q=70', 
         title: {
             shortTitle: 'Cameras',
             company:"Canon"
@@ -105,4 +105,4 @@ const Products = [
 
     }
 ];
-export default Products;
+export default ElectronicData;
