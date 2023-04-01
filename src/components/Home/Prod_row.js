@@ -2,19 +2,19 @@
 import React from "react"
 import Carousel from "react-multi-carousel"
 import 'react-multi-carousel/lib/styles.css'
-
 import { style } from "@mui/system"
 
 function data1(props){
     return (
+
         <div style={{margin:"30px" ,minWidth:"180px" }}>
             <div style={{alignContent:"center"}}>
                 <img src={props.url} style={{widht:"auto" ,height:"150px"}} />
             </div>
-            <div style={{textAlign:"center" }}>
-                <p style={{fontWeight:"999"}}>{props.title.shortTitle}</p>
+            <div style={{textAlign:"center"}}>
+                <p style={{fontWeight:"999" ,color:"black"}}>{props.title.shortTitle}</p>
                 <p style={{color:"green"}}>{props.price.offer}</p>
-                <p>{props.title.company}</p>
+                <p style={{color:"grey"}}>{props.title.company}</p>
             </div>
         </div>
     )
@@ -33,8 +33,7 @@ function ProductWindow(info){
                     <img src={info.url} style={{height:"180px",width:"180px"}} />
                 </div >
                 <div className=" products_slider" style={{display:"flex" ,overflow:"scroll" ,textAlign:"center"}}>
-
-                { Data.map(data1)};
+                    { Data.map(data1)};
                 </div>
             </div>
         </div>

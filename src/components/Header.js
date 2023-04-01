@@ -17,7 +17,7 @@ export default function NavBar() {
 
     return <div style={{ display: "flex", justifyContent: "center", background: "#047BD5", height: "9vh", alignItems: "center", width: "100%" }}>
         <div style={{ display: "flex", width: "54vw", justifyContent: "space-around", alignItems: "center" }}>
-            <img style={{ height: "48px" }} src={Logo} alt=""></img>
+
 
             <FormControl sx={{ width: '30vw' }} variant="filled">
                 <OutlinedInput
