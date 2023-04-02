@@ -1,6 +1,8 @@
 import './App.css';
 import Home from "./components/Home/home"
+import Details from "./components/Product_details/Detail"
 import { Box} from "@mui/material";
+<<<<<<< HEAD
 import NavBar from './components/Header';
 import Profile from './components/Profile/ProFile';
 import Headers from './components/Header';
@@ -17,6 +19,22 @@ function App() {
   <Route path='viewcart' element={<>< NavBar/><Cart /><Footer/></>} />
   </Routes>
   </BrowserRouter>
+=======
+import Header from './components/Header';
+
+
+function App() {
+  return (<>
+    <div >
+        <Header />
+        <Box>
+          <Home />
+
+        </Box>
+    </div>
+    </>
+  );
+>>>>>>> ecf59da200d50c513dcc6f2ba5508ab1068c0c02
 }
 
 export default App;
