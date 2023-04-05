@@ -9,8 +9,8 @@ export default function OrdersFilter() {
         <Divider />
         <div>
             <h4>Order Status</h4>
-            <FormGroup>
-                <FormControlLabel control={<Checkbox />} label="On the way" />
+            <FormGroup size="small">
+                <FormControlLabel  control={<Checkbox />} label="On the way" />
                 <FormControlLabel control={<Checkbox />} label="Delivered" />
                 <FormControlLabel control={<Checkbox />} label="Cancelled" />
                 <FormControlLabel control={<Checkbox />} label="Returned" />

@@ -3,9 +3,9 @@ import React, { useState } from "react"
 import Logo from "../Flip-Logo.jpg"
 import InventoryIcon from '@mui/icons-material/Inventory';
 import PersonIcon from '@mui/icons-material/Person';
-
+import {useNavigate} from "react-router-dom"
 export default function ProFileLeft(props) {
-
+    const navigate=useNavigate()
     const [Page,setPage]=useState(0)
     const UpdateP =(e)=>{
         setPage(e)
@@ -29,6 +29,7 @@ export default function ProFileLeft(props) {
         </div>
         <div className="Profile-Offers">
             <Button
+                onClick={()=> navigate("/account/orders")}
                 startIcon={<InventoryIcon style={{ paddingRight: "30%" }} />}
                 style={{ width: "100%", height: "48px", paddingRight: "30%" ,textTransform:"none"}}>
                 My Orders
@@ -71,7 +72,7 @@ export default function ProFileLeft(props) {
             </p>
             <Divider />
             <Button value={6} onClick={(e)=>UpdateP(e.target.value)} style={{ width: "100%", padding: "0px 30%",backgroundColor:Page==6? "#29a0ed":"white" ,textTransform:"none",color:Page==6 ?"white" : "black",textAlign:"left" ,justifyContent:"left"}}>
-                My Orders
+                My Whislist
             </Button>
 
             <Button value={7} onClick={(e)=>UpdateP(e.target.value)} style={{ width: "100%", paddingRight: "30%",backgroundColor:Page==7? "#29a0ed":"white" ,textTransform:"none",color:Page==7 ?"white" : "black",textAlign:"left" }}>

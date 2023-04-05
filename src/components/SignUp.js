@@ -3,8 +3,10 @@ import { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Logo from "./Flip-Logo.jpg"
-function SignUp() {
+function SignUp({OpenLogin}) {
   let [showPass, setShowPass] = useState(true);
+  const [PhoneEmail,setPhoneEmail]=useState("")
+  const [Password,setPassword]=useState("")
   
   return (
     <div style={{display:"flex",height:"100%"}}>
@@ -39,7 +41,7 @@ function SignUp() {
             </div>
       <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} variant="filled">SignUp</Button>
 
-      <p style={{color:"#047BD5"}}><b>Already an customer ? Login</b></p>
+      <p style={{color:"#047BD5"}} onClick={OpenLogin}><b>Already an customer ? Login</b></p>
     </div></div>
   );
 }

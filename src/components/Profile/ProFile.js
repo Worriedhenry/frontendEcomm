@@ -7,8 +7,9 @@ import PersonalInfo from "./PersonalInfo";
 import ProFileLeft from "./ProfileLeft";
 import ManageAddress from "./ManageAddress";
 import ServiceNotAvailable from "./SavedUPI";
-export default function Profile() {
-    const [page,setPage]=useState(0)
+import Whislist from "./Whislist";
+export default function Profile(props) {
+    const [page,setPage]=useState(props.page)
     function ChildUpadate(num){
         setPage(num)
     }
@@ -16,7 +17,8 @@ export default function Profile() {
         <ProFileLeft UpdateParent={ChildUpadate} />
         {page==0 && <PersonalInfo/> }
         {page==1 && <ManageAddress /> }
-        {page>1 && <ServiceNotAvailable/>} 
+        {page==6 && <Whislist /> }
+        {page>6 && <ServiceNotAvailable/>} 
     </div>
 
 

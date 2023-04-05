@@ -1,39 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Divider, TextField ,Radio,FormControlLabel,RadioGroup} from "@mui/material"
 export default function PersonalInfo(){
+    const [PersonalData,setPersonalData]=useState(false)
+    const [EmailData,setEmailData]=useState(false)
+    const [PhoneData,setPhoneData]=useState(false)
+    const [FirstName,setFirstName]=useState("")
+    const [LastName,setLastName]=useState("")
+    const [Email,setEmail]=useState("")
+    const [Phone,setPhone]=useState("")
+    const [Gender,setGender]=useState("")
+
     return <div className="RightProfile">
     <div className="Profile-TopRight">
         <span style={{ fontSize: "18px", paddingTop: "15px" }}><b>Personal Information</b></span>
-        <Button>Edit</Button>
+        <Button onClick={()=> setPersonalData(!PersonalData)}>{ PersonalData ? "cancle" :"edit"}</Button>
         <p></p>
-        <TextField size="small" sx={{ mr: 7, width: "300px" }} disabled value="First Name" />
-        <TextField disabled
-            value="Last Name"
-            size="small"
-            sx={{
-                width: "300px"
-            }}
-        />
-        <Button variant="contained">SAVe</Button>
+        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "First name" } disabled={ PersonalData ? false :true} value="First Name" />
+        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "Last name" } disabled={ PersonalData ? false :true} value="Last Name" />
+        { PersonalData && <Button variant="contained">SAVe</Button>}
         <p>Your Gender</p>
         <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
             row
-            disabled
+            disabled={ PersonalData ? false :true}
         >
-            <FormControlLabel disabled value="female" control={<Radio />} label="Female" />
-            <FormControlLabel disabled value="male" control={<Radio />} label="Male" />
-            <FormControlLabel disabled value="other" control={<Radio />} label="Other" />
+            <FormControlLabel disabled={ PersonalData ? false :true} value="female" control={<Radio />} label="Female" />
+            <FormControlLabel disabled={ PersonalData ? false :true} value="male" control={<Radio />} label="Male" />
+            <FormControlLabel disabled={ PersonalData ? false :true} value="other" control={<Radio />} label="Other" />
         </RadioGroup>
         <p style={{ paddingTop: "28px" }}><span style={{ fontSize: "18px", paddingTop: "35px" }}><b>Email Address</b></span>
-        <Button>Edit</Button>
+        <Button onClick={()=> setEmailData(!EmailData)}>{ EmailData ? "cancle" :"edit"}</Button>
         </p>
-        <TextField size="small" sx={{ mr: 7, width: "300px" }} disabled value="xyz@gmail.com" />
+        <TextField variant="filled" label={ EmailData && "Email Address" }  size="small" sx={{ mr: 7, width: "300px" }}  disabled={ EmailData ? false :true} value="xyz@gmail.com" />
+        { EmailData && <Button variant="contained">SAVe</Button>}
         <p style={{ paddingTop: "28px" }}><span style={{ fontSize: "18px", paddingTop: "35px" }}><b>Mobile Number</b></span>
-        <Button>Edit</Button>
+        <Button onClick={()=> setPhoneData(!PhoneData)}>{ PhoneData ? "cancle" :"edit"}</Button>
         </p>
-        <TextField size="small" sx={{ mr: 7, width: "300px" }} disabled value="xxxxxx1234" />
+        <TextField variant="filled" label={ PhoneData && "Mobile number" } size="small" sx={{ mr: 7, width: "300px" }} disabled={ PhoneData ? false :true} value="xxxxxx1234" />
+        { PhoneData && <Button variant="contained">SAVe</Button>}
     </div>
     <div className="Profile-TopBottom">
         <h3>FAQ</h3>

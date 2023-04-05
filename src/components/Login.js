@@ -3,8 +3,16 @@ import { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Logo from "./Flip-Logo.jpg"
-function Login() {
+function Login({OpenSign,Next}) {
   let [showPass, setShowPass] = useState(true);
+  const [PhoneEmail,setPhoneEmail]=useState("")
+  const [Password,setPassword]=useState("")
+
+  const handleLogin=()=>{
+    // Login Process
+    //Navigate to Next
+  }
+
   return (
     <div style={{display:"flex",height:"100%"}}>
     <span style={{width:"40%",height:"100%",background:"#047BD5",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"space-between"}} >
@@ -38,7 +46,7 @@ function Login() {
             </div>
       <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} variant="filled">Login</Button>
 
-      <p style={{color:"#047BD5"}}><b>New to Flipkart ? Create an Account</b></p>
+      <p style={{color:"#047BD5"}} onClick={()=>OpenSign()} ><b>New to Flipkart ? Create an Account</b></p>
     </div></div>
   );
 }

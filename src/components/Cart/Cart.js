@@ -1,9 +1,13 @@
-import { Button, Divider } from "@mui/material"
-import React from "react"
+import { Button, Divider, Link,Breadcrumbs,Typo } from "@mui/material"
+import React, { useState } from "react"
 import Data from "../../data_resourses/nav_data"
+import Bread from "./BreadCrimb"
+import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 
 function CartCard() {
-    return <div style={{ display: "flex", height: "239px", background: "white" }}>
+    
+    return <div style={{ display: "flex", height: "239px", background: "white",padding:"10px" }}>
+
         <img src={Data[0].url} style={{ width: "fit-content" }} alt=""></img>
         <div className="">
             <h4>{Data[0].text}</h4>
@@ -20,8 +24,11 @@ function CartCard() {
 export default function Cart() {
 
 
-
-    return <div className="Cart">
+    return <>
+    <Bread/>
+    <div className="Cart">
+        
+        
         <div className="Cart-left">
             <div
                 style={{
@@ -41,14 +48,20 @@ export default function Cart() {
             <CartCard />
             <Divider />
             <CartCard />
+            <Divider />
+            <CartCard />
             <div
                 style={{
                     width: "100%",
                     background: "white",
-                    textAlign: "right"
+                    textAlign: "right",
+                    position:"sticky",
+                    height:"50px",
+                    bottom:"0px"
                 }}
             ><Button variant="contained">Place Orders</Button></div>
         </div>
+        
         <div className="Cart-Right">
                 <h4 style={{margin:"0px"}} >Price Details</h4>
                 <Divider />
@@ -61,4 +74,5 @@ export default function Cart() {
                 <h4>Yoy will save a lot in this order</h4>
         </div>
     </div>
+    </>
 }

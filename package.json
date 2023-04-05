@@ -12,10 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
-=======
     "react-multi-carousel": "^2.8.2",
->>>>>>> ecf59da200d50c513dcc6f2ba5508ab1068c0c02
     "react-router-dom": "^6.9.0",
     "react-script": "^2.0.5",
     "react-scripts": "5.0.1",

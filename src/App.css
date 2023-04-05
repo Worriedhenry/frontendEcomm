@@ -71,7 +71,7 @@
 }
 .Cart{
   background-color: #f3f0f0;
-  padding: 29px 55px;
+  padding: 2px 55px;
   display: flex;
 }
 .Cart-Right{
@@ -90,8 +90,9 @@
   display: flex;
   background-color: white;
   padding: 0px 35px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; */
   margin-bottom: 1.5%;
+  border: 1px solid #c1c1c1;
 }
 paper-button {
   text-transform: none;
