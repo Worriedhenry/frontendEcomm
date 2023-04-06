@@ -9,7 +9,7 @@ function Preview({src,des}){
         <h4>{des}</h4>
         <p>Color:#00000</p>
     </div>
-    <h3 style={{width:"169px"}}>999</h3>
+    <h3 style={{width:"169px"}}>₹999</h3>
     <div>
         <h5>Order Satus</h5>
         <p>You Requested the order but canceled</p>

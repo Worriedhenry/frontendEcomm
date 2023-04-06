@@ -1,5 +1,5 @@
 import { Search } from "@mui/icons-material"
-import { Button, ButtonGroup, FormControl, IconButton, InputAdornment, TextField, Dialog, Menu, MenuItem } from "@mui/material"
+import { Button, ButtonGroup, FormControl, IconButton, InputAdornment, TextField, Dialog, Menu, MenuItem, Divider } from "@mui/material"
 import * as React from 'react';
 import AbcIcon from '@mui/icons-material/Abc';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -22,7 +22,15 @@ export default function NavBar() {
     const navigate=useNavigate()
     const Open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
+        if (anchorEl==null){
+        setAnchorEl(event.currentTarget);}
+        else{
+            setAnchorEl(null)
+        }
+    };
+    const handleLeave = (event: React.MouseEvent<HTMLButtonElement>) => {
+        // setAnchorEl(event.currentTarget);
+        console.log("leaved")
     };
     React.useEffect(() => {
         // console.log(LogHover)
@@ -80,7 +88,9 @@ export default function NavBar() {
             <Button style={{ color: "white", textTransform: 'none' }} startIcon={<AbcIcon />} >Change Language</Button>
             <div>
             <Button style={{ color: "white", textTransform: 'none' }} endIcon={ !Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon/>} 
-            onMouseEnter={handleClick}
+            onClick={handleClick}
+
+            
             >More</Button>
             <Menu
                     id="basic-menu"
@@ -95,8 +105,11 @@ export default function NavBar() {
                     }}
                 >
                     <MenuItem style={{ color: "#047BD5" }} onClick={()=> handleAuth("/account")} >Profile</MenuItem>
+                    <Divider />
                     <MenuItem style={{ color: "#047BD5" }}  onClick={()=> handleAuth("/account/orders")} >Orders</MenuItem>
+                    <Divider />
                     <MenuItem style={{ color: "#047BD5" }} >Whislist</MenuItem>
+                    <Divider />
                     <MenuItem style={{ color: "#047BD5" }} onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </div>
