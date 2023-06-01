@@ -6,6 +6,7 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import Left_part from "./left_details"
 import Right_Part from "./right";
+import Reviews from "./review/review";
 function Details(){
 
 
@@ -17,6 +18,7 @@ function Details(){
             </Grid>
             <Grid item md={8} lg={8} sm={12} xs={12} style={{marginTop:"50px"}}>
                 <Right_Part />
+                <Reviews />
             </Grid>
         </Grid>
         </div>
