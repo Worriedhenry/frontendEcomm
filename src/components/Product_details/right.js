@@ -5,26 +5,26 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-function Right_Part(){
+function Right_Part({props}){
 
     const [Assured,setAssured] =React.useState(true);
 
     const date=new Date(new Date().getTime()+6*24*60*60*1000);
     return (
         <>
-            <h3>Canon EOS M50 Mark II Mirrorless Camera EF-M15-45mm is STM Lens&nbsp;&nbsp;(Black);</h3>
+            <h3>{props.Title}</h3>
             <p>
-                <div style={{marginTop:"-10px"}}><span style={{color:"#838484"}}><div style={{width:"28px",height:"15px",backgroundColor:"green" ,borderRadius:"0.2rem" ,color:"white" ,display:"inline"}}>4.4<StarOutlinedIcon style={{fontSize:"0.8rem"}}/></div>&nbsp; 52 Rating&nbsp; & 16 Reviews &nbsp;</span><span></span>{Assured ? <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" style={{width:"80px", marginLeft:"20px"}}/>:<></>}</div>
+                <div style={{marginTop:"-10px"}}><span style={{color:"#838484"}}><div style={{width:"28px",height:"15px",backgroundColor:"green" ,borderRadius:"0.2rem" ,color:"white" ,display:"inline"}}>{props.numrate}<StarOutlinedIcon style={{fontSize:"0.8rem"}}/></div>&nbsp; 52 Rating&nbsp; & {props.reviews.length} Reviews &nbsp;</span><span></span>{Assured ? <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" style={{width:"80px", marginLeft:"20px"}}/>:<></>}</div>
                 <div>
-                    <span style={{fontSize:"30px"}}>₹57,490</span><span style={{marginLeft:"10px" ,color:"#838383"}}><strike>₹60,995</strike></span><span style={{marginLeft:"10px",color:"#30B131"}}>5% off</span>
+                    <span style={{fontSize:"30px"}}>₹{props.disc_prize}</span><span style={{marginLeft:"10px" ,color:"#838383"}}><strike>₹{props.MRP}</strike></span><span style={{marginLeft:"10px",color:"#30B131"}}>{((props.MRP-props.disc_prize)/props.MRP)*100}% off</span>
                 </div>
             </p>
             <p>Available offers</p>
             <Box>
-                <p style={{fontSize:"14px" ,fontWeight:"300"}}><LocalOfferIcon style={{color:"green" , marginRight:"9px" ,fontSize:"15px"}}/><strong>Bank offer</strong>10% off on Axis Bank Credit Card and EMI Transactions, up to ₹1500, on orders of ₹5,000 and above <span><a href="#" style={{textDecoration:"none",fontWeight:"500"}}>T&C</a></span></p>
-                <p style={{fontSize:"14px" ,fontWeight:"300"}}><LocalOfferIcon style={{color:"green" , marginRight:"9px" ,fontSize:"15px"}}/><strong>Bank offer</strong>10% off on Axis Bank Credit Card and EMI Transactions, up to ₹1500, on orders of ₹5,000 and above <span><a href="#" style={{textDecoration:"none",fontWeight:"500"}}>T&C</a></span></p>
-                <p style={{fontSize:"14px" ,fontWeight:"300"}}><LocalOfferIcon style={{color:"green" , marginRight:"9px" ,fontSize:"15px"}}/><strong>Bank offer</strong>10% off on Axis Bank Credit Card and EMI Transactions, up to ₹1500, on orders of ₹5,000 and above <span><a href="#" style={{textDecoration:"none",fontWeight:"500"}}>T&C</a></span></p>
-                <p style={{fontSize:"14px" ,fontWeight:"300"}}><LocalOfferIcon style={{color:"green" , marginRight:"9px" ,fontSize:"15px"}}/><strong>Bank offer</strong>10% off on Axis Bank Credit Card and EMI Transactions, up to ₹1500, on orders of ₹5,000 and above <span><a href="#" style={{textDecoration:"none",fontWeight:"500"}}>T&C</a></span></p>
+                <p style={{fontSize:"14px" ,fontWeight:"300"}}><LocalOfferIcon style={{color:"green" , marginRight:"9px" ,fontSize:"15px"}}/><strong>Bank offer</strong>10% off on Axis Bank Credit Card and EMI Transactions, up to ₹1500, on orders of ₹5,000 and above <span><a href="www.google.com" style={{textDecoration:"none",fontWeight:"500"}}>T&C</a></span></p>
+                <p style={{fontSize:"14px" ,fontWeight:"300"}}><LocalOfferIcon style={{color:"green" , marginRight:"9px" ,fontSize:"15px"}}/><strong>Bank offer</strong>10% off on Axis Bank Credit Card and EMI Transactions, up to ₹1500, on orders of ₹5,000 and above <span><a href="www.google.com" style={{textDecoration:"none",fontWeight:"500"}}>T&C</a></span></p>
+                <p style={{fontSize:"14px" ,fontWeight:"300"}}><LocalOfferIcon style={{color:"green" , marginRight:"9px" ,fontSize:"15px"}}/><strong>Bank offer</strong>10% off on Axis Bank Credit Card and EMI Transactions, up to ₹1500, on orders of ₹5,000 and above <span><a href="www.google.com" style={{textDecoration:"none",fontWeight:"500"}}>T&C</a></span></p>
+                <p style={{fontSize:"14px" ,fontWeight:"300"}}><LocalOfferIcon style={{color:"green" , marginRight:"9px" ,fontSize:"15px"}}/><strong>Bank offer</strong>10% off on Axis Bank Credit Card and EMI Transactions, up to ₹1500, on orders of ₹5,000 and above <span><a href="www.google.com" style={{textDecoration:"none",fontWeight:"500"}}>T&C</a></span></p>
                 
             </Box>
             <Table>
