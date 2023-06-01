@@ -1,8 +1,12 @@
 .App {
   text-align: center;
 }
-.MuiOutlinedInput-notchedOutline{
+/* .MuiOutlinedInput-notchedOutline{
   border-color: white !important;
+} */
+.BorderColor{
+  border-color: white !important;
+  width: auto;
 }
 *{
   font-family: 'Roboto', sans-serif;
@@ -42,6 +46,54 @@
 .App-link {
   color: #61dafb;
 }
+.Profile-TopRight{
+  padding-top: 22px;
+  
+}
+.OrdersFilter{
+  width: 230px;
+  background-color: white;
+  padding:0px 16px 0px 16px;
+
+}
+.Orders-Right{
+  margin-left: 20px;
+  width:1101px;
+}
+.SearchOrder{
+  width: 80%;
+  margin: 0px 0% 2.5% 0px;
+  height: 31px;
+}
+.Cart-left{
+  width: 839px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.Cart{
+  background-color: #f3f0f0;
+  padding: 2px 55px;
+  display: flex;
+}
+.Cart-Right{
+  background-color: white;
+  height: 311px;
+  width: 399px;
+  margin-left: 29px;
+  padding: 25px;
+}
+.Cart-RightDetails{
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0px;
+}
+.OrdersPreview{
+  display: flex;
+  background-color: white;
+  padding: 0px 35px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; */
+  margin-bottom: 1.5%;
+  border: 1px solid #c1c1c1;
+}
 paper-button {
   text-transform: none;
 }
@@ -52,4 +104,40 @@ paper-button {
   to {
     transform: rotate(360deg);
   }
+}
+.profile-Greeting{
+  height: 50px;
+  padding:12px;
+  background-color: white;
+}
+.Profile-left{
+    width: 284px;
+    height: 100%;
+    
+}
+
+.Footer{
+  height: 7vh;
+  background-color: #172337;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.RightProfile{
+  background-color: white;
+  margin-left: 3.5%;
+  width:860px;
+  padding-left: 30px;
+}
+.Profile-TopBottom{
+  padding-top: 50px;
+}
+.Profile-Offers{
+  background-color: white;
+  margin-top: 7%;
+}
+.Profile-Container{
+  padding: 14px 64px 14px 64px;
+  background: #f3f0f0;
+  display: flex;
 }

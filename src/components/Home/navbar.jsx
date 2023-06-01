@@ -2,7 +2,7 @@ import { Box , styled ,Typography } from '@mui/material';
 import Data from "../../data_resourses/nav_data"
 const StyBox =styled(Box)`
     display:flex;
-    margin: 55px 110px 0 110px;
+    margin: 0px 110px 0 110px;
     justify-content:space-between;
 `
 const StyTypo= styled(Typography)`
