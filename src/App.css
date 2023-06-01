@@ -1,9 +1,15 @@
 .App {
   text-align: center;
 }
-/* .MuiOutlinedInput-notchedOutline{
-  border-color: white !important;
-} */
+.productImageContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.SpecificationContainer{
+  margin-top: 50px;
+}
 .BorderColor{
   border-color: white !important;
   width: auto;
@@ -80,6 +86,8 @@
   width: 399px;
   margin-left: 29px;
   padding: 25px;
+  position: sticky;
+  top: 17vh;
 }
 .Cart-RightDetails{
   display: flex;
@@ -113,7 +121,8 @@ paper-button {
 .Profile-left{
     width: 284px;
     height: 100%;
-    
+    position: sticky;
+    top:11vh;
 }
 
 .Footer{
@@ -127,7 +136,7 @@ paper-button {
   background-color: white;
   margin-left: 3.5%;
   width:860px;
-  padding-left: 30px;
+  padding: 30px;
 }
 .Profile-TopBottom{
   padding-top: 50px;

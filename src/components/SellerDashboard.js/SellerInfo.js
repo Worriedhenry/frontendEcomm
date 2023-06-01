@@ -3,7 +3,7 @@ import { Button, Divider, TextField ,Radio,FormControlLabel,RadioGroup} from "@m
 import AxiosLink from "../../BaseLink";
 import ReactLoading from "react-loading";
 import axios from "axios";
-export default function PersonalInfo(){
+export default function SellerInfo(){
     const [PersonalData,setPersonalData]=useState(false)
     const [EmailData,setEmailData]=useState(false)
     const [PhoneData,setPhoneData]=useState(false)
@@ -11,7 +11,6 @@ export default function PersonalInfo(){
     const [LastName,setLastName]=useState("")
     const [Email,setEmail]=useState("")
     const [Phone,setPhone]=useState("")
-    const [Gender,setGender]=useState(-1)
     // useEffect(()=>{
     //     const SetupData=async ()=>{
     //         Let FirstData=await axios.get(AxiosLink+"/getuserinfo")
@@ -22,40 +21,30 @@ export default function PersonalInfo(){
     //         setPhone(FirstData?.phone)
     //     }
     // });
-    // const HandlePersonalInfo=async()=>{
-    //     var PayLoad={
-    //         FirstName,LastName,Gender
-    //     };
-    //     let Result=awiat axios.post(AxiosLink+"/updateperosnal")
-    // }
-    // const HandleEmail=async()=>{
-    //     var UpdatedEmail={Email}
-    //     Let Result=awiat axios.post(AxiosLink+"/updateemail")
-    // }
-    // const HandlePhone=async()=>{
-    //     var UpdatedPhone={Phone}
-    //     Let Result=awiat axios.post(AxiosLink+"/updatephone")
-    // }
+    const HandlePersonalInfo=async()=>{
+        var PayLoad={
+            FirstName,LastName
+        };
+        let Result=await axios.post(AxiosLink+"/updateperosnal")
+    }
+    const HandleEmail=async()=>{
+        var UpdatedEmail={Email}
+        let Result=await axios.post(AxiosLink+"/updateemail")
+    }
+    const HandlePhone=async()=>{
+        var UpdatedPhone={Phone}
+        let Result=await axios.post(AxiosLink+"/updatephone")
+    }
     return <div className="RightProfile">
     <div className="Profile-TopRight">
-        <span style={{ fontSize: "18px", paddingTop: "15px" }}><b>Personal Information</b></span>
+        <span style={{ fontSize: "18px", paddingTop: "15px" }}><b>Seller Information</b></span>
         <Button onClick={()=> setPersonalData(!PersonalData)}>{ PersonalData ? "cancle" :"edit"}</Button>
         <p></p>
-        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "First name" } disabled={ PersonalData ? false :true} value="First Name" />
-        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "Last name" } disabled={ PersonalData ? false :true} value="Last Name" />
+        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "First name" } disabled={ PersonalData ? false :true} value="Buisness Name" />
+        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "Last name" } disabled={ PersonalData ? false :true} value="Seller Name" />
         { PersonalData && <Button variant="contained">Save</Button>}
         { PersonalData && <ReactLoading type={"spin"} color="#000" ></ReactLoading>}
-        <p>Your Gender</p>
-        <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            name="radio-buttons-group"
-            row
-            disabled={ PersonalData ? false :true}
-        >
-            <FormControlLabel disabled={ PersonalData ? false :true} value="female" control={<Radio />} label="Female" />
-            <FormControlLabel disabled={ PersonalData ? false :true} value="male" control={<Radio />} label="Male" />
-            <FormControlLabel disabled={ PersonalData ? false :true} value="other" control={<Radio />} label="Other" />
-        </RadioGroup>
+        
         <p style={{ paddingTop: "28px" }}><span style={{ fontSize: "18px", paddingTop: "35px" }}><b>Email Address</b></span>
         <Button onClick={()=> setEmailData(!EmailData)}>{ EmailData ? "cancle" :"edit"}</Button>
         </p>
@@ -65,7 +54,7 @@ export default function PersonalInfo(){
         <Button onClick={()=> setPhoneData(!PhoneData)}>{ PhoneData ? "cancle" :"edit"}</Button>
         </p>
         <TextField variant="filled" label={ PhoneData && "Mobile number" } size="small" sx={{ mr: 7, width: "300px" }} disabled={ PhoneData ? false :true} value="xxxxxx1234" />
-        { PhoneData && <Button variant="contained">SAVe</Button>}
+        { PhoneData && <Button variant="contained">Save</Button>}
     </div>
     <div className="Profile-TopBottom">
         <h3>FAQ</h3>

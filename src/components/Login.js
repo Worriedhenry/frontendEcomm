@@ -5,14 +5,44 @@ import { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Logo from "./Flip-Logo.jpg"
+import axios from 'axios';
+import AxiosLink from '../BaseLink';
+import {useNavigate} from "react-router-dom"
+
 function Login({OpenSign,Next}) {
   let [showPass, setShowPass] = useState(true);
   const [PhoneEmail,setPhoneEmail]=useState("")
   const [Password,setPassword]=useState("")
+  const [PhoneEmailHelperText,setPhoneEmailHelperText]=useState("")
+  const [PasswordHelperText,setPasswordHelperText]=useState("")
+  const [Error,setError]=useState("")
+  const navigate=useNavigate()
+  const handleLogin=async ()=>{
+      const PayLoad={
+        PhoneEmail,Password
+      }
+      if (PhoneEmail==""){
+          setPhoneEmailHelperText("Field cannot be empty")
+          return
+      }
+      if (Password==""){
+          setPasswordHelperText("Field cannot be empty")
+          setPhoneEmailHelperText("")
+          return
+      }
+      setPasswordHelperText("")
+      setPhoneEmailHelperText("")
+      let result=await axios.post(AxiosLink+"login",PayLoad)
+      if(result?.status===200){
+          navigate(Next)
+      }
+      else if(result?.status==302){
+        setError("Phone/Email/Password is incorrect! Please try again")
+      }
+      else{
+        setError("An unknown erroe occured on our side , please try again")
+      }
 
-  const handleLogin=()=>{
-    // Login Process
-    //Navigate to Next
   }
 
   return (
@@ -31,12 +61,16 @@ function Login({OpenSign,Next}) {
       variant='filled'
       style={{width:"80%"}}
       label="Enter Email/Phone Number"
+      onChange={(e)=>setPhoneEmail(e.target.value)}
+      helperText={PhoneEmailHelperText}
       />
       <TextField 
       variant='filled'
       label="Enter Password"
       style={{width:"80%"}}
       type={showPass ? "password" : "text"}
+      onChange={(e)=>setPassword(e.target.value)}
+      helperText={PasswordHelperText}
       InputProps={{
       endAdornment:
           <IconButton onClick={()=>{setShowPass(!showPass)}} >
@@ -46,7 +80,7 @@ function Login({OpenSign,Next}) {
       }}
             />
             </div>
-      <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} variant="filled">Login</Button>
+      <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} onClick={handleLogin} variant="filled">Login</Button>
 
       <p style={{color:"#047BD5"}} onClick={()=>OpenSign()} ><b>New to Flipkart ? Create an Account</b></p>
     </div></div>

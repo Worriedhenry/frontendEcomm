@@ -85,12 +85,10 @@ export default function NavBar() {
 
         </div>
         <div style={{ width: "25vw", display: "flex", justifyContent: "space-around"}}>
-            <Button style={{ color: "white", textTransform: 'none' }} startIcon={<AbcIcon />} >Change Language</Button>
+            <Button style={{ color: "white", textTransform: 'none' }} startIcon={<AbcIcon />} >Become Seller</Button>
             <div>
             <Button style={{ color: "white", textTransform: 'none' }} endIcon={ !Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon/>} 
             onClick={handleClick}
-
-            
             >More</Button>
             <Menu
                     id="basic-menu"
@@ -104,13 +102,13 @@ export default function NavBar() {
                         'aria-labelledby': 'basic-button',
                     }}
                 >
-                    <MenuItem style={{ color: "#047BD5" }} onClick={()=> handleAuth("/account")} >Profile</MenuItem>
+                    <MenuItem style={{ color: "#047BD5",width:'15vw' }} onClick={()=> handleAuth("/account")} >Profile</MenuItem>
                     <Divider />
-                    <MenuItem style={{ color: "#047BD5" }}  onClick={()=> handleAuth("/account/orders")} >Orders</MenuItem>
+                    <MenuItem style={{ color: "#047BD5" ,width:'15vw'}}  onClick={()=> handleAuth("/account/orders")} >Orders</MenuItem>
                     <Divider />
-                    <MenuItem style={{ color: "#047BD5" }} >Whislist</MenuItem>
+                    <MenuItem style={{ color: "#047BD5",width:'15vw' }} >Whislist</MenuItem>
                     <Divider />
-                    <MenuItem style={{ color: "#047BD5" }} onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem style={{ color: "#047BD5",width:'15vw' }} onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </div>
             <Button style={{ color: "white", textTransform: 'none' }} onClick={()=>navigate("/viewcart")}  startIcon={<ShoppingCartIcon />} >Cart</Button>
