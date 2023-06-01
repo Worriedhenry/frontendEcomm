@@ -32,7 +32,7 @@ function Preview({src,des}){
 </div>
 
 }
-function CatlogCard() {
+function CatlogCard({src,des}) {
 
     return (
       <Paper
@@ -49,27 +49,26 @@ function CatlogCard() {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
-              <Img alt="complex" src="https://res.cloudinary.com/drmxw2cme/image/upload/v1680337482/samples/food/spices.jpg" />
+              <Img alt="complex" src={src} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item >
-                <Typography gutterBottom variant="h3.heading" component="div">
-                  Shoes
+                <Typography gutterBottom variant="h3.heading" component="h4">
+                  {des}
                 </Typography>
                 <Typography variant="subtitle2" gutterBottom>
                   <div style={{ marginTop: "-1px", display: "flex", fontSize: "13px" }}><span style={{ color: "#838484" }}><Rating readOnly size="small" defaultValue={4} precision={0.5} name="size-small" />
                     <span>&nbsp; 128 Rating&nbsp; & 68 Reviews &nbsp;</span></span><span></span>{true ? <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" style={{ width: "80px", marginLeft: "20px" }} /> : <></>}</div>
                 </Typography>
                 <div>
-                    <span style={{fontSize:"20px"}}>₹57,490</span><span style={{marginLeft:"10px" ,color:"#838383"}}><strike>₹60,995</strike></span><span style={{marginLeft:"10px",color:"#30B131"}}>5% off</span>
+                    <span style={{fontSize:"16px"}}>₹57,490</span><span style={{marginLeft:"10px" ,color:"#838383"}}><strike>₹60,995</strike></span><span style={{marginLeft:"10px",color:"#30B131"}}>5% off</span>
                 </div>
               </Grid>
               <Grid item spacing={2}>
-                <Button variant='contained' size='small'>Save For Later</Button>
-                {/* <Button variant='contained' size='small' color="error">Remove</Button> */}
-                <Button style={{ margin: "5px" }} size="small"  variant='contained' color="error">  Remove</Button>
+                <Button variant='contained' size='small'>View</Button>
+                <Button style={{ margin: "5px" }} size="small"  variant='contained' color="error">Cancle</Button>
               </Grid>
             </Grid>
             <Grid item>
