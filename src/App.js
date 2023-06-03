@@ -8,6 +8,7 @@ import SellerInfo from './components/SellerDashboard.js/SellerInfo';
 import NavBar from './components/Header';
 import Profile from './components/Profile/ProFile';
 import Headers from './components/Header'
+import Write_review from './components/Product_details/review/write_review/write_review';
 import Footer from './components/Footer';
 import Orders from './components/Orders/Orders';
 import Cart from './components/Cart/Cart';
@@ -24,6 +25,7 @@ function App() {
   <Route path='/account/orders' element={<>< NavBar/><Orders /><Footer/></>} />
   <Route path='/viewcart' element={<>< NavBar/><Cart /><Footer/></>} />
   <Route path='/viewproduct' element={<>< NavBar/><Details /><Footer/></>} />
+  <Route path='/writereview' element={<><NavBar/> <Write_review/> <Footer/></>} />
   <Route path='/admin/info/:SellerId' element={<>< NavBar/><div className='Profile-Container'><SellerLeft page={0} /><SellerInfo /></div><Footer/></>} />
   <Route path='/admin/catlog/:SellerId' element={<>< NavBar/><div className='Profile-Container'><SellerLeft page={1} /><SellerCatlog /></div><Footer/></>} />
   <Route path='/admin/addproduct/:SellerId' element={<>< NavBar/><div className='Profile-Container' ><SellerLeft page={2} /><SellerAddProduct /></div><Footer/></>} />

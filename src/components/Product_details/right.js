@@ -4,7 +4,9 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import Reviews from "./review/review"
+import Specs from "./prod_specs";
+import Ques from "./ques_ans";
 function Right_Part({props}){
 
     const [Assured,setAssured] =React.useState(true);
@@ -77,7 +79,11 @@ function Right_Part({props}){
                     </ul></td>
                 </tr>
             </Table>
-             
+            
+             <Specs/>
+             <Reviews/>
+             <Ques/>
+
         </>
     )
 }
