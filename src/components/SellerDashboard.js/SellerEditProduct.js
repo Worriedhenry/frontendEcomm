@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, FormControlLabel, InputAdornment, OutlinedInput, Snackbar, TextField, Typography,Alert,CircularProgress } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Button, FormControlLabel, InputAdornment, OutlinedInput, Snackbar, TextField, Typography,Alert } from "@mui/material"
 import React, { useState } from "react"
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,7 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import axios from "axios";
 import {CheckBox, ExpandMoreOutlined} from "@mui/icons-material"
 
-export default function SellerAddProduct() {
+export default function AddProduct() {
 
   const [Category, setCategory] = useState('');
   const [Files,setFiles]=useState(Array(5).fill(null))
@@ -15,7 +15,6 @@ export default function SellerAddProduct() {
   const [droppedImage, setDroppedImage] = useState(null);
   const [boxes, setBoxes] = useState(Array(5).fill(null));
   const [ImagePublicID,setImagePublicId]=useState(Array(5).fill(null))
-  const [UploadImageSnackbar,setUploadImageSnackbarControl]=useState(false)
   const [ProductName,setProductName]=useState('')
   const [ProductDescription,setProductDescription]=useState('')
   const [ProductBrandName,setProductBrandName]=useState('')
@@ -72,22 +71,35 @@ export default function SellerAddProduct() {
       console.log(updatedBoxes,UpdatedFiles)
     }
   };
-  
-  const handleDelete = async (index,setUploadingImage) => {
+  const handleUpload = async (index) => {
+    const imageFile = Files[index];
+    if (imageFile) {
+      try {        
+        const formData = new FormData();
+        formData.append('file', imageFile);
+        const response = await axios.post('http://localhost:3001/upload', formData);
+        const UpdatedImageId=[...ImagePublicID]
+        UpdatedImageId[index]=response.data.result
+        setImagePublicId(UpdatedImageId)
+        console.log('Image uploaded successfully',UpdatedImageId);
+        // Handle success response from the backend
+      } catch (error) {
+        console.error('Error uploading image', error);
+        // Handle error response or any other errors that may occur
+      }
+    }
+  };
+  const handleDelete = async (index) => {
     const updatedBoxes = [...boxes];
     const updatedFiles=[...Files]
     const updatePublicImage=[...ImagePublicID]
-    
     try{
     let result = await axios.post("http://localhost:3001/deleteimage",ImagePublicID[index])
   } catch(e){
     console.log(e)
   }
-    
     updatedFiles[index]=null;
-    setFiles(updatedFiles)
     updatePublicImage[index]=null;
-    setImagePublicId(updatePublicImage)
     updatedBoxes[index] = null;
     setBoxes(updatedBoxes);
   };
@@ -127,42 +139,15 @@ export default function SellerAddProduct() {
     }
     let UploadResponse=await axios.post("http://localhost:3001/AddProductToCatlog",UploadLoad)
   }
-  const RenderBoxes = () => {
-    const [UploadingImage,setUploadingImage]=useState(false)
-    const handleUpload = async (index) => {
-      const imageFile = Files[index];
-      if (imageFile) {
-        try {        
-          setUploadingImage(true)
-          const formData = new FormData();
-          formData.append('file', imageFile);
-          const response = await axios.post('http://localhost:3001/upload', formData);
-          setUploadingImage(false)
-          setUploadImageSnackbarControl(true)
-          const UpdatedImageId=[...ImagePublicID]
-          UpdatedImageId[index]=response.data.result
-          setImagePublicId(UpdatedImageId)
-          console.log('Image uploaded successfully',UpdatedImageId);
-          // Handle success response from the backend
-        } catch (error) {
-          console.error('Error uploading image', error);
-          // Handle error response or any other errors that may occur
-        }
-      }
-    };
+  const renderBoxes = () => {
     return boxes.map((box, index) => (
-      <div
-      style={{
-        margin:"10px"
-      }}
-      >
       <div
         key={index}
         style={{
           width: '300px',
           height: '250px',
           border: '1px solid black',
-          marginBottom: '0px',
+          marginBottom: '10px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -182,14 +167,13 @@ export default function SellerAddProduct() {
         ) : (
           <p>Drag and Drop Product image here  </p>
         )}
-        {!Files[index] && <p>OR</p>}
-        {!Files[index] &&<input type="file" accept="image/*" onChange={(event) => handleInputChange(event, index)} />}
+        <p>OR</p>
+        <input type="file" accept="image/*" onChange={(event) => handleInputChange(event, index)} />
 
-      </div>
-        {<div>
-          <Button style={{display:Files[index] ? "inline":"none"}} color="success" variant="contained" size="small" onClick={() => handleUpload(index,setUploadingImage)}>{UploadingImage ? <CircularProgress size={15} style={{color:"white"}} /> : 'Upload'}</Button>
-          {Files[index] && <Button  color="error" variant="contained" size="small" onClick={() => handleDelete(index)}>Delete</Button>}
-        </div>}
+        <div style={{ position: 'absolute', bottom: '10px', left: '10px' }}>
+          <Button color="success" onClick={() => handleUpload(index)}>Upload</Button>
+          <Button  color="error" onClick={() => handleDelete(index)}>Delete</Button>
+        </div>
       </div>
     ));
   };
@@ -273,7 +257,7 @@ export default function SellerAddProduct() {
     <div
     className="productImageContainer"
     >
-    {RenderBoxes()}
+    {renderBoxes()}
     </div>
     </AccordionDetails>
     </Accordion>
@@ -396,17 +380,6 @@ export default function SellerAddProduct() {
     >
        <Alert onClose={()=>setSnackbarControl(false)} severity="warning" sx={{ width: '100%' }}>
           {EmptyFeildError}
-        </Alert>
-    </Snackbar>
-    <Snackbar
-    open={UploadImageSnackbar}
-    autoHideDuration={3000}
-    onClose={()=>setUploadImageSnackbarControl(false)}
-    message={EmptyFeildError}
-    anchorOrigin={{vertical:"bottom",horizontal: "center"}}
-    >
-       <Alert onClose={()=>setSnackbarControl(false)} severity="success" sx={{ width: '100%' }}>
-          Image Uploaded
         </Alert>
     </Snackbar>
   </div>
