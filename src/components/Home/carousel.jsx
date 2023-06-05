@@ -1,4 +1,5 @@
 import carouselImgs from "../../data_resourses/carousel_data"
+import React from 'react'
 import Carousel from "react-multi-carousel"
 import 'react-multi-carousel/lib/styles.css'
 import { Box , styled } from '@mui/material';

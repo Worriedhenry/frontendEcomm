@@ -1,0 +1,38 @@
+import React from "react"
+import Star from "./star_rating";
+import { colors } from "@mui/material";
+import { Button } from '@mui/material';
+
+function Right(){
+    return(
+        <div>
+
+            <div style={{marginLeft:"15px" ,marginRight:"15px"}}>
+                <div style={{border:"1px solid #f0f0f0" }}>
+                    <div style={{padding:"24px" ,width:"100%" ,borderBottom:"1px solid #f0f0f0"}}>
+                        <div style={{marginBottom:"6px" ,fontWeight:"600"}}>
+                            <span style={{fontSize:"18x" ,letterSpacing:"0.1rem"}}>Rate this product</span>
+                        </div>
+                        <Star />
+                    </div>
+                    <div style={{width:"100%"}}>
+                        <div style={{padding:"24px" ,paddingTop:"15px"}}>
+                            <h3 style={{fontSize:"18px"}}>Review this product</h3>
+                            <form>
+                            <textarea rows="15" cols="140" style={{borderStyle:"dotted",resize: "none" ,fontSize:"15px"}} placeholder="Description" required>
+
+                            </textarea>
+                            <Button style={{backgroundColor:"rgb(255, 173, 51)" ,width:"10%" ,height:"10%"  ,borderRadius:"2px" ,color:"#f0f0f0" ,fontWeight:"600" }} variant="filled" >Submit</Button>            
+
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    
+    )
+}
+export default Right;

@@ -30,7 +30,6 @@ function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackb
         setCatlogProducts(updatedCatlog)
       })
       .catch(err => console.error(err));
-
   }
   return (
     <Paper

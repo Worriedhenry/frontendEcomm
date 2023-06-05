@@ -1,4 +1,6 @@
 import { Box , styled ,Typography } from '@mui/material';
+import React from 'react'
+
 import Data from "../../data_resourses/nav_data"
 const StyBox =styled(Box)`
     display:flex;
