@@ -85,7 +85,7 @@ export default function NavBar() {
 
         </div>
         <div style={{ width: "25vw", display: "flex", justifyContent: "space-around"}}>
-            <Button style={{ color: "white", textTransform: 'none' }} startIcon={<AbcIcon />} >Become Seller</Button>
+            <Button style={{ color: "white", textTransform: 'none' }} startIcon={<AbcIcon />} onClick={()=>navigate("/seller/login")} >Become Seller</Button>
             <div>
             <Button style={{ color: "white", textTransform: 'none' }} endIcon={ !Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon/>} 
             onClick={handleClick}

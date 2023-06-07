@@ -23,11 +23,13 @@ function Login({OpenSign,Next}) {
       }
       if (PhoneEmail==""){
           setPhoneEmailHelperText("Field cannot be empty")
+          seterrorstateEmail("error")
           return
       }
       if (Password==""){
           setPasswordHelperText("Field cannot be empty")
           setPhoneEmailHelperText("")
+          seterrorstatePass("error")
           return
       }
       setPasswordHelperText("")
