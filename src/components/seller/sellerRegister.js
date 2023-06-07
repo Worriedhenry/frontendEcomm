@@ -3,7 +3,7 @@ import HorizontalNonLinearStepper from './progress_steeper';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-function SellerLogin(){
+function SellerRegister(){
     return (
         <div>
 
@@ -16,4 +16,4 @@ function SellerLogin(){
         </div>
     )
 }
-export default SellerLogin;
+export default SellerRegister;
