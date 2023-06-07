@@ -12,8 +12,8 @@ function Left(){
 
 
 
-                <div style={{border:"1px solid #f0f0f0" ,padding:"24px" ,color:"#878787"}}>
-                    <div style={{marginBottom:"6px" ,fontWeight:"600"}}>
+                <div style={{border:"1px solid #f0f0f0" ,padding:"24px"}}>
+                    <div style={{marginBottom:"6px" ,fontWeight:"bold",color:"black"}}>
                         <span style={{fontSize:"18x"}}>Have you used this Product ?</span>
                     </div>
                     <div style={{marginBottom:"6px" ,fontWeight:"550"}}>
@@ -22,7 +22,7 @@ function Left(){
                 </div>
 
 
-                <div style={{border:"1px solid #f0f0f0" ,padding:"24px" ,color:"#878787"}}>
+                <div style={{border:"1px solid #f0f0f0" ,padding:"24px"}}>
                     <div style={{marginBottom:"6px" ,fontWeight:"600"}}>
                         <span style={{fontSize:"18x"}}>Why review a product ?</span>
                     </div>
@@ -32,7 +32,7 @@ function Left(){
                 </div>
 
 
-                <div style={{border:"1px solid #f0f0f0" ,padding:"24px" ,color:"#878787"}}>
+                <div style={{border:"1px solid #f0f0f0" ,padding:"24px"}}>
                     <div style={{marginBottom:"6px" ,fontWeight:"600"}}>
                         <span style={{fontSize:"18x"}}>How to review a product ?</span>
                     </div>

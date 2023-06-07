@@ -1,5 +1,5 @@
 import { Search } from "@mui/icons-material"
-import { Button, ButtonGroup, FormControl, IconButton, InputAdornment, TextField, Dialog, Menu, MenuItem, Divider } from "@mui/material"
+import { Button, ButtonGroup, FormControl, IconButton, InputAdornment, TextField, Dialog, Menu, MenuItem, Divider,ButtonBase } from "@mui/material"
 import * as React from 'react';
 import AbcIcon from '@mui/icons-material/Abc';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -11,6 +11,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import { useNavigate } from "react-router-dom";
 import { width } from "@mui/system";
+import SearchIcon from '@mui/icons-material/Search';
 export default function NavBar() {
 
     const [LogHover, setLogHover] = React.useState(false);
@@ -19,6 +20,7 @@ export default function NavBar() {
     const [Auth,setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [Next,setNext]=React.useState("/")
+    const [SearchQuery,setSearchQuery]=React.useState("")
     const navigate=useNavigate()
     const Open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,26 +59,27 @@ export default function NavBar() {
     }
     return <div style={{ display: "flex", justifyContent: "center", background: "#047BD5", height: "9vh", alignItems: "center", width: "100%",position:"sticky",zIndex:"100",top:"0px" }}>
         <div style={{ display: "flex", width: "54vw", justifyContent: "space-around", alignItems: "center" }}>
-           <img style={{ height: "48px" }}  src={Logo} alt=""></img>
-
-            <FormControl sx={{ width: '30vw' }} variant="filled">
+           <ButtonBase onClick={()=>navigate("/")}><img style={{ height: "48px" }}  src={Logo} alt=""></img></ButtonBase>
+                <div>
                 <input
                     id="outlined-adornment-password"
                     type="text"
                     className="BorderColor"
                     placeholder="Search Items"
                     size="small"
-                    style={{height:"30px"}}
-                    
-
+                    style={{height:"26px",width:"30vw",padding:"0px 8px"}}
+                    value={SearchQuery}
+                    onChange={(e)=>setSearchQuery(e.target.value)}
                 />
-            </FormControl>
+                <Button onClick={()=>navigate("/search?query="+SearchQuery)} color="primary" style={{backgroundColor:"white"}} startIcon={<SearchIcon style={{color:"#047BD5"}}  /> } variant="contained" ></Button>
+                </div>
             
                 <div>
                 <Button
                     onClick={()=>setOpen(true)}
                     endIcon={ !Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon/>}
-                    style={{ color: "#047BD5", background: "white" }} >Login
+                    size="small"
+                    style={{ color: "#047BD5", background: "white",fontWeight:"bold" }} >Login
                 </Button>
                 </div>
                 
@@ -85,9 +88,9 @@ export default function NavBar() {
 
         </div>
         <div style={{ width: "25vw", display: "flex", justifyContent: "space-around"}}>
-            <Button style={{ color: "white", textTransform: 'none' }} startIcon={<AbcIcon />} onClick={()=>navigate("/seller/register")} >Become Seller</Button>
+            <Button style={{ color: "white", textTransform: 'none',fontWeight:"bold" }} startIcon={<AbcIcon />} onClick={()=>navigate("/seller/register")} >Become Seller</Button>
             <div>
-            <Button style={{ color: "white", textTransform: 'none' }} endIcon={ !Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon/>} 
+            <Button style={{ color: "white", textTransform: 'none' ,fontWeight:"bold"}} endIcon={ !Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon/>} 
             onClick={handleClick}
             >More</Button>
             <Menu
@@ -111,7 +114,7 @@ export default function NavBar() {
                     <MenuItem style={{ color: "#047BD5",width:'15vw' }} onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </div>
-            <Button style={{ color: "white", textTransform: 'none' }} onClick={()=>navigate("/viewcart")}  startIcon={<ShoppingCartIcon />} >Cart</Button>
+            <Button style={{ color: "white", textTransform: 'none' ,fontWeight:"bold"}} onClick={()=>navigate("/viewcart")}  startIcon={<ShoppingCartIcon />} >Cart</Button>
         </div>
         <Dialog
             fullWidth

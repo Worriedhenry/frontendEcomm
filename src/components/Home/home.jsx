@@ -7,6 +7,9 @@ import FullProductWindow from './Fullproduct';
 function home(){
     return(
         <>
+        <head>
+            <title>Flipkart</title>
+        </head>
         <Nav />
         <Mycarousel />
         <FullProductWindow />

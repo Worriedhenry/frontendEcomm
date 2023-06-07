@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, IconButton, InputAdornment, TextField ,Typography ,Grid, Table ,styled, Button ,} from '@mui/material';
+import { Box, IconButton, InputAdornment, TextField ,Typography ,Grid, Table ,styled, Button, Rating ,} from '@mui/material';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
@@ -7,18 +7,21 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Reviews from "./review/review"
 import Specs from "./prod_specs";
 import Ques from "./ques_ans";
-function Right_Part({props}){
+function Right_Part({product}){
 
     const [Assured,setAssured] =React.useState(true);
 
     const date=new Date(new Date().getTime()+6*24*60*60*1000);
     return (
         <>
-            <h3>{props.Title}</h3>
+         <head>
+    <meta charset="utf-8" />
+    <title>{product.ProductTitle}</title></head>
+            <h2>{product.ProductTitle}</h2>
             <p>
-                <div style={{marginTop:"-10px"}}><span style={{color:"#838484"}}><div style={{width:"28px",height:"15px",backgroundColor:"green" ,borderRadius:"0.2rem" ,color:"white" ,display:"inline"}}>{props.numrate}<StarOutlinedIcon style={{fontSize:"0.8rem"}}/></div>&nbsp; 52 Rating&nbsp; & {props.reviews.length} Reviews &nbsp;</span><span></span>{Assured ? <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" style={{width:"80px", marginLeft:"20px"}}/>:<></>}</div>
+                <div style={{marginTop:"-10px"}}><span style={{color:"#838484"}}><div style={{width:"28px",height:"15px" ,borderRadius:"0.2rem" ,color:"white" ,display:"inline"}}><Rating value={product.ProductNumericalRating} readOnly size="small"></Rating></div>&nbsp; 52 Rating&nbsp; & {product.reviews} Reviews &nbsp;</span><span></span>{Assured ? <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" style={{width:"80px", marginLeft:"20px"}}/>:<></>}</div>
                 <div>
-                    <span style={{fontSize:"30px"}}>₹{props.disc_prize}</span><span style={{marginLeft:"10px" ,color:"#838383"}}><strike>₹{props.MRP}</strike></span><span style={{marginLeft:"10px",color:"#30B131"}}>{((props.MRP-props.disc_prize)/props.MRP)*100}% off</span>
+                    <span style={{fontSize:"30px"}}>₹{product.ProductSellingPrice}</span><span style={{marginLeft:"10px" ,color:"#838383"}}><strike>₹{product.ProductMRP}</strike></span><span style={{marginLeft:"10px",color:"#30B131"}}>{((product.ProductMRP-product.ProductSellingPrice)/product.ProductMRP)*100}% off</span>
                 </div>
             </p>
             <p>Available offers</p>
@@ -41,7 +44,7 @@ function Right_Part({props}){
                         <TextField label="Enter Delivery Pincode" variant="standard" style={{fontWeight:"600",fontSize:"0.8rem" ,color:"blue" ,verticalAlign:"baseline"}} /><a href="#" style={{textDecoration:"none", color:"#486EEF",marginLeft:"10px",verticalAlign:"baseline"}}>Check</a>
                         </ul>
                         <ul style={{marginTop:"-10px"}}>
-                        <p style={{fontWeight:"600" ,fontSize:"0.8rem"}} > Delivery by {date.toDateString()} | ₹40 </p>
+                        <p style={{fontWeight:"600" ,fontSize:"0.8rem"}} > Delivery by {date.toDateString()} | { product.ProductSellingPrice >499 ? "Free" : "₹40"} </p>
                         </ul>
                     </td>
                 </tr>
@@ -73,13 +76,9 @@ function Right_Part({props}){
                 </tr>                            
                 <tr style={{height:"50px"}}>
                     <td style={{color:"#878787" ,fontWeight:"600" ,verticalAlign:"baseline"}}>Description</td>
-                    <td style={{fontSize:"14px" ,marginTop:"-15px" ,verticalAlign:"baseline"}}><ul>Flex Your Stories.Lightweight and stylish, the EOS M50 Mark II is fun and easy to use with Wi-Fi connectivity for content creators to stay close to your audience at all times. 
-                        Keep your social media feeds lit with high-quality visual storytelling in 4K and accurate eye and face detection autofocusing.Whatever content you create, set yourself apart from the crowd and give your audience something special. 
-                        The EOS M50 Mark II gives you more ways to shoot photos, movies and live streams and connect with your followers.,suitable_for-Beginners,processor-DIGIC 8,sensor_type-APS-C CMOS,continuous_shooting_speed-11 fps (in High Continuous shooting)
-                    </ul></td>
+                    <td style={{fontSize:"14px" ,marginTop:"-15px" ,verticalAlign:"baseline"}}> &nbsp;{product.ProductDescription}</td>
                 </tr>
             </Table>
-            
              <Specs/>
              <Reviews/>
              <Ques/>

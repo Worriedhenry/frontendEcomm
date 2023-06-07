@@ -1,4 +1,4 @@
-import { Button, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Button, IconButton, TextField } from '@mui/material';
 import React from 'react'
 
 import { useState } from 'react';
@@ -36,6 +36,7 @@ function Login({OpenSign,Next}) {
       setPhoneEmailHelperText("")
       let result=await axios.post(AxiosLink+"login",PayLoad)
       if(result?.status===200){
+        localStorage.setItem("user","12321")
           navigate(Next)
       }
       else if(result?.status==302){
