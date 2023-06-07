@@ -9,7 +9,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import ButtonBase from '@mui/material/ButtonBase';
 import axios from 'axios';
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams ,useNavigate} from "react-router-dom"
 
 const Img = styled('img')({
   margin: 'auto',
@@ -18,9 +18,16 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 function CatlogCard({ product }) {
+  const navigate=useNavigate()
   return (
+    <>
+    <head>
+            <title>Flipkart</title>
+        </head>
     <Paper
       elevation={3}
+      style={{cursor:"pointer"}}
+      onClick={()=>navigate("/viewproduct/"+product._id)}
       sx={{
         p: 2,
         margin: 1,
@@ -33,7 +40,7 @@ function CatlogCard({ product }) {
       <Grid container spacing={2}>
         <Grid item sm={3}>
           <ButtonBase sx={{ width: 200, height: 200 }}>
-            <Img alt="complex" src="https://res.cloudinary.com/drmxw2cme/image/upload/v1685637233/apl6mv4fpz2eqm4nexun.jpg" />
+            <Img alt="complex" src={product.ProductImages[0]} />
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm={9} container>
@@ -55,11 +62,6 @@ function CatlogCard({ product }) {
                 </div>
               </Typography>
               <Typography variant='subtitle2' component="h5">
-                {/* <ul>
-                  <li>Excepteur commodo sint et do deserunt officia. Ad ut irure magna ipsum laboris elit. </li>
-                  <li>Incididunt elit ad do sunt aliquip deserunt anim cillum ad voluptate nostrud aliqua.</li>
-                  <li> Aliquip proident Lorem anim exercitation ea ipsum enim ex.</li>
-                </ul> */}
                 {product.ProductDescription}
               </Typography>
             </Grid>
@@ -83,13 +85,13 @@ function CatlogCard({ product }) {
           </Grid>
         </Grid>
       </Grid>
-    </Paper>
+    </Paper></>
   );
 }
 export default function SearchProduct() {
   const [SearchResult, setSearchResult] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
-
+  
   useEffect(() => {
     axios
       .get("http://localhost:3001/search?query=" + searchParams.get("query"))
@@ -109,7 +111,8 @@ export default function SearchProduct() {
     <Paper
       style={{
         padding: "20px",
-        width: '18vw'
+        width: '18vw',
+        minHeight:"83vh"
       }}
     >
       <h3>Filter</h3>
