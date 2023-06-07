@@ -19,7 +19,12 @@ export default function FirstPageSeller() {
     const [isDisable,setdisable]=React.useState(false)
     const [Gst,setstate]=React.useState("Enter GSTIN")
     const [Msg,setmsg]=React.useState("GSTIN is required to sell products on Flipkart. You can also share it in the final step.")
+    const [Phone,setPhone]=React.useState("")
+    const [Email,setEmail]=React.useState("")
+    const [refNo,setrefNo]=React.useState("")
 
+
+    //onclick on next handle krna h abhi 
 
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -44,6 +49,7 @@ export default function FirstPageSeller() {
             id="outlined-adornment-amount"
             label="Phone No."
             style={{borderRadius:"10px" ,height:"50px"}}
+            onChange={(e)=>setPhone(e.target.value)}
 
           />
         </FormControl>
@@ -55,6 +61,7 @@ export default function FirstPageSeller() {
             id="outlined-adornment-amount"
             label="Email ID"
             style={{borderRadius:"10px" ,height:"50px"}}
+            onChange={(e)=>setEmail(e.target.value)}
 
           />
         </FormControl>    
@@ -70,6 +77,7 @@ export default function FirstPageSeller() {
             id="outlined-adornment-amount"
             label="isGST"
             style={{borderRadius:"10px" ,height:"50px"}}
+            onChange={(e)=>setrefNo(e.target.value)}
 
           />
         </FormControl>    

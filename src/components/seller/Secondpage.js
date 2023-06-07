@@ -14,6 +14,16 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function SecondPageSeller() {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [Password,setPassword]=React.useState("")
+  const [Fname,setFname]=React.useState("")
+  const [Lname,setLname]=React.useState("")
+  const [StoreName,setStoreName]=React.useState("")
+  const [Location,setLocation]=React.useState("")
+
+
+
+
+
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -33,6 +43,8 @@ export default function SecondPageSeller() {
             aria-describedby="outlined-weight-helper-text"
             label="First Name"
             style={{borderRadius:"10px" ,height:"50px"}}
+            onChange={(e)=>setFname(e.target.value)}
+
 
             required
 
@@ -46,6 +58,8 @@ export default function SecondPageSeller() {
             aria-describedby="outlined-weight-helper-text"
             label="Last Name"
             style={{borderRadius:"10px" ,height:"50px"}}
+            onChange={(e)=>setLname(e.target.value)}
+
 
 
           />
@@ -67,6 +81,8 @@ export default function SecondPageSeller() {
                 </IconButton>
               </InputAdornment>
             }
+            onChange={(e)=>setPassword(e.target.value)}
+            
           />
         </FormControl>
 
@@ -76,6 +92,8 @@ export default function SecondPageSeller() {
             id="outlined-adornment-amount"
             label="Store Name"
             style={{borderRadius:"10px" ,height:"50px"}}
+            onChange={(e)=>setStoreName(e.target.value)}
+
 
           />
         </FormControl>
@@ -87,6 +105,8 @@ export default function SecondPageSeller() {
             id="outlined-adornment-amount"
             label="Store Location"
             style={{borderRadius:"10px" ,height:"50px"}}
+            onChange={(e)=>setLocation(e.target.value)}
+
 
           />
         </FormControl>    
