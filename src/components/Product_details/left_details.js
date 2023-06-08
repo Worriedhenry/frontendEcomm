@@ -3,6 +3,7 @@ import { Button, ButtonBase } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import {useParams} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import axios from "axios"
 const LittleImagesStyle = {
     padding: "0px", width: "49px", border: " 1px solid #f0f0f0",
@@ -11,6 +12,7 @@ const LittleImagesStyle = {
 function Left_part({ product }) {
     const [PrimaryImage, setPrimaryImage] = useState(product.ProductImages[0])
     const ProductId=useParams()
+    const navigate=useNavigate()
 
     const AddProductToCart = ()=>{
         console.log(ProductId.productId)
@@ -21,7 +23,7 @@ function Left_part({ product }) {
     }
 
     const BuyProductFunctionality = ()=>{
-
+        navigate("/buyproduct")
     }
     return (
         <div style={{ minWidth: "40%", padding: "41px 23px 0px 10px", position: "sticky", top: "10vh" }}>

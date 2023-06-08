@@ -17,6 +17,7 @@ import SellerCatlog from './components/SellerDashboard.js/SellerCatlog';
 import SellerAddProduct from './components/SellerDashboard.js/SellerAddProduct';
 import SearchProduct from './components/ProductSearch/SearchProduct';
 import SellerRegister from './components/seller/sellerRegister';
+import PlaceOrder from './components/Orders/orderPlacing';
 import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom";
 function App() {
   return <BrowserRouter>
@@ -27,6 +28,7 @@ function App() {
   <Route path='/viewcart' element={<>< NavBar/><Cart /><Footer/></>} />
   <Route path='/viewproduct/:productId' element={<>< NavBar/><Details /><Footer/></>} />
   <Route path='/search' element={<>< NavBar/><SearchProduct/><Footer/></>} />
+  <Route path="/buyproduct" element={<> <NavBar/> <PlaceOrder/><Footer/></>} />
   <Route path='/writereview' element={<><NavBar/> <Write_review/> <Footer/></>} />
   <Route path="/seller/register"  element={<><SellerRegister/></>} />
   <Route path='/admin/info/:SellerId' element={<>< NavBar/><div className='Profile-Container'><SellerLeft page={0} /><SellerInfo /></div><Footer/></>} />

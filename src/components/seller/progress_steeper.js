@@ -30,11 +30,12 @@ function HorizontalNonLinearStepper() {
   };
 
   const handleNext = () => {
+    console.log(activeStep)
     const newActiveStep =
-      isLastStep() && !allStepsCompleted()
+      isLastStep()
         ? // It's the last step, but not all steps have been completed,
           // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
+          activeStep
         : activeStep + 1;
     setActiveStep(newActiveStep);
   };
@@ -84,10 +85,15 @@ function HorizontalNonLinearStepper() {
               >
                 Back
               </Button>
-               <Box sx={{ flex: '1 1 auto' }} />
+               <Box sx={{ flex: '1 1 auto' }} />{
+
+              !isLastStep() ?<Button variant='contained' onClick={handleNext} sx={{ mr: 1 }}>
+                Next
+              </Button> :
               <Button variant='contained' onClick={handleNext} sx={{ mr: 1 }}>
-                Register & Continue
-              </Button> 
+                Register & continue
+              </Button>             
+              }
  
  
             </Box>
