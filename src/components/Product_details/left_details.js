@@ -19,8 +19,8 @@ function Left_part({ product }) {
 
     }
 
-    const BuyProductFunctionality = () => {
-
+    const BuyProductFunctionality = ()=>{
+        navigate("/buyproduct")
     }
 
     useEffect(() => {
