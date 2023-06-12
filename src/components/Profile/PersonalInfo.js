@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Divider, TextField ,Radio,FormControlLabel,RadioGroup} from "@mui/material"
-import AxiosLink from "../../BaseLink";
-import ReactLoading from "react-loading";
+import { Button, Divider, TextField ,Radio,FormControlLabel,RadioGroup,Snackbar,Alert} from "@mui/material"
 import axios from "axios";
+import {useParams} from "react-router-dom"
+const FlexDisplayStyle={
+    display:"flex"
+}
+
 export default function PersonalInfo(){
     const [PersonalData,setPersonalData]=useState(false)
     const [EmailData,setEmailData]=useState(false)
@@ -11,40 +14,66 @@ export default function PersonalInfo(){
     const [LastName,setLastName]=useState("")
     const [Email,setEmail]=useState("")
     const [Phone,setPhone]=useState("")
-    const [Gender,setGender]=useState(-1)
-    // useEffect(()=>{
-    //     const SetupData=async ()=>{
-    //         Let FirstData=await axios.get(AxiosLink+"/getuserinfo")
-    //         setGender(FirstData?.gender)
-    //         setFirstName(FirstData?.first_name)
-    //         setLastName(FirstData?.last_name)
-    //         setEmail(FirstData?.email)
-    //         setPhone(FirstData?.phone)
-    //     }
-    // });
-    // const HandlePersonalInfo=async()=>{
-    //     var PayLoad={
-    //         FirstName,LastName,Gender
-    //     };
-    //     let Result=awiat axios.post(AxiosLink+"/updateperosnal")
-    // }
-    // const HandleEmail=async()=>{
-    //     var UpdatedEmail={Email}
-    //     Let Result=awiat axios.post(AxiosLink+"/updateemail")
-    // }
-    // const HandlePhone=async()=>{
-    //     var UpdatedPhone={Phone}
-    //     Let Result=awiat axios.post(AxiosLink+"/updatephone")
-    // }
+    const [Gender,setGender]=useState("")
+    const [SuccessSnackbarControl,setSuccessSnackbarControl]=useState(false)
+    const [ErrorSnackbarControl,setErrorSnackbarControl]=useState(false)
+
+    const params=useParams()
+    useEffect(()=>{
+        axios
+          .get("http://localhost:3001/account/getuserInfo/6481efb232b997a8f8af8f67")
+          .then(res => {
+            setFirstName(res?.data.FirstName)
+            setLastName(res?.data.LastName)
+            setEmail(res?.data.Email)
+            setPhone(res?.data.Phone)
+            setGender(res?.data.Gender)
+          })
+          .catch(err => console.error(err));
+    },[]);
+    const UpdateName=async ()=>{
+        if(FirstName.length===0){
+            return setErrorSnackbarControl(true)
+        }
+        if (LastName.length===0){
+            return setErrorSnackbarControl(true)
+        }
+        let result=await axios.put("http://localhost:3001/account/updateName/"+params.UserId,{FirstName,LastName})
+        if (result.status===200){
+            setSuccessSnackbarControl(true)
+        }
+    }
+    const UpdateEmail=async ()=>{
+        if(Email.length===0){
+            return setErrorSnackbarControl(true)
+        }
+        let result=await axios.put("http://localhost:3001/account/updateEmail/"+params.UserId,{Email})
+        if (result.status===200){
+            setSuccessSnackbarControl(true)
+        }
+    }
+
+    const UpdatePhone=async ()=>{
+        if(Phone.length===0){
+            return setErrorSnackbarControl(true)
+        }
+        let result=await axios.put("http://localhost:3001/account/updatePhone/"+params.UserId,{Phone})
+        if (result.status===200){
+            setSuccessSnackbarControl(true)
+        }
+    }
+
+
     return <div className="RightProfile">
     <div className="Profile-TopRight">
         <span style={{ fontSize: "18px", paddingTop: "15px" }}><b>Personal Information</b></span>
         <Button onClick={()=> setPersonalData(!PersonalData)}>{ PersonalData ? "cancle" :"edit"}</Button>
         <p></p>
-        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "First name" } disabled={ PersonalData ? false :true} value="First Name" />
-        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "Last name" } disabled={ PersonalData ? false :true} value="Last Name" />
-        { PersonalData && <Button variant="contained">Save</Button>}
-        { PersonalData && <ReactLoading type={"spin"} color="#000" ></ReactLoading>}
+        <div style={FlexDisplayStyle}>
+        <TextField  variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "First name" } disabled={ PersonalData ? false :true} onChange={(e)=>setFirstName(e.target.value)} value={FirstName} />
+        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "Last name" } disabled={ PersonalData ? false :true} onChange={(e)=>setLastName(e.target.value)}  value={LastName} />
+        { PersonalData && <Button onClick={UpdateName} variant="contained">Save</Button>}
+        </div>
         <p>Your Gender</p>
         <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
@@ -56,16 +85,21 @@ export default function PersonalInfo(){
             <FormControlLabel disabled={ PersonalData ? false :true} value="male" control={<Radio />} label="Male" />
             <FormControlLabel disabled={ PersonalData ? false :true} value="other" control={<Radio />} label="Other" />
         </RadioGroup>
+        
         <p style={{ paddingTop: "28px" }}><span style={{ fontSize: "18px", paddingTop: "35px" }}><b>Email Address</b></span>
         <Button onClick={()=> setEmailData(!EmailData)}>{ EmailData ? "cancle" :"edit"}</Button>
         </p>
-        <TextField variant="filled" label={ EmailData && "Email Address" }  size="small" sx={{ mr: 7, width: "300px" }}  disabled={ EmailData ? false :true} value="xyz@gmail.com" />
-        { EmailData && <Button variant="contained">SAVe</Button>}
+        <div style={FlexDisplayStyle}>
+        <TextField variant="filled" label={ EmailData && "Email Address" }  size="small" sx={{ mr: 7, width: "300px" }}  disabled={ EmailData ? false :true} onChange={(e)=>setEmail(e.target.value)} value={Email} />
+        { EmailData && <Button onClick={UpdateEmail} variant="contained">Save</Button>}
+        </div>
         <p style={{ paddingTop: "28px" }}><span style={{ fontSize: "18px", paddingTop: "35px" }}><b>Mobile Number</b></span>
         <Button onClick={()=> setPhoneData(!PhoneData)}>{ PhoneData ? "cancle" :"edit"}</Button>
         </p>
-        <TextField variant="filled" label={ PhoneData && "Mobile number" } size="small" sx={{ mr: 7, width: "300px" }} disabled={ PhoneData ? false :true} value="xxxxxx1234" />
-        { PhoneData && <Button variant="contained">SAVe</Button>}
+        <div style={FlexDisplayStyle}>
+        <TextField variant="filled" label={ PhoneData && "Mobile number" } onChange={(e)=>setPhone(e.target.value)} size="small" sx={{ mr: 7, width: "300px" }} disabled={ PhoneData ? false :true} value={Phone} />
+        { PhoneData && <Button onClick={UpdatePhone} variant="contained">Save</Button>}
+        </div>
     </div>
     <div className="Profile-TopBottom">
         <h3>FAQ</h3>
@@ -79,6 +113,26 @@ export default function PersonalInfo(){
         <p>Flipkart has a 'single sign-on' policy. Any changes will reflect in your Seller account also. </p>
         <Button>Deactivate Account</Button>
     </div>
+    <Snackbar
+      open={ErrorSnackbarControl}
+      autoHideDuration={3000}
+      onClose={()=>setErrorSnackbarControl(false)}
+      anchorOrigin={{vertical:"bottom",horizontal: "center"}}
+      >
+      <Alert onClose={()=>setSnackbarControl(false)} severity="error" sx={{ width: '100%' }}>
+        Fields cannot be Empty
+      </Alert>
+    </Snackbar>
+    <Snackbar
+      open={SuccessSnackbarControl}
+      autoHideDuration={3000}
+      onClose={()=>setSuccessSnackbarControl(false)}
+      anchorOrigin={{vertical:"bottom",horizontal: "center"}}
+      >
+      <Alert onClose={()=>setSnackbarControl(false)} severity="success" sx={{ width: '100%' }}>
+        Fields Updated Successfully
+      </Alert>
+    </Snackbar>
 
 </div>
 }

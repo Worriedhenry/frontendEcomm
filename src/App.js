@@ -31,7 +31,7 @@ function App() {
   return <BrowserRouter>
     <Routes>
       <Route path='/' element={<><NavBar /><Home /><Footer /></>} />
-      <Route path='/account' onEnter={requireAuth} element={<>< NavBar /><Profile page={0} /><Footer /></>} />
+      <Route path='/account/:UserId' onEnter={requireAuth} element={<>< NavBar /><Profile page={0} /><Footer /></>} />
       <Route path='/account/orders' element={<>< NavBar /><Orders /><Footer /></>} />
       <Route path='/viewcart' element={<>< NavBar /><Cart /><Footer /></>} />
       <Route path='/viewproduct/:productId' element={<>< NavBar /><Details /><Footer /></>} />

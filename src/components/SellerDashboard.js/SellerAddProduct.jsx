@@ -38,7 +38,7 @@ export default function SellerAddProduct() {
     margin:"20px 0px"
   }
   
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event) => {
     setAge(event.target.value);
   };
 
@@ -399,15 +399,15 @@ export default function SellerAddProduct() {
         </Alert>
     </Snackbar>
     <Snackbar
-    open={UploadImageSnackbar}
-    autoHideDuration={3000}
-    onClose={()=>setUploadImageSnackbarControl(false)}
-    message={EmptyFeildError}
-    anchorOrigin={{vertical:"bottom",horizontal: "center"}}
-    >
-       <Alert onClose={()=>setSnackbarControl(false)} severity="success" sx={{ width: '100%' }}>
-          Image Uploaded
-        </Alert>
+      open={UploadImageSnackbar}
+      autoHideDuration={3000}
+      onClose={()=>setUploadImageSnackbarControl(false)}
+      message={EmptyFeildError}
+      anchorOrigin={{vertical:"bottom",horizontal: "center"}}
+      >
+      <Alert onClose={()=>setSnackbarControl(false)} severity="success" sx={{ width: '100%' }}>
+        Image Uploaded
+      </Alert>
     </Snackbar>
   </div>
 }
