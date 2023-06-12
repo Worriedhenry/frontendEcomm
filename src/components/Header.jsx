@@ -1,5 +1,5 @@
 import { Search } from "@mui/icons-material"
-import { Button, ButtonGroup, FormControl, IconButton, InputAdornment, TextField, Dialog, Menu, MenuItem, Divider,ButtonBase } from "@mui/material"
+import { Button, ButtonGroup, FormControl, IconButton, InputAdornment, TextField, Dialog, Menu, MenuItem, Divider,ButtonBase, Paper } from "@mui/material"
 import * as React from 'react';
 import AbcIcon from '@mui/icons-material/Abc';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -12,25 +12,25 @@ import Login from "./Login";
 import { useNavigate } from "react-router-dom";
 import { width } from "@mui/system";
 import SearchIcon from '@mui/icons-material/Search';
+import IsAuth from "./UtitlityFuctions/Auth";
 export default function NavBar() {
 
     const [LogHover, setLogHover] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [signOpen, setSignOpen] = React.useState(false);
-    const [Auth,setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [Next,setNext]=React.useState("/")
     const [SearchQuery,setSearchQuery]=React.useState("")
     const navigate=useNavigate()
     const Open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (event) => {
         if (anchorEl==null){
         setAnchorEl(event.currentTarget);}
         else{
             setAnchorEl(null)
         }
     };
-    const handleLeave = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleLeave = (event) => {
         // setAnchorEl(event.currentTarget);
         console.log("leaved")
     };
@@ -39,7 +39,7 @@ export default function NavBar() {
     })
 
     const handleAuth =(e)=>{
-        if (Auth) {
+        if (IsAuth()) {
             navigate(e)
         }
         else{
@@ -52,6 +52,7 @@ export default function NavBar() {
     };
     function OpenSign(){
         setSignOpen(true)
+        setOpen(false)
     }
     function OpenLogin(){
         setOpen(true)
@@ -60,27 +61,27 @@ export default function NavBar() {
     return <div style={{ display: "flex", justifyContent: "center", background: "#047BD5", height: "9vh", alignItems: "center", width: "100%",position:"sticky",zIndex:"100",top:"0px" }}>
         <div style={{ display: "flex", width: "54vw", justifyContent: "space-around", alignItems: "center" }}>
            <ButtonBase onClick={()=>navigate("/")}><img style={{ height: "48px" }}  src={Logo} alt=""></img></ButtonBase>
-                <div>
+                <Paper
+                style={{
+                    display:"flex"
+                }}
+                >
                 <input
-                    id="outlined-adornment-password"
                     type="text"
-                    className="BorderColor"
                     placeholder="Search Items"
-                    size="small"
-                    style={{height:"26px",width:"30vw",padding:"0px 8px"}}
+                    style={{height:"29px",width:"30vw",padding:"0px 8px",border:"1px solid white"}}
                     value={SearchQuery}
                     onChange={(e)=>setSearchQuery(e.target.value)}
                 />
-                <Button onClick={()=>navigate("/search?query="+SearchQuery)} color="primary" style={{backgroundColor:"white"}} startIcon={<SearchIcon style={{color:"#047BD5"}}  /> } variant="contained" ></Button>
-                </div>
+                <button className="SearchBarButton" onClick={()=>navigate("/search?query="+SearchQuery)} ><SearchIcon style={{color:"#047BD5"}} /></button>
+                </Paper>
             
                 <div>
-                <Button
+                {!IsAuth() && <Button
                     onClick={()=>setOpen(true)}
-                    endIcon={ !Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon/>}
                     size="small"
                     style={{ color: "#047BD5", background: "white",fontWeight:"bold" }} >Login
-                </Button>
+                </Button>}
                 </div>
                 
 
@@ -132,7 +133,7 @@ export default function NavBar() {
             }}
 
         >
-            <Login OpenSign={OpenSign} />
+            <Login OpenSign={OpenSign} setOpen={setOpen} Next={Next} />
         </Dialog>
         <Dialog
             fullWidth

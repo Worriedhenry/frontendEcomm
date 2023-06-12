@@ -30,9 +30,9 @@ function SignUp({OpenLogin}) {
   setPasswordHelperText("")
   setPhoneEmailHelperText("")
     const Payload={
-      PhoneEmail,Password
+      Phone:PhoneEmail,Password
     }
-    let result=await axios.post(AxiosLink+"register",Payload)
+    let result=await axios.post("http://localhost:3001/register",Payload)
       if(result.status===200){
           navigate("/account")
       }
@@ -80,7 +80,7 @@ function SignUp({OpenLogin}) {
             </div>
       <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} onClick={HandleSign} variant="filled">SignUp</Button>
 
-      <p style={{color:"#047BD5"}} onClick={OpenLogin}><b>Already an customer ? Login</b></p>
+      <p style={{color:"#047BD5",cursor:"pointer"}} onClick={OpenLogin}><b>Already an customer ? Login</b></p>
     </div></div>
   );
 }
