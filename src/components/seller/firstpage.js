@@ -67,8 +67,7 @@ export default function FirstPageSeller() {
         </FormControl>    
         <div>
             <Typography style={{padding:"8px"}}>What are you looking to sell on Flipkart?</Typography>
-            <Button onClick={handleSelect}  variant="contained" style={{width:"18vh" ,height:"7vh" ,margin:"10px", background:isDisable && "#878787",textTransform:"none"}} >All Categories</Button>
-            <Button onClick={handleSelect} variant="contained" style={{width:"18vh" ,height:"7vh" ,margin:"10px" ,background:!isDisable && "#878787",textTransform:"none"}} >Only Books</Button>
+            <Button  variant="contained" style={{width:"18vh" ,height:"7vh" ,margin:"10px", background:isDisable && "#878787",textTransform:"none"}} >All Categories</Button>
         </div>
 
         <FormControl fullWidth sx={{ m: 1 }}>

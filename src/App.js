@@ -18,6 +18,9 @@ import SellerAddProduct from './components/SellerDashboard.js/SellerAddProduct';
 import SearchProduct from './components/ProductSearch/SearchProduct';
 import SellerRegister from './components/seller/sellerRegister';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Payment from './components/Orders/Payment';
+import OrderSuccessPage from './components/Orders/OrderSuccessPlace';
+
 function requireAuth(nextState, replace, next) {
   if (!localStorage.getItem("user")) {
     replace({
@@ -30,6 +33,9 @@ function requireAuth(nextState, replace, next) {
 function App() {
   return <BrowserRouter>
     <Routes>
+      <Route path='/payment' element={<><NavBar /><Payment /><Footer /></>} />
+      <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
+
       <Route path='/' element={<><NavBar /><Home /><Footer /></>} />
       <Route path='/account/:UserId' onEnter={requireAuth} element={<>< NavBar /><Profile page={0} /><Footer /></>} />
       <Route path='/account/orders' element={<>< NavBar /><Orders /><Footer /></>} />

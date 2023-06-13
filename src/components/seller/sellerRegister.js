@@ -7,12 +7,14 @@ function SellerRegister(){
     return (
         <div>
 
-      <CssBaseline />
-      <Container maxWidth="sm">
-        <Box sx={{ bgcolor: '', height: '100vh' ,paddingTop:"10vh"}} >
-            <HorizontalNonLinearStepper/>
-        </Box>
-      </Container>
+          <div style={{backgroundColor:'#f0f0f0'}} >
+              <CssBaseline />
+              <Container maxWidth="sm"style={{backgroundColor:"white" }} >
+                <Box sx={{ bgcolor: '', height: '100vh' ,paddingTop:"10vh"}} >
+                    <HorizontalNonLinearStepper/>
+                </Box>
+              </Container>
+          </div>
         </div>
     )
 }
