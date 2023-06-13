@@ -12,6 +12,7 @@ import {
   Typography,
   Box,
   Paper,
+  MenuItem
 } from '@mui/material';
 
 
@@ -110,7 +111,18 @@ const Payment = () => {
                       fullWidth
                       required
                     >
-                      {/* Options for months */}
+                        <MenuItem value="01">1</MenuItem>
+                        <MenuItem value="02">2</MenuItem>
+                        <MenuItem value="03">3</MenuItem>
+                        <MenuItem value="04">4</MenuItem>
+                        <MenuItem value="05">5</MenuItem>
+                        <MenuItem value="06">6</MenuItem>
+                        <MenuItem value="07">7</MenuItem>
+                        <MenuItem value="08">8</MenuItem>
+                        <MenuItem value="09">9</MenuItem>
+                        <MenuItem value="10">10</MenuItem>
+                        <MenuItem value="11">11</MenuItem>
+                        <MenuItem value="12">12</MenuItem>
                     </TextField>
                   </Grid>
                   <Grid item xs={6}>
@@ -122,7 +134,14 @@ const Payment = () => {
                       fullWidth
                       required
                     >
-                      {/* Options for years */}
+                        <MenuItem value="23">23</MenuItem>
+                        <MenuItem value="24">24</MenuItem>
+                        <MenuItem value="25">25</MenuItem>
+                        <MenuItem value="26">26</MenuItem>
+                        <MenuItem value="27">27</MenuItem>
+                        <MenuItem value="28">28</MenuItem>
+                        <MenuItem value="29">29</MenuItem>
+
                     </TextField>
                   </Grid>
                 </Grid>
