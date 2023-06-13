@@ -1,4 +1,4 @@
-import { Divider, Button, Rating, IconButton, Tooltip, CircularProgress, Snackbar, Alert } from '@mui/material'
+import { Divider, Button, Rating, IconButton, Tooltip, CircularProgress, Snackbar, Alert, Stack, Skeleton } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -76,9 +76,9 @@ function CatlogCard({ product }) {
                 margin: "6px 0px"
               }}
             >
-              <strike>&#8377; {product.ProductMRP}</strike> &nbsp; {(product.ProductMRP - product.ProductSellingPrice) * 100 / product.ProductMRP}%
+              <strike>&#8377; {product.ProductMRP}</strike> &nbsp; {((product.ProductMRP - product.ProductSellingPrice) * 100 / product.ProductMRP).toFixed(2)}%
             </div>
-            <h5 style={{ marginTop: "0px" }}>
+            <h5 style={{ marginTop: "0px",color:"green" }}>
               Free Delivery
             </h5>
 
@@ -89,7 +89,7 @@ function CatlogCard({ product }) {
   );
 }
 export default function SearchProduct() {
-  const [SearchResult, setSearchResult] = useState([])
+  const [SearchResult, setSearchResult] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
   
   useEffect(() => {
@@ -97,6 +97,7 @@ export default function SearchProduct() {
       .get("http://localhost:3001/search?query=" + searchParams.get("query"))
       .then(res => {
         setSearchResult(res.data.SearchResult)
+          
       })
       .catch(err => console.error(err));
   }, [searchParams, setSearchParams])
@@ -115,8 +116,17 @@ export default function SearchProduct() {
         minHeight:"83vh"
       }}
     >
-      <h3>Filter</h3>
+      {SearchResult &&<h3>Filter</h3>}
+      {!SearchResult && <Skeleton height={50} />}
       <Divider />
+      {!SearchResult &&<Stack spacing={5}>
+        <Skeleton  />
+        <Skeleton  />
+        <Skeleton  />
+        <Skeleton  />
+        <Skeleton  />
+        <Skeleton  />
+      </Stack>}
     </Paper>
     <Paper
       style={{
@@ -125,16 +135,21 @@ export default function SearchProduct() {
       }}
     >
 
-      <h3>Found {SearchResult.length} results for "{searchParams.get("query")}"</h3>
+      { SearchResult && <h3>Found {SearchResult.length} results for "{searchParams.get("query")}"</h3>}
+      { !SearchResult && <Skeleton  height={60}/>}
       <Divider />
-      {SearchResult.length == 0 && <div
+      {!SearchResult &&<Stack spacing={1}>
+        <Skeleton mt={0} height={250} />
+        <Skeleton height={250} />
+      </Stack>}
+      { SearchResult && SearchResult.length==0 && <div
         style={{
           height: "88vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center"
         }}>No Product Found for "{searchParams.get("query")}". Try any other name or cheak the spelling</div>}
-      {SearchResult.map((product, index) => <><CatlogCard product={product} /><Divider /></>)}
+      {SearchResult && SearchResult.map((product, index) => <><CatlogCard product={product} /><Divider /></>)}
     </Paper>
   </div>
 }

@@ -19,7 +19,7 @@ function data(info){
 function Mycarousel(){
 
     return(
-        <div style={{backgroundColor:"#EAEEEB" }}>
+        <div style={{backgroundColor:"#EAEEEB",curson:"pointer" }}>
         <Carousel responsive={{
     desktop:{
         breakpoint:{max:3000 ,min:1024},

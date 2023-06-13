@@ -9,11 +9,11 @@ function Data1(props){
     const navigate=useNavigate()
     return (
 
-        <div style={{margin:"30px" ,minWidth:"180px" }}>
+        <div onClick={()=> navigate("/viewproduct")} style={{margin:"30px" ,minWidth:"180px" }}>
             <div style={{alignContent:"center"}}>
                 <img src={props.url} style={{widht:"auto" ,height:"150px"}} />
             </div>
-            <div onClick={()=> navigate("/viewproduct")} style={{textAlign:"center"}}>
+            <div  style={{textAlign:"center"}}>
                 <p style={{fontWeight:"999" ,color:"black"}}>{props.title.shortTitle}</p>
                 <p style={{color:"green"}}>{props.price.offer}</p>
                 <p style={{color:"grey"}}>{props.title.company}</p>

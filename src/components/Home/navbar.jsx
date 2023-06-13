@@ -1,4 +1,4 @@
-import { Box , styled ,Typography } from '@mui/material';
+import { Box , ButtonBase, styled ,Typography } from '@mui/material';
 import React from 'react'
 
 import Data from "../../data_resourses/nav_data"
@@ -19,9 +19,11 @@ const InnerImgBox=styled(Box)`
 `
 function data(info){
     return(
-        <InnerImgBox>
+        <InnerImgBox style={{cursor:"pointer"}}>
+            <ButtonBase>
             <img src={info.url} style={{width:"64px" ,height:"64px"}}></img>
             <StyTypo>{info.text}</StyTypo>
+            </ButtonBase>
         </InnerImgBox>
 
     )
