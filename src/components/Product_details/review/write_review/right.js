@@ -1,11 +1,18 @@
 import React from "react"
-import Star from "./star_rating";
+import Star from "./StarRating";
 import {Rating} from "@mui/material"
 import { colors } from "@mui/material";
 import { Button } from '@mui/material';
 
 function Right(){
     const [RatingValue, setValue] = React.useState(null);
+    const [Description,setDescription]=React.useState("")
+    const [Title,setTitle]=React.useState("")
+
+    const handleSubmit=()=>{
+        // ---------------------------------required
+    }
+
     return(
         <div>
 
@@ -21,10 +28,14 @@ function Right(){
                         <div style={{padding:"24px" ,paddingTop:"15px"}}>
                             <h3 style={{fontSize:"18px"}}>Review this product</h3>
                             <form>
-                            <textarea rows="15" cols="110" style={{borderStyle:"dotted",resize: "none" ,fontSize:"15px"}} placeholder="Description" required>
+                            <textarea rows="9" cols="110" style={{borderStyle:"dotted",resize: "none" ,fontSize:"15px"}} placeholder="Description" required onChange={(e)=>setDescription(e.target.value)} >
 
                             </textarea>
-                            <Button style={{backgroundColor:"rgb(255, 173, 51)" ,width:"10%" ,height:"10%"  ,borderRadius:"2px" ,color:"#f0f0f0" ,fontWeight:"600" }} variant="filled" >Submit</Button>            
+                            <textarea rows="3" cols="110" style={{borderStyle:"dotted",resize: "none" ,fontSize:"15px"}} placeholder="Title (Optional)" required onChange={(e)=>setTitle(e.target.value)}>
+
+                            </textarea>
+                            <br></br>
+                            <Button style={{backgroundColor:"rgb(255, 173, 51)" ,width:"10%" ,height:"10%"  ,borderRadius:"2px" ,color:"#f0f0f0" ,fontWeight:"600" }} variant="filled"  onClick={handleSubmit}>Submit</Button>            
 
                             </form>
                         </div>

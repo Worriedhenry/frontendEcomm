@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Button, IconButton, InputAdornment, TextField ,Typography ,Grid } from '@mui/material';
 import {useParams} from "react-router-dom"
-import Left_part from "./left_details"
-import Right_Part from "./right";
+import Left_part from "./LeftDetails"
+import Right_Part from "./right"
 import axios from "axios";
 function Details(){
     const ProductId=useParams().productId

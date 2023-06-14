@@ -3,9 +3,9 @@ import { Box, Skeleton, TextField, Typography, Grid, Table, styled, Button, Rati
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
-import Reviews from "./review/review"
-import Specs from "./prod_specs";
-import Ques from "./ques_ans";
+import Reviews from "./review/Review"
+import Specs from "./ProdSpecs";
+import Ques from "./QuesAns";
 
 
 const OfferParagraphStyle = {

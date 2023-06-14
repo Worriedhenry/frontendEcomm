@@ -1,6 +1,6 @@
 import React from "react"
-import Left from "./left"
-import Right from "./right"
+import Left from "./Left"
+import Right from "./Right"
 function Write_review(){
     return(
         <div style={{backgroundcolor:"#f1f3f6"}}>
