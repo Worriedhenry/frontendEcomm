@@ -88,7 +88,7 @@ export default function NavBar() {
            
 
         </div>
-        <div style={{ width: "25vw", display: "flex", justifyContent: "space-around"}}>
+        <div style={{ width: "fitContent", display: "flex", justifyContent: "space-around"}}>
             <Button style={{ color: "white", textTransform: 'none',fontWeight:"bold" }} startIcon={<AbcIcon />} onClick={()=>navigate("/seller/register")} >Become Seller</Button>
             <div>
             <Button style={{ color: "white", textTransform: 'none' ,fontWeight:"bold"}} endIcon={ !Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon/>} 
@@ -115,7 +115,7 @@ export default function NavBar() {
                     <MenuItem style={{ color: "#047BD5",width:'15vw' }} onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </div>
-            <Button style={{ color: "white", textTransform: 'none' ,fontWeight:"bold"}} onClick={()=>navigate("/viewcart")}  startIcon={<ShoppingCartIcon />} >Cart</Button>
+            <Button style={{ color: "white", textTransform: 'none' ,fontWeight:"bold"}} className="Header-Cart" onClick={()=>navigate("/viewcart")}  startIcon={<ShoppingCartIcon />} >Cart</Button>
         </div>
         <Dialog
             fullWidth

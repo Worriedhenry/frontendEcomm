@@ -1,5 +1,4 @@
-import { Divider, Link, Breadcrumbs, Typo, Button, Rating, IconButton, Tooltip, CircularProgress, Snackbar, Alert, Stack, Skeleton } from "@mui/material"
-import Data from "../../data_resourses/nav_data"
+import { Divider, Button, Rating, Stack, Skeleton } from "@mui/material"
 import Bread from "./BreadCrimb"
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import React, { useEffect, useState } from 'react'
@@ -7,8 +6,8 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import RefreshIcon from '@mui/icons-material/Refresh';
 import ButtonBase from '@mui/material/ButtonBase';
+import {useParams} from "react-router-dom"
 import axios from "axios";
 const Img = styled('img')({
   margin: 'auto',
@@ -17,9 +16,10 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }) {
+function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }){
+  const {UserId}=useParams()
   const RemoveProductFromCart = async () => {
-    let res = await axios.put("http://localhost:3001/RemoveProductFromCart/" + product._id, { user: localStorage.getItem("user") })
+    let res = await axios.put("http://localhost:3001/RemoveProductFromCart/"+ UserId+"/"+ product._id, { user: localStorage.getItem("user") })
     setAllProductSellingPrice(AllSellingPrice - product.ProductSellingPrice)
     setAllProductMRP(AllProductMRP - product.ProductMRP)
     setCart(res.data)
@@ -51,7 +51,7 @@ function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSell
               </Typography>
               <Typography variant="subtitle2" gutterBottom>
                 <div style={{ marginTop: "-1px", display: "flex", fontSize: "13px" }}><span style={{ color: "#838484" }}><Rating readOnly size="small" defaultValue={4} precision={0.5} name="size-small" />
-                  <span>&nbsp; 128 Rating&nbsp; & 68 Reviews &nbsp;</span></span></div>
+                  <span>&nbsp; {product?.rating} Rating&nbsp; & {product?.reviews} Reviews &nbsp;</span></span></div>
               </Typography>
               <div>
                 <span style={{ fontSize: "20px" }}>&#8377; {product.ProductSellingPrice}</span><span style={{ marginLeft: "10px", color: "#838383" }}><strike>&#8377;{product.ProductMRP}</strike></span><span style={{ marginLeft: "10px", color: "#30B131" }}>{((product.ProductMRP * 100 - product.ProductSellingPrice * 100) / product.ProductMRP).toFixed(2)} % off</span>
@@ -75,12 +75,12 @@ export default function Cart() {
   const [Cart, setCart] = useState(false)
   const [AllProductMRP, setAllProductMRP] = useState(0)
   const [AllSellingPrice, setAllProductSellingPrice] = useState(0)
-
+  const params=useParams()
   useEffect(() => {
     var CountSellingPrice = 0
     var CountMRPPrice = 0
     axios
-      .get("http://localhost:3001/getcart")
+      .get("http://localhost:3001/getcart/"+params.UserId)
       .then(res => {
         setCart(res.data)
 
@@ -113,7 +113,7 @@ export default function Cart() {
             margin: "0px"
           }}
         >
-          <ShoppingBagIcon /> Cart
+          <ShoppingBagIcon color="primary"/> Cart
         </h2>
         {!Cart && <Stack spacing={1}>
           <Skeleton variant="rounded" height={140} />

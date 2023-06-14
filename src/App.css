@@ -172,3 +172,9 @@ input:focus {
 input {
   outline-width: 0;
 }
+
+@media (max-width: 600px) {
+  .Header-Cart{
+    display: none !important;
+  }
+}

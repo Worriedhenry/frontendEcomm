@@ -21,8 +21,9 @@ export default function PersonalInfo(){
     const params=useParams()
     useEffect(()=>{
         axios
-          .get("http://localhost:3001/account/getuserInfo/6481efb232b997a8f8af8f67")
+          .get("http://localhost:3001/account/getuserInfo/"+params.UserId)
           .then(res => {
+            console.log(res.data)
             setFirstName(res?.data.FirstName)
             setLastName(res?.data.LastName)
             setEmail(res?.data.Email)
