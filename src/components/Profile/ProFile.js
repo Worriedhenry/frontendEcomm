@@ -17,8 +17,6 @@ export default function Profile(props) {
         <ProFileLeft UpdateParent={ChildUpadate} />
         {page==0 && <PersonalInfo/> }
         {page==1 && <ManageAddress /> }
-        {page==6 && <Whislist /> }
-        {page>6 && <ServiceNotAvailable/>} 
     </div>
 
 

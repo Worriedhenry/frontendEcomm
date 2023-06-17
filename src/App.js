@@ -41,7 +41,7 @@ function App() {
       <Route path='/' element={<><NavBar /><Home /><Footer /></>} />
       <Route path='/account/:UserId' onEnter={requireAuth} element={<>< NavBar /><Profile page={0} /><Footer /></>} />
       <Route path='/account/orders' element={<>< NavBar /><Orders /><Footer /></>} />
-      <Route path='/viewcart' element={<>< NavBar /><Cart /><Footer /></>} />
+      <Route path='/viewcart/:UserId' element={<>< NavBar /><Cart /><Footer /></>} />
       <Route path='/viewproduct/:productId' element={<>< NavBar /><Details /><Footer /></>} />
       <Route path='/search' element={<>< NavBar /><SearchProduct /><Footer /></>} />
       <Route path='/writereview' element={<><NavBar /> <Write_review /> <Footer /></>} />

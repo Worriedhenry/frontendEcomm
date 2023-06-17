@@ -4,8 +4,9 @@ import React from 'react'
 import Data from "../../data_resourses/nav_data"
 const StyBox =styled(Box)`
     display:flex;
-    margin: 0px 110px 0 110px;
+    margin: 0px 10px 0 10px;
     justify-content:space-between;
+    overflow-x:scroll;
 `
 const StyTypo= styled(Typography)`
     font-size:14px;
