@@ -20,6 +20,7 @@ import SellerRegister from './components/seller/sellerRegister';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Payment from './components/Orders/Payment';
 import OrderSuccessPage from './components/Orders/OrderSuccessPlace';
+import PlaceOrder from './components/Orders/orderPlacing';
 
 function requireAuth(nextState, replace, next) {
   if (!localStorage.getItem("user")) {
@@ -35,6 +36,7 @@ function App() {
     <Routes>
       <Route path='/payment' element={<><NavBar /><Payment /><Footer /></>} />
       <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
+      <Route path='/buyproduct' element={<><NavBar /><PlaceOrder /><Footer /></>} />
 
       <Route path='/' element={<><NavBar /><Home /><Footer /></>} />
       <Route path='/account/:UserId' onEnter={requireAuth} element={<>< NavBar /><Profile page={0} /><Footer /></>} />

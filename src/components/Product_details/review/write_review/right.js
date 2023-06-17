@@ -1,5 +1,4 @@
 import React from "react"
-import Star from "./StarRating";
 import {Rating} from "@mui/material"
 import { colors } from "@mui/material";
 import { Button } from '@mui/material';

@@ -22,6 +22,7 @@ import { Button } from '@mui/material';
 
 export default function PlaceOrder() {
 
+    const navigate=useNavigate()
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -162,7 +163,7 @@ export default function PlaceOrder() {
                     </FormControl>     
                 </div>      
                 <div style={{display:"flex" ,margin:"4% 0 0 2%"}}>
-                    <Button variant='contained' style={{backgroundColor:"#F0721A" ,width:"45%",height:"10%"}}> SAVE AND DELIVER HERE</Button>
+                    <Button variant='contained' style={{backgroundColor:"#F0721A" ,width:"45%",height:"10%"}} onClick={()=>navigate("/payment")}> SAVE AND DELIVER HERE</Button>
                     <Button variant='text' style={{width:"50%",height:"10%"}}> Cancel</Button>
                 </div>
             </div>
