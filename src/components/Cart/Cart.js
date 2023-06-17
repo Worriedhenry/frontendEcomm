@@ -44,7 +44,7 @@ function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSell
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
+          <Grid item xs={12} sm={10} container direction="column" spacing={2}>
             <Grid item >
               <Typography gutterBottom style={{ fontWeight: "bold" }} variant="h3.heading" component="div">
                 {product.ProductTitle}
@@ -100,8 +100,9 @@ export default function Cart() {
       <title>Shopping Cart | Flipkart</title>
     </head>
     <Bread />
-    <div className="Cart">
-      <Paper className="Cart-left">
+    <Grid container spacing={2} className="Cart">
+      <Grid  item md={8} mr={1}>
+      <Paper >
         <h2
           style={{
             maxWidth: "100%",
@@ -120,7 +121,7 @@ export default function Cart() {
           <Skeleton variant="rounded" height={140} />
           <Skeleton variant="rounded" height={140} />
         </Stack>}
-        <div className="CartItemContainer">
+        <div style={{minHeight:"69vh"}} className="CartItemContainer">
           {Cart && Cart.map((product) =>
             <>
               <CatlogCard product={product} setCart={setCart} setAllProductSellingPrice={setAllProductSellingPrice} setAllProductMRP={setAllProductMRP} AllProductMRP={AllProductMRP} AllSellingPrice={AllSellingPrice} />
@@ -142,8 +143,8 @@ export default function Cart() {
           }}
         ><Button size="small" variant="contained">Place Orders</Button></div>
       </Paper>
-
-      <div className="Cart-Right">
+      </Grid>
+      <Grid md={3} item className="Cart-Right">
         <h4 style={{ margin: "0px" }} >Price Details</h4>
         <Divider />
         {!Cart && AllProductMRP === 0 && <Stack spacing={3} mt={5}>
@@ -163,7 +164,7 @@ export default function Cart() {
           <Divider />
           <h4>Yoy will save &#8377;{AllProductMRP - AllSellingPrice} in this order</h4>
         </>}
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   </>
 }

@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ButtonBase from '@mui/material/ButtonBase';
+import StyledTypography from '../UtlityComponents/StyledTypo';
 import axios from 'axios';
 const Img = styled('img')({
   margin: 'auto',
@@ -44,7 +45,7 @@ function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackb
       }}
     >
       <Grid container spacing={2}>
-        <Grid item>
+        <Grid item justifyContent="center">
           <ButtonBase sx={{ width: 128, height: 128 }}>
             <Img alt="complex" src={Detail.ProductImages[0]} />
           </ButtonBase>
@@ -60,18 +61,18 @@ function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackb
               </Typography>
               <Typography variant="subtitle2" gutterBottom>
                 <div style={{ marginTop: "-1px", display: "flex", fontSize: "13px" }}><span style={{ color: "#838484" }}><Rating readOnly size="small" defaultValue={Detail.ProductNumericalRating} precision={0.5} name="size-small" />
-                  <span>&nbsp; {Detail.ProductNumericalRating} Rating&nbsp; & {Detail.reviews.length} Reviews &nbsp;</span></span><span></span>{true ? <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" style={{ width: "80px", marginLeft: "20px" }} /> : <></>}</div>
+                  <span>&nbsp; {Detail.ProductNumericalRating} Rating&nbsp; & {Detail.reviews.length} Reviews &nbsp;</span></span><span></span></div>
                 20/100 Remaining
               </Typography>
             </Grid>
             <Grid item spacing={2}>
-              {!Detail.Listed && <Button variant='contained' size='small' color="success">List</Button>}
-              {Detail.Listed && <Button variant='contained' size='small' color="error">De-List</Button>}
-              <Button style={{ margin: "5px" }} size="small" disabled={RemoveLoader ? true : false} onClick={RemoveProduct} variant='contained' color="error">{RemoveLoader ? <CircularProgress size={24} /> : "Remove"}</Button>
+              {!Detail.Listed && <Button variant='contained' size='small' color="success"><StyledTypography>List</StyledTypography></Button>}
+              {Detail.Listed && <Button variant='contained' size='small' color="error"><StyledTypography>De List</StyledTypography></Button>}
+              <Button style={{ margin: "5px" }} size="small" disabled={RemoveLoader ? true : false} onClick={RemoveProduct} variant='contained' color="error"><StyledTypography>{RemoveLoader ? <CircularProgress size={24} /> : "Remove"}</StyledTypography></Button>
             </Grid>
           </Grid>
-          <Grid item>
-            <p style={{ background: "green", borderRadius: "5px", color: "white", padding: "5px 7.5px", margin: "5px 1px" }}> In Stock</p>
+          <Grid item >
+            <p style={{ background: "green", borderRadius: "5px", color: "white", padding: "5px 7.5px", margin: "5px 1px" }}> <StyledTypography>In Stock</StyledTypography></p>
           </Grid>
         </Grid>
       </Grid>
@@ -87,7 +88,7 @@ export default function SellerCatlog() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/ProvideCatlog")
+      .post("http://localhost:3001/ProvideCatlog/6486df492b170505b6b04d1c")
       .then(res => {
         if (res.status === 200) {
           setTimeout(() => {
@@ -100,7 +101,7 @@ export default function SellerCatlog() {
       })
       .catch(err => console.error(err));
   }, [])
-  return <div className='RightProfile'>
+  return <div style={{ width: "100%", background: "white", padding: "2vw" }}>
     <div style={{ display: "flex", justifyContent: "space-between" }}><h3>My Catlog</h3><Tooltip title="Refresh"><IconButton ><RefreshIcon /></IconButton></Tooltip></div>
     <Divider />
     {LoaderControl && <div style={{ width: "100%", height: "60%", display: "flex", justifyContent: "center", alignItems: "center" }}><CircularProgress /></div>}

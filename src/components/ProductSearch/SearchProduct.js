@@ -1,7 +1,6 @@
-import { Divider, Button, Rating, IconButton, Tooltip, CircularProgress, Snackbar, Alert, Stack, Skeleton } from '@mui/material'
+import { Divider, Button, Rating, Grid, Stack, Skeleton } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
@@ -31,7 +30,7 @@ function CatlogCard({ product }) {
       sx={{
         p: 2,
         margin: 1,
-        maxWidth: 1000,
+        maxWidth: 1200,
         flexGrow: 1,
         backgroundColor: (theme) =>
           theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -102,21 +101,21 @@ export default function SearchProduct() {
       .catch(err => console.error(err));
   }, [searchParams, setSearchParams])
 
-  return <div
+  return <Grid container
     style={{
       display: "flex",
-      padding: "7px",
+      // padding: "7px",
       backgroundColor:"#f3f0f0"
     }}
-  >
+  > <Grid xs={0} md={2} item>
     <Paper
+      className='SearchProduct-Filters'
       style={{
-        padding: "20px",
-        width: '18vw',
+        // padding: "20px",
         minHeight:"83vh"
       }}
     >
-      {SearchResult &&<h3>Filter</h3>}
+      {SearchResult &&<h3 style={{textAlign:"center"}}>Filter</h3>}
       {!SearchResult && <Skeleton height={50} />}
       <Divider />
       {!SearchResult &&<Stack spacing={5}>
@@ -128,9 +127,10 @@ export default function SearchProduct() {
         <Skeleton  />
       </Stack>}
     </Paper>
+    </Grid>
+    <Grid xs={10} md={10}  item>
     <Paper
       style={{
-        width: "75vw",
         margin: "0px 0px 0px 11px"
       }}
     >
@@ -151,5 +151,6 @@ export default function SearchProduct() {
         }}>No Product Found for "{searchParams.get("query")}". Try any other name or cheak the spelling</div>}
       {SearchResult && SearchResult.map((product, index) => <><CatlogCard product={product} /><Divider /></>)}
     </Paper>
-  </div>
+    </Grid>
+  </Grid>
 }

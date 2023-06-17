@@ -1,14 +1,16 @@
-import { Button, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Button, Grid, IconButton, TextField } from '@mui/material';
 import React from 'react'
-
 import { useState } from 'react';
+import { AuthContext } from "../Context/AuthContext";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Logo from "./Flip-Logo.jpg"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
-import AxiosLink from '../BaseLink';
-function SignUp({OpenLogin}) {
+export default function SignUp() {
+
+  const Context=React.useContext(AuthContext)
+  const {LoginOpen,setLoginOpen,SignOpen,setSignOpen}=Context
   let [showPass, setShowPass] = useState(true);
   const [PhoneEmail,setPhoneEmail]=useState("")
   const [Password,setPassword]=useState("")
@@ -16,6 +18,11 @@ function SignUp({OpenLogin}) {
   const [PasswordHelperText,setPasswordHelperText]=useState("")
   const [Error,setError]=useState("")
   const navigate=useNavigate()
+
+  const HandleDialogChange=()=>{
+    setSignOpen(false)
+    setLoginOpen(true)
+  }
 
   const HandleSign=async ()=>{
     if (PhoneEmail==""){
@@ -44,15 +51,17 @@ function SignUp({OpenLogin}) {
       }
   }
   return (
-    <div style={{display:"flex",height:"100%"}}>
-    <span style={{width:"40%",height:"100%",background:"#047BD5",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"space-between"}} >
+    <Grid container style={{display:"flex",height:"100%"}}>
+      <Grid item xs={12} md={4}>
+    <span style={{height:"100%",background:"#047BD5",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"space-between"}} >
       <div style={{padding:"25px"}}>
       <h1 style={{color:"white"}}>Looks like you're new here!</h1>
       <p style={{color:"white"}}>Sign up with your mobile number to get started</p>
       </div>
       <img src={Logo} style={{width:"85%"}} alt=""></img>
     </span>
-    <div style={{display:"flex",flexDirection:"column",alignItems:"center",width:"60%",height:"100%"}}>
+    </Grid>
+    <Grid item xs={12} md={8} style={{display:"flex",flexDirection:"column",alignItems:"center",height:"100%"}}>
       <div className='Login-FieldContainer'>
       <TextField 
       autoFocus
@@ -80,8 +89,7 @@ function SignUp({OpenLogin}) {
             </div>
       <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} onClick={HandleSign} variant="filled">SignUp</Button>
 
-      <p style={{color:"#047BD5",cursor:"pointer"}} onClick={OpenLogin}><b>Already an customer ? Login</b></p>
-    </div></div>
+      <p style={{color:"#047BD5",cursor:"pointer"}} onClick={HandleDialogChange}><b>Already an customer ? Login</b></p>
+    </Grid></Grid>
   );
 }
-export default SignUp;

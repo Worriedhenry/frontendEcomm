@@ -52,10 +52,7 @@
 .App-link {
   color: #61dafb;
 }
-.Profile-TopRight{
-  padding-top: 22px;
-  
-}
+
 .OrdersFilter{
   width: 230px;
   background-color: white;
@@ -125,7 +122,6 @@ paper-button {
   background-color: white;
 }
 .Profile-left{
-    width: 284px;
     height: 100%;
     position: sticky;
     top:11vh;
@@ -165,6 +161,7 @@ ul {
   border: 1px solid white;
   background-color: white;
   cursor: pointer;
+  height: 100%;
 }
 input:focus {
   outline-width: 0;
@@ -177,4 +174,24 @@ input {
   .Header-Cart{
     display: none !important;
   }
+  .Headers-MenuItem{
+    width: 40vw !important;
+  }
+  .HeaderTypography{
+    font-size: 16px;
+  }
+  .SearchProduct-Filters{
+    display: none;
+  }
+  .Profile-DetailTitle{
+    font-size: 16px;
+  }
+}
+/* @media (max-width: 900px) {
+  .HeaderInput{
+    width: 20vw !important;
+  }
+} */
+.MuiButton-root{
+  min-width: none !important;
 }
