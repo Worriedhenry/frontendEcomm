@@ -19,7 +19,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import { Button } from '@mui/material';
-import Payment from './Payment';
 import styled from '@emotion/styled';
 
 
@@ -39,16 +38,11 @@ export default function PlaceOrder() {
     const [Landmark,setLandmark]=React.useState("")
     const [Alternate,setAlternate]=React.useState("")
     const [AddressType,setAddressType]=React.useState("Home")
-    const [Buttontext,setButtontext]=React.useState("SAVE AND DELIVER HERE")
-    const [ButtonColor , setButtonColor]=React.useState("#F0721A")
-    const handlebuttonclick=()=>{
-        setButtonColor("#78390d")
-        setButtontext("SAVED")
-    }
+
 
     return (
-        <div style={{backgroundColor:"#f0f0f0"}}>
-            < div style={{ height:"100vh",width:"50vw" ,backgroundColor:"white" ,margin:"auto",marginTop:"2vh"}}>
+        <div>
+            < div style={{ height:"75vh",width:"50vw" ,backgroundColor:"white" ,margin:"auto",marginTop:"2vh"}}>
             <CssBaseline />
             <Container maxWidth="sm">
             <header>
@@ -170,10 +164,7 @@ export default function PlaceOrder() {
                                 </RadioGroup>
                         </FormControl>     
                     </div>      
-                    <div style={{display:"flex" ,margin:"4% 0 0 2%"}}>
-                        <Button  className="mybutton" variant='contained' style={{backgroundColor:ButtonColor ,width:"45%",height:"10%"}} onClick={handlebuttonclick} > {Buttontext}</Button>
-                        <Button variant='text' style={{width:"50%",height:"10%"}}> Cancel</Button>
-                    </div>
+ 
                 </div>
                 <div>
 
@@ -187,7 +178,6 @@ export default function PlaceOrder() {
             </Box>
             </Container>
             </div>
-                <Payment/>
         </div>
         
     );
