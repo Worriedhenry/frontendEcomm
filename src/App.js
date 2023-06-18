@@ -34,9 +34,8 @@ function requireAuth(nextState, replace, next) {
 function App() {
   return <BrowserRouter>
     <Routes>
-      <Route path='/payment' element={<><NavBar /><Payment /><Footer /></>} />
       <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
-      <Route path='/buyproduct' element={<><NavBar /><PlaceOrder /><Footer /></>} />
+      <Route path='/buyproduct' element={<><NavBar /><PlaceOrder /> <Footer/></>} />
       <Route path='/seller/login' element={<><NavBar /><SellerLogin /></>} />
 
 

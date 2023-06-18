@@ -60,7 +60,7 @@ const Payment = () => {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
+    <div style={{ maxWidth: '53%', margin: '0 auto', padding: '20px' }}>
       <Typography variant="h6" align="center" gutterBottom>
         Payment Options
       </Typography>

@@ -19,6 +19,9 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import { Button } from '@mui/material';
+import Payment from './Payment';
+import styled from '@emotion/styled';
+
 
 export default function PlaceOrder() {
 
@@ -36,7 +39,12 @@ export default function PlaceOrder() {
     const [Landmark,setLandmark]=React.useState("")
     const [Alternate,setAlternate]=React.useState("")
     const [AddressType,setAddressType]=React.useState("Home")
-
+    const [Buttontext,setButtontext]=React.useState("SAVE AND DELIVER HERE")
+    const [ButtonColor , setButtonColor]=React.useState("#F0721A")
+    const handlebuttonclick=()=>{
+        setButtonColor("#78390d")
+        setButtontext("SAVED")
+    }
 
     return (
         <div style={{backgroundColor:"#f0f0f0"}}>
@@ -52,121 +60,125 @@ export default function PlaceOrder() {
 
 
             <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            <div>
-                <div style={{display:"flex" ,justifyContent:"space-between"}} >
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-amount">Name</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-weight"
-                        onChange={(e)=>setName(e.target.value)}
-                        label="Name"
-                        
-                    />
-                    </FormControl>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-amount">10 digit phone number</InputLabel>
+                <div>
+                    <div style={{display:"flex" ,justifyContent:"space-between"}} >
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                            <InputLabel htmlFor="outlined-adornment-amount">Name</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-weight"
+                            onChange={(e)=>setName(e.target.value)}
+                            label="Name"
+                            
+                        />
+                        </FormControl>
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-amount">10 digit phone number</InputLabel>
 
-                    <OutlinedInput
-                        id="outlined-adornment-weight"
-                        onChange={(e)=>setPhone(e.target.value)}
-                        label="10 digit mobile number"
-                        
+                        <OutlinedInput
+                            id="outlined-adornment-weight"
+                            onChange={(e)=>setPhone(e.target.value)}
+                            label="10 digit mobile number"
+                            
+                        />
+                        </FormControl>
+                    </div>
+
+
+                    <div style={{display:"flex"}} >
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                            <InputLabel htmlFor="outlined-adornment-amount">Pincode</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-weight"
+                            onChange={(e)=>setPincode(e.target.value)}
+                            label="Pincode"
+                            
+                        />
+                        </FormControl>
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-amount">Locality</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-weight"
+                            onChange={(e)=>setLocality(e.target.value)}
+                            label="Locality"
+                            
+                        />
+                        </FormControl>
+                    </div>
+
+                    <TextField
+                        id="outlined-multiline-flexible"
+                        label="Address"
+                        multiline
+                        maxRows={3}
+                        minRows={3}
+                        style={{width:"96.5%",marginLeft:"2%"}}
+                        onChange={(e)=>setAddress(e.target.value)}
                     />
-                    </FormControl>
+
+
+                    <div style={{display:"flex"}} >
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                            <InputLabel htmlFor="outlined-adornment-amount">City/District/Town</InputLabel>
+                        <OutlinedInput
+                        id="outlined-adornment-weight"
+                        onChange={(e)=>setCity(e.target.value)}
+                        label="City/District/Town"
+                            
+                        />
+                        </FormControl>
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-amount">State</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-weight"
+                            onChange={(e)=>setState(e.target.value)}
+                            label="State"
+                        />
+                        </FormControl>
+                    </div>
+                    
+                    <div style={{display:"flex"}} >
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                            <InputLabel htmlFor="outlined-adornment-amount">Landmark (Optional)</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-weight"
+                            label="Landmark (Optional)"
+                            onChange={(e)=>setLandmark(e.target.value)}
+                        />
+                        </FormControl>
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-amount">Alternate Phone (Optional)</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-weight"
+                            label="Alternate Phone (Optional)"
+                            onChange={(e)=>setAlternate(e.target.value)}
+                            
+                        />
+                        </FormControl>
+
+
+                    </div>
+                    <div style={{margin:"4% 0 0 2%"}} >
+                        <FormControl>
+                                <FormLabel id="demo-row-radio-buttons-group-label">Address Type</FormLabel>
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="row-radio-buttons-group"
+                                >
+                                    <FormControlLabel value="Homme" style={{fontSize:"0.2rem"}} control={<Radio />} onClick={(e)=>setAddress("Home")} label="Home(all day delivery )" />
+                                    <FormControlLabel value="Work" control={<Radio />} label="Work( 10AM - 5PM )" onClick={(e)=>setAddress("Office")} />
+                                </RadioGroup>
+                        </FormControl>     
+                    </div>      
+                    <div style={{display:"flex" ,margin:"4% 0 0 2%"}}>
+                        <Button  className="mybutton" variant='contained' style={{backgroundColor:ButtonColor ,width:"45%",height:"10%"}} onClick={handlebuttonclick} > {Buttontext}</Button>
+                        <Button variant='text' style={{width:"50%",height:"10%"}}> Cancel</Button>
+                    </div>
+                </div>
+                <div>
+
                 </div>
 
-
-                <div style={{display:"flex"}} >
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-amount">Pincode</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-weight"
-                        onChange={(e)=>setPincode(e.target.value)}
-                        label="Pincode"
-                        
-                    />
-                    </FormControl>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-amount">Locality</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-weight"
-                        onChange={(e)=>setLocality(e.target.value)}
-                        label="Locality"
-                        
-                    />
-                    </FormControl>
-                </div>
-
-                <TextField
-                    id="outlined-multiline-flexible"
-                    label="Address"
-                    multiline
-                    maxRows={3}
-                    minRows={3}
-                    style={{width:"96.5%",marginLeft:"2%"}}
-                    onChange={(e)=>setAddress(e.target.value)}
-                />
-
-
-                <div style={{display:"flex"}} >
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-amount">City/District/Town</InputLabel>
-                    <OutlinedInput
-                    id="outlined-adornment-weight"
-                    onChange={(e)=>setCity(e.target.value)}
-                    label="City/District/Town"
-                        
-                    />
-                    </FormControl>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-amount">State</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-weight"
-                        onChange={(e)=>setState(e.target.value)}
-                        label="State"
-                    />
-                    </FormControl>
-                </div>
-                
-                <div style={{display:"flex"}} >
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-amount">Landmark (Optional)</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-weight"
-                        label="Landmark (Optional)"
-                        onChange={(e)=>setLandmark(e.target.value)}
-                    />
-                    </FormControl>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-amount">Alternate Phone (Optional)</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-weight"
-                        label="Alternate Phone (Optional)"
-                        onChange={(e)=>setAlternate(e.target.value)}
-                        
-                    />
-                    </FormControl>
-
-
-                </div>
-                <div style={{margin:"4% 0 0 2%"}} >
-                    <FormControl>
-                            <FormLabel id="demo-row-radio-buttons-group-label">Address Type</FormLabel>
-                            <RadioGroup
-                                row
-                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                name="row-radio-buttons-group"
-                            >
-                                <FormControlLabel value="Homme" style={{fontSize:"0.2rem"}} control={<Radio />} onClick={(e)=>setAddress("Home")} label="Home(all day delivery )" />
-                                <FormControlLabel value="Work" control={<Radio />} label="Work( 10AM - 5PM )" onClick={(e)=>setAddress("Office")} />
-                            </RadioGroup>
-                    </FormControl>     
-                </div>      
-                <div style={{display:"flex" ,margin:"4% 0 0 2%"}}>
-                    <Button variant='contained' style={{backgroundColor:"#F0721A" ,width:"45%",height:"10%"}} onClick={()=>navigate("/payment")}> SAVE AND DELIVER HERE</Button>
-                    <Button variant='text' style={{width:"50%",height:"10%"}}> Cancel</Button>
-                </div>
-            </div>
             
 
             </Box>
@@ -175,6 +187,7 @@ export default function PlaceOrder() {
             </Box>
             </Container>
             </div>
+                <Payment/>
         </div>
         
     );
