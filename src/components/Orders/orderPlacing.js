@@ -1,16 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -18,10 +11,10 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-import { Button } from '@mui/material';
-
+import { Button,Grid,Divider,Stack,Skeleton } from '@mui/material';
+import { AuthContext } from '../../Context/AuthContext';
 export default function PlaceOrder() {
-
+    const {Cart}=React.useContext(AuthContext)
     const navigate=useNavigate()
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
@@ -36,10 +29,24 @@ export default function PlaceOrder() {
     const [Landmark,setLandmark]=React.useState("")
     const [Alternate,setAlternate]=React.useState("")
     const [AddressType,setAddressType]=React.useState("Home")
+    const [MaxPrice,setMaxPrice]=React.useState(0)
+    const [SellPrice,setSellPrice]=React.useState(0)
+    var TotalItem=Cart.length
 
+    React.useEffect(()=>{
+        console.log(Cart)
+        Cart.map((ele)=>{
+            setMaxPrice(ele.ProductMRP+MaxPrice)
+            setSellPrice(SellPrice+ele.ProductSellingPrice)
+        })
+    },[])
+    HandleNext=()=>{
+        
+    }
 
     return (
-        <div style={{backgroundColor:"#f0f0f0"}}>
+        <Grid container style={{background:"#f3f0f0"}} spacing={4}  justifyContent="space-around" alignItems="center">
+        <Grid item md={6} style={{backgroundColor:"#f0f0f0"}}>
             < div style={{ height:"100vh",width:"50vw" ,backgroundColor:"white" ,margin:"auto",marginTop:"2vh"}}>
             <CssBaseline />
             <Container maxWidth="sm">
@@ -163,19 +170,38 @@ export default function PlaceOrder() {
                     </FormControl>     
                 </div>      
                 <div style={{display:"flex" ,margin:"4% 0 0 2%"}}>
-                    <Button variant='contained' style={{backgroundColor:"#F0721A" ,width:"45%",height:"10%"}} onClick={()=>navigate("/payment")}> SAVE AND DELIVER HERE</Button>
+                    <Button variant='contained' style={{backgroundColor:"#F0721A" ,width:"45%",height:"10%"}} onClick={()=>navigate("/payment")}> Next</Button>
                     <Button variant='text' style={{width:"50%",height:"10%"}}> Cancel</Button>
                 </div>
             </div>
             
 
             </Box>
-
-
             </Box>
             </Container>
             </div>
-        </div>
-        
+        </Grid>
+        <Grid md={3}  item className="Cart-Right">
+        <h4 style={{ margin: "0px" }} >Price Details</h4>
+        <Divider />
+        <Stack spacing={3} mt={5}>
+          {/* <Skeleton height={20} />
+          <Skeleton height={20} />
+          <Skeleton height={20} />
+          <Divider />
+          <Skeleton height={30} />
+          <Skeleton height={20} /> */}
+        </Stack>
+        <>
+          <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Prices({TotalItem})</h5><span>&#8377;{MaxPrice}</span></div>
+          <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Discount</h5><span>&#8377;{MaxPrice-SellPrice}</span></div>
+          <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Delivery Charges</h5><span>Free</span></div>
+          <Divider />
+          <div className="Cart-RightDetails" ><h3 style={{ margin: "0px" }}>Prices({TotalItem})</h3><h3 style={{ margin: "0px" }}>&#8377;{SellPrice}</h3></div>
+          <Divider />
+          <h4>Yoy will save &#8377;{MaxPrice-SellPrice} in this order</h4>
+        </>
+      </Grid>
+        </Grid>
     );
     }

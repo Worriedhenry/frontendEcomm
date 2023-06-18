@@ -1,7 +1,8 @@
 import { Divider, Button, Rating, Stack, Skeleton } from "@mui/material"
 import Bread from "./BreadCrimb"
+import {AuthContext} from "../../Context/AuthContext"
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -144,7 +145,7 @@ export default function Cart() {
         ><Button size="small" variant="contained">Place Orders</Button></div>
       </Paper>
       </Grid>
-      <Grid md={3} item className="Cart-Right">
+      <Grid md={3}  item className="Cart-Right">
         <h4 style={{ margin: "0px" }} >Price Details</h4>
         <Divider />
         {!Cart && AllProductMRP === 0 && <Stack spacing={3} mt={5}>

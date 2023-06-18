@@ -11,7 +11,7 @@ const LittleImagesStyle = {
 }
 function Left_part({ product,InCart,setInCart }) {
     const Context=React.useContext(AuthContext)
-    const {Valid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext}=Context
+    const {Valid,setLoginOpen,setCart}=Context
     const [PrimaryImage, setPrimaryImage] = useState(product ? product.ProductImages[0] : "")
     const ProductId = useParams()
     const navigate=useNavigate()
@@ -19,11 +19,11 @@ function Left_part({ product,InCart,setInCart }) {
     const AddProductToCart = () => {
         console.log(InCart)
         if (InCart){
-            navigate("/viewcart/6481efb232b997a8f8af8f67")
+            navigate("/viewcart/"+Valid)
         }
         else{
         if(Valid){
-        axios.put("http://localhost:3001/AddProductToCart/" + ProductId.productId, { user: localStorage.getItem("user") }).then((res) => {
+        axios.put("http://localhost:3001/AddProductToCart/" + ProductId.productId+"/"+Valid, { user: localStorage.getItem("user") }).then((res) => {
             setInCart(true)
         })}
         else{
@@ -34,7 +34,13 @@ function Left_part({ product,InCart,setInCart }) {
     }
 
     const BuyProductFunctionality = ()=>{
-        navigate("/buyproduct")
+        if (Valid){
+        setCart([product])
+        navigate("/buyproduct/"+ProductId.productId)
+        }
+        else{
+            setLoginOpen(true)
+        }
     }
 
     useEffect(() => {

@@ -85,7 +85,7 @@
 }
 .Cart-Right{
   background-color: white;
-  height: 311px;
+  height: fit-content;
   width: 399px;
   margin-left: 29px;
   padding: 25px;

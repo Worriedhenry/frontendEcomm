@@ -42,10 +42,9 @@ function App() {
           <Route path='/search' element={<>< NavBar /><SearchProduct /><Footer /></>} />
           <Route path='/writereview/:ProductId' element={<><NavBar /> <Write_review /> <Footer /></>} />
           <Route path="/seller/register" element={<><SellerRegister /></>} />
-          <Route path="/sell/:gfc" element={<><SellerProfile /></>} />
           <Route path='/payment' element={<><NavBar /><Payment /><Footer /></>} />
           <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
-          <Route path='/buyproduct' element={<><NavBar /><PlaceOrder /><Footer /></>} />
+          <Route path='/buyproduct/:ProductId' element={<><NavBar /><PlaceOrder /><Footer /></>} />
           <Route path='/seller/login' element={<><NavBar /><SellerLogin /></>} />
           <Route path='/admin/info/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
           <Route path='/admin/catlog/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
