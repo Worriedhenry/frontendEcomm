@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Button, Divider, TextField ,Radio,FormControlLabel,RadioGroup,Snackbar,Alert} from "@mui/material"
+import { Button, styled, TextField ,Radio,FormControlLabel,RadioGroup,Snackbar,Alert} from "@mui/material"
 import axios from "axios";
 import {useParams} from "react-router-dom"
 const FlexDisplayStyle={
-    display:"flex"
+    display:"flex",
+    flexWrap:"wrap"
+   
 }
+
+const StyledButton=styled(Button)(({ theme }) => ({
+    
+    [theme.breakpoints.down('sm')]: {
+      width:"3vw",
+
+    },
+  }));
 
 export default function PersonalInfo(){
     const [PersonalData,setPersonalData]=useState(false)
@@ -65,15 +75,15 @@ export default function PersonalInfo(){
     }
 
 
-    return <div className="RightProfile">
+    return <div style={{width:"100%",background:"white",padding:"2vw"}}>
     <div className="Profile-TopRight">
-        <span style={{ fontSize: "18px", paddingTop: "15px" }}><b>Personal Information</b></span>
+        <h3 style={{  paddingTop: "2vw" }} className="Profile-DetailTitle">Personal Information &nbsp; 
         <Button onClick={()=> setPersonalData(!PersonalData)}>{ PersonalData ? "cancle" :"edit"}</Button>
-        <p></p>
+        </h3>
         <div style={FlexDisplayStyle}>
-        <TextField  variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "First name" } disabled={ PersonalData ? false :true} onChange={(e)=>setFirstName(e.target.value)} value={FirstName} />
-        <TextField variant="filled" size="small" sx={{ mr: 7, width: "300px" }} label={ PersonalData && "Last name" } disabled={ PersonalData ? false :true} onChange={(e)=>setLastName(e.target.value)}  value={LastName} />
-        { PersonalData && <Button onClick={UpdateName} variant="contained">Save</Button>}
+        <TextField  variant="filled" size="small" sx={{ mr: 7 }} label={ PersonalData && "First name" } disabled={ PersonalData ? false :true} onChange={(e)=>setFirstName(e.target.value)} value={FirstName} />
+        <TextField variant="filled" size="small" sx={{ mr: 7 }} label={ PersonalData && "Last name" } disabled={ PersonalData ? false :true} onChange={(e)=>setLastName(e.target.value)}  value={LastName} />
+        { PersonalData && <StyledButton onClick={UpdateName} variant="contained">Save</StyledButton>}
         </div>
         <p>Your Gender</p>
         <RadioGroup
@@ -87,16 +97,16 @@ export default function PersonalInfo(){
             <FormControlLabel disabled={ PersonalData ? false :true} value="other" control={<Radio />} label="Other" />
         </RadioGroup>
         
-        <p style={{ paddingTop: "28px" }}><span style={{ fontSize: "18px", paddingTop: "35px" }}><b>Email Address</b></span>
+        <h3 style={{ paddingTop: "2vw" }} className="Profile-DetailTitle">Email Address&nbsp;&nbsp;
         <Button onClick={()=> setEmailData(!EmailData)}>{ EmailData ? "cancle" :"edit"}</Button>
-        </p>
+        </h3>
         <div style={FlexDisplayStyle}>
         <TextField variant="filled" label={ EmailData && "Email Address" }  size="small" sx={{ mr: 7, width: "300px" }}  disabled={ EmailData ? false :true} onChange={(e)=>setEmail(e.target.value)} value={Email} />
         { EmailData && <Button onClick={UpdateEmail} variant="contained">Save</Button>}
         </div>
-        <p style={{ paddingTop: "28px" }}><span style={{ fontSize: "18px", paddingTop: "35px" }}><b>Mobile Number</b></span>
-        <Button onClick={()=> setPhoneData(!PhoneData)}>{ PhoneData ? "cancle" :"edit"}</Button>
-        </p>
+        <h3 style={{ paddingTop: "2vw" }} className="Profile-DetailTitle">Mobile Number
+        &nbsp;  <Button onClick={()=> setPhoneData(!PhoneData)}>{ PhoneData ? "cancle" :"edit"}</Button>
+        </h3>
         <div style={FlexDisplayStyle}>
         <TextField variant="filled" label={ PhoneData && "Mobile number" } onChange={(e)=>setPhone(e.target.value)} size="small" sx={{ mr: 7, width: "300px" }} disabled={ PhoneData ? false :true} value={Phone} />
         { PhoneData && <Button onClick={UpdatePhone} variant="contained">Save</Button>}

@@ -1,4 +1,4 @@
-import { Button, Divider, TextField ,Radio,FormControlLabel,RadioGroup} from "@mui/material"
+import { Grid} from "@mui/material"
 import React, { useEffect, useState } from "react"
 import Logo from "../Flip-Logo.jpg"
 import InventoryIcon from '@mui/icons-material/Inventory';
@@ -13,11 +13,15 @@ export default function Profile(props) {
     function ChildUpadate(num){
         setPage(num)
     }
-    return <div className="Profile-Container">
-        <ProFileLeft UpdateParent={ChildUpadate} />
+    return <Grid spacing={2} container style={{background:"#f3f0f0",display:"flex",padding:"14px 3vw"}}>
+        <Grid xs={4} sm={3}  md={2.5} item>
+        <ProFileLeft  UpdateParent={ChildUpadate} />
+        </Grid>
+        <Grid xs={8} sm={8} md={8.5} item>
         {page==0 && <PersonalInfo/> }
         {page==1 && <ManageAddress /> }
-    </div>
+        </Grid>
+    </Grid>
 
 
 }

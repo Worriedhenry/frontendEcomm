@@ -3,7 +3,7 @@ import { Box, Skeleton, TextField, Typography, Grid, Table, styled, Button, Rati
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
-import Reviews from "./review/Review"
+import Reviews from "./review/review"
 import Specs from "./ProdSpecs";
 import Ques from "./QuesAns";
 

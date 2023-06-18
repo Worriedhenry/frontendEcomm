@@ -1,6 +1,6 @@
 import React from "react"
-import Left from "./Left"
-import Right from "./Right"
+import Left from "./left"
+import Right from "./right"
 function Write_review(){
     return(
         <div style={{backgroundcolor:"#f1f3f6"}}>
@@ -8,7 +8,6 @@ function Write_review(){
                 <span style={{padding:"24px" }}>Reviews & Ratings</span>
             </div>
             <div style={{display:"flex"}}>
-
                 <div>
                     <Left />
                 </div>

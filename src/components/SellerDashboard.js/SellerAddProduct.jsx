@@ -198,7 +198,7 @@ export default function SellerAddProduct() {
 
 
 
-  return <div className="RightProfile">
+  return <div style={{ width: "100%", background: "white", padding: "2vw" }}>
     <h2>Add Product</h2>
     
     <Accordion>

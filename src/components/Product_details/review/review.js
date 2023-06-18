@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, IconButton, InputAdornment, TextField ,Typography ,Grid, Table ,styled, Button ,} from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import Answer from "./Answer";
+import Answer from "./answer";
 import Write_review from "./write_review/write_review";
 import { useNavigate } from "react-router-dom"
 
