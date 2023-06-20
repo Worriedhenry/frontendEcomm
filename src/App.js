@@ -17,7 +17,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Payment from './components/Orders/Payment';
 import OrderSuccessPage from './components/Orders/OrderSuccessPlace';
 import SellerLogin from './components/seller/sellerLogin';
-import OrderCheckout from './components/Orders/ordercheckout';
+import HorizontalNonLinearStepper from './components/Orders/progress_stepper';
+import { OrderState } from './Context/OrderContext';
+import { CartState } from './Context/CartContext';
 function requireAuth(nextState, replace, next) {
   if (!localStorage.getItem("user")) {
     replace({
@@ -31,27 +33,31 @@ function App() {
   return (
     <BrowserRouter>
       <AuthState>
-        <Routes>
-          <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
-          <Route path='/' element={<><NavBar /><Home /><Footer /></>} />
-          <Route path='/account/:UserId' onEnter={requireAuth} element={<>< NavBar /><Profile page={0} /><Footer /></>} />
-          <Route path='/account/orders' element={<>< NavBar /><Orders /><Footer /></>} />
-          <Route path='/viewcart/:UserId' element={<>< NavBar /><Cart /><Footer /></>} />
-          <Route path='/viewproduct/:productId' element={<>< NavBar /><Details /><Footer /></>} />
-          <Route path='/search' element={<>< NavBar /><SearchProduct /><Footer /></>} />
-          <Route path='/writereview/:ProductId' element={<><NavBar /> <Write_review /> <Footer /></>} />
-          <Route path="/seller/register" element={<><SellerRegister /></>} />
-          <Route path='/payment' element={<><NavBar /><Payment /><Footer /></>} />
-          <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
-          <Route path='/buyproduct/:ProductId' element={<><NavBar /><PlaceOrder /><Footer /></>} />
-          <Route path='/seller/login' element={<><NavBar /><SellerLogin /></>} />
-          <Route path='/admin/info/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
-          <Route path='/admin/catlog/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
-          <Route path='/admin/addproduct/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
-          <Route path='/admin/viewproduct/:productId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
-          <Route path='/placeorder' element={<>< NavBar /><OrdersPlace /><Footer /></>} />
+        <OrderState>
+          <CartState>
+            <Routes>
+              <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
+              <Route path='/' element={<><NavBar /><Home /><Footer /></>} />
+              <Route path='/account/:UserId' onEnter={requireAuth} element={<>< NavBar /><Profile page={0} /><Footer /></>} />
+              <Route path='/account/orders/:UserId' element={<>< NavBar /><Orders /><Footer /></>} />
+              <Route path='/viewcart/:UserId' element={<>< NavBar /><Cart /><Footer /></>} />
+              <Route path='/viewproduct/:productId' element={<>< NavBar /><Details /><Footer /></>} />
+              <Route path='/search' element={<>< NavBar /><SearchProduct /><Footer /></>} />
+              <Route path='/writereview/:ProductId' element={<><NavBar /> <Write_review /> <Footer /></>} />
+              <Route path="/seller/register" element={<><SellerRegister /></>} />
+              <Route path='/payment' element={<><NavBar /><Payment /><Footer /></>} />
+              <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
+              <Route path='/buyproduct/:ProductId' element={<><NavBar /><HorizontalNonLinearStepper /><Footer /></>} />
+              <Route path='/seller/login' element={<><NavBar /><SellerLogin /></>} />
+              <Route path='/admin/info/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
+              <Route path='/admin/catlog/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
+              <Route path='/admin/addproduct/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
+              <Route path='/admin/viewproduct/:productId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
+              <Route path='/placeorder' element={<>< NavBar /><OrdersPlace /><Footer /></>} />
 
-        </Routes>
+            </Routes>
+          </CartState>
+        </OrderState>
       </AuthState>
     </BrowserRouter>)
 }

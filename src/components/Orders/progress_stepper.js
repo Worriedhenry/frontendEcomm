@@ -61,7 +61,7 @@ function HorizontalNonLinearStepper() {
   };
 
   return (
-    <Box sx={{ width: 'auto' }}>
+    <Box sx={{ width: '50%',margin:"auto"}}>
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
@@ -73,13 +73,13 @@ function HorizontalNonLinearStepper() {
       </Stepper>
       <div>
           <React.Fragment>
-            <div style={{justifyContent:"center"}}>
+            <div style={{justifyContent:"center",margin:"6px"}}>
 
             {activeStep===0 && <PlaceOrder />}
             {activeStep===1 && <Payment />}
             </div>
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 ,margin:"auto" }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 6 ,margin:"auto" }}>
               <Button
                 color="inherit"
                 disabled={activeStep === 0}

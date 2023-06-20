@@ -1,6 +1,6 @@
 import {Button, Rating} from "@mui/material"
 import Data from "../../data_resourses/nav_data"
-
+import { AuthContext } from "../../Context/AuthContext";
 import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import SearchIcon from '@mui/icons-material/Search';
-
+import axios from "axios"
 const Img = styled('img')({
     margin: 'auto',
     display: 'block',
@@ -30,7 +30,7 @@ function Preview({src,des}){
 </div>
 
 }
-function CatlogCard({src,des}) {
+function CatlogCard({orders}) {
 
     return (
       <Paper
@@ -44,6 +44,7 @@ function CatlogCard({src,des}) {
             theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         }}
       >
+        
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
@@ -78,7 +79,19 @@ function CatlogCard({src,des}) {
     );
   }
 export default function OrdersRight(){
-
+    const [Orders,setOrders]=useState(false)
+    const {Valid}=React.useContext(AuthContext)
+    useEffect(()=>{
+      axios
+        .get("http://localhost:3001/orders/get/"+Valid)
+        .then(res =>{
+          console.log(res)
+          if(res.status==200){
+            setOrders(res.data)
+          }
+        } )
+        .catch(err => console.error(err));
+    },[])
 
     return <div className="Orders-Right">
         <input placeholder="Search Your Orders Here" className="SearchOrder"  />
@@ -86,9 +99,6 @@ export default function OrdersRight(){
         {Data.map((e)=>
         <CatlogCard src={e.url} des={e.text} />
         )}    
-        
-    
-    
-    
+
     </div>
 }

@@ -52,6 +52,14 @@ export default function NavBar() {
             setLoginOpen(true)
         }
     }
+    const HandleOrders = () => {
+        if (Valid) {
+            navigate("/account/orders/" + Valid)
+        }
+        else {
+            setLoginOpen(true)
+        }
+    }
 
     return <GridItem justifyContent="center" container style={{ display: "flex", background: "#047BD5", alignItems: "center", width: "100%", position: "sticky", zIndex: "100", top: "0px" }}>
         <Grid item container justifyContent="space-around" spacing={1} alignItems="center" xs={8} sm={6} md={6} direction="row">
@@ -107,7 +115,7 @@ export default function NavBar() {
                 >
                     <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={HandleProfile} >Profile</MenuItem>
                     <Divider />
-                    <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={() => handleAuth("/account/orders")} >Orders</MenuItem>
+                    <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={HandleOrders} >Orders</MenuItem>
                     <Divider />
                     <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} >Whislist</MenuItem>
                     <Divider />

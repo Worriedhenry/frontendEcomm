@@ -7,8 +7,6 @@ const AuthState= ({children})=>{
     const [LoginOpen,setLoginOpen]=useState(false)
     const [SignOpen,setSignOpen]=useState(false)
     const [Next,setNext]=useState("/")
-    const [Cart,setCart]=useState([])
-    const [Address,setAddress]=useState(null)
     useEffect(()=>{
         if (localStorage.getItem("token")){
             const headers = {
@@ -31,7 +29,7 @@ const AuthState= ({children})=>{
         }
     },[])
     return (
-        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext,Cart,setCart,Address,setAddress}}>
+        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext}}>
             {children}
         </AuthContext.Provider>
     )

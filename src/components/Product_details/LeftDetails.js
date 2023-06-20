@@ -3,6 +3,7 @@ import { Button, ButtonBase, Grid, Skeleton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import { AuthContext } from "../../Context/AuthContext";
+import { CartContext } from "../../Context/CartContext";
 import { useParams,useNavigate } from "react-router-dom"
 import axios from "axios"
 const LittleImagesStyle = {
@@ -11,7 +12,8 @@ const LittleImagesStyle = {
 }
 function Left_part({ product,InCart,setInCart }) {
     const Context=React.useContext(AuthContext)
-    const {Valid,setLoginOpen,setCart}=Context
+    const {setProducts}=React.useContext(CartContext)
+    const {Valid,setLoginOpen}=Context
     const [PrimaryImage, setPrimaryImage] = useState(product ? product.ProductImages[0] : "")
     const ProductId = useParams()
     const navigate=useNavigate()
@@ -35,7 +37,7 @@ function Left_part({ product,InCart,setInCart }) {
 
     const BuyProductFunctionality = ()=>{
         if (Valid){
-        setCart([product])
+        setProducts([product])
         navigate("/buyproduct/"+ProductId.productId)
         }
         else{
