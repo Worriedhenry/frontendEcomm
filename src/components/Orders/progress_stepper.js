@@ -7,6 +7,9 @@ import {Button} from '@mui/material';
 import Typography from '@mui/material/Typography';
 import PlaceOrder from './orderPlacing';
 import Payment from './Payment';
+import styled from '@emotion/styled';
+
+
 const steps = ['ADDRESS', 'PAYMENT'];
 
 function HorizontalNonLinearStepper() {
@@ -61,7 +64,13 @@ function HorizontalNonLinearStepper() {
   };
 
   return (
-    <Box sx={{ width: '50%',margin:"auto"}}>
+    <Box  sx={{ width: '50%',
+              margin:"auto",
+              '@media screen and (max-width:700px) ':{
+                  width:"100%"
+              }
+              
+              }}>
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
@@ -73,13 +82,13 @@ function HorizontalNonLinearStepper() {
       </Stepper>
       <div>
           <React.Fragment>
-            <div style={{justifyContent:"center",margin:"6px"}}>
+            <div style={{justifyContent:"center",margin:"2vh"}}>
 
             {activeStep===0 && <PlaceOrder />}
             {activeStep===1 && <Payment />}
             </div>
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 6 ,margin:"auto" }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 6 ,margin:"auto" ,marginBottom:"2vh" }}>
               <Button
                 color="inherit"
                 disabled={activeStep === 0}

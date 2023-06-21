@@ -48,6 +48,7 @@ function App() {
               <Route path='/payment' element={<><NavBar /><Payment /><Footer /></>} />
               <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
               <Route path='/buyproduct/:ProductId' element={<><NavBar /><HorizontalNonLinearStepper /><Footer /></>} />
+              
               <Route path='/seller/login' element={<><NavBar /><SellerLogin /></>} />
               <Route path='/admin/info/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
               <Route path='/admin/catlog/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
