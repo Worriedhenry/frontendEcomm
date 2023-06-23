@@ -63,7 +63,7 @@ export default function FirstPageSeller() {
             style={{borderRadius:"10px" ,height:"50px"}}
             onChange={(e)=>setEmail(e.target.value)}
 
-          />
+          />      
         </FormControl>    
         <div>
             <Typography style={{padding:"8px"}}>What are you looking to sell on Flipkart?</Typography>
