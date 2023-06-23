@@ -38,7 +38,7 @@ function Left_part({ product,InCart,setInCart }) {
     const BuyProductFunctionality = ()=>{
         if (Valid){
         setProducts([product])
-        navigate("/buyproduct/"+ProductId.productId)
+        navigate("/buyproduct")
         }
         else{
             setLoginOpen(true)

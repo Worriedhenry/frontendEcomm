@@ -37,6 +37,7 @@ export default function NavBar() {
 
     const HandleCart = () => {
         if (Valid) {
+            setAnchorEl(null);
             navigate("/viewcart/" + Valid)
         }
         else {
@@ -46,6 +47,7 @@ export default function NavBar() {
     }
     const HandleProfile = () => {
         if (Valid) {
+            setAnchorEl(null);
             navigate("/account/" + Valid)
         }
         else {
@@ -54,6 +56,7 @@ export default function NavBar() {
     }
     const HandleOrders = () => {
         if (Valid) {
+            setAnchorEl(null); 
             navigate("/account/orders/" + Valid)
         }
         else {

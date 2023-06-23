@@ -7,7 +7,6 @@ export default function Orders(){
 
 
     return <>
-    <Breadcrumb />
     < div 
     style={{backgroundColor:"#f3f0f0",padding:" 0px 16px",display: "flex"}}
     >

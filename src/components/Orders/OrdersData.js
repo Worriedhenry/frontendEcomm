@@ -9,71 +9,47 @@ import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from "axios"
-const Img = styled('img')({
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  });
-function Preview({src,des}){
-    return <div className="OrdersPreview">
-    <img style={{width:"80px"}} src={src} alt="" />
-    <div style={{width:"380px"}} > 
-        <h4>{des}</h4>
-        <p>Color:#00000</p>
-    </div>
-    <h3 style={{width:"169px"}}>₹999</h3>
-    <div>
-        <h5>Order Satus</h5>
-        <p>You Requested the order but canceled</p>
-    </div>
-</div>
+import { Img } from "../UtlityComponents/StyledImage";
+import { useNavigate } from "react-router-dom";
 
-}
-function CatlogCard({orders}) {
+const Arr=Array(2).fill(2)
 
+function CatlogCard({Order}) {
+  const navigate=useNavigate()
     return (
       <Paper
         elevation={3}
+        style={{cursor:"pointer"}}
+        onClick={()=>navigate("/orderdetails/"+Order._id)}
         sx={{
           p: 2,
           margin: 1,
-          maxWidth: 900,
+          maxWidth: 1100,
           flexGrow: 1,
           backgroundColor: (theme) =>
             theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        
         }}
       >
-        
-        <Grid container spacing={2}>
-          <Grid item>
-            <ButtonBase sx={{ width: 128, height: 128 }}>
-              <Img alt="complex" src={src} />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item >
-                <Typography gutterBottom variant="h3.heading" component="h4">
-                  {des}
-                </Typography>
-                <Typography variant="subtitle2" gutterBottom>
-                  <div style={{ marginTop: "-1px", display: "flex", fontSize: "13px" }}><span style={{ color: "#838484" }}><Rating readOnly size="small" defaultValue={4} precision={0.5} name="size-small" />
-                    <span>&nbsp; 128 Rating&nbsp; & 68 Reviews &nbsp;</span></span><span></span>{true ? <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" style={{ width: "80px", marginLeft: "20px" }} /> : <></>}</div>
-                </Typography>
-                <div>
-                    <span style={{fontSize:"16px"}}>₹57,490</span><span style={{marginLeft:"10px" ,color:"#838383"}}><strike>₹60,995</strike></span><span style={{marginLeft:"10px",color:"#30B131"}}>5% off</span>
-                </div>
+        <Grid container mt={1}>
+            <Grid  md={10}  container>
+              <Grid md={3} item>
+                <Img src={Order.OrderedItemImage}></Img>
               </Grid>
-              <Grid item spacing={2}>
-                <Button variant='contained' size='small'>View</Button>
-                <Button style={{ margin: "5px" }} size="small"  variant='contained' color="error">Cancle</Button>
+              <Grid md={5} ml={2} item>
+              <Typography gutterBottom style={{ fontWeight: "bold" }} variant="h1.heading" component="div">
+                {Order.OrderedItemName}
+              </Typography>
+              </Grid>
+              <Grid item md={2}>
+              <Typography style={{ fontWeight: "bold" }} variant="h3.heading">
+                &#8377;{Order.OrderValue.$numberDecimal}
+              </Typography>
               </Grid>
             </Grid>
-            <Grid item>
-              <p style={{ background: "green", borderRadius: "5px", color: "white", padding: "5px 7.5px", margin: "5px 1px" }}>Arriving Soon</p>
+            <Grid md={2} item container>
+              Ordered
             </Grid>
-          </Grid>
         </Grid>
       </Paper>
     );
@@ -85,19 +61,20 @@ export default function OrdersRight(){
       axios
         .get("http://localhost:3001/orders/get/"+Valid)
         .then(res =>{
-          console.log(res)
-          if(res.status==200){
+          console.log(res.data)
             setOrders(res.data)
-          }
         } )
         .catch(err => console.error(err));
     },[])
 
     return <div className="Orders-Right">
-        <input placeholder="Search Your Orders Here" className="SearchOrder"  />
-        <Button startIcon={<SearchIcon />} variant="contained">Search Orders</Button>
-        {Data.map((e)=>
-        <CatlogCard src={e.url} des={e.text} />
+       <Typography gutterBottom style={{ fontWeight: "bold",textAlign:"center" }} variant="h1.heading" component="h1">
+          My Orders
+        </Typography>
+        { Orders &&  Orders.map((order)=>
+        <React.Fragment key={order._id}>
+        <CatlogCard Order={order} />
+      </React.Fragment>
         )}    
 
     </div>

@@ -3,19 +3,14 @@ import Bread from "./BreadCrimb"
 import {AuthContext} from "../../Context/AuthContext"
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import React, { useEffect, useState,useContext } from 'react'
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
-import {useParams} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 import axios from "axios";
-const Img = styled('img')({
-  margin: 'auto',
-  display: 'block',
-  maxWidth: '100%',
-  maxHeight: '100%',
-});
+import { CartContext } from "../../Context/CartContext";
+import { Img } from "../UtlityComponents/StyledImage";
 
 function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }){
   const {UserId}=useParams()
@@ -73,13 +68,22 @@ function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSell
   );
 }
 export default function Cart() {
+  const navigate=useNavigate()
   const [Cart, setCart] = useState(false)
   const [AllProductMRP, setAllProductMRP] = useState(0)
   const [AllSellingPrice, setAllProductSellingPrice] = useState(0)
   const params=useParams()
+  const {setProducts} = React.useContext(CartContext)
+  const {Valid}=React.useContext(AuthContext)
+
+  const PlaceOrder=async ()=>{
+    navigate("/buyproduct")
+  }
+
   useEffect(() => {
     var CountSellingPrice = 0
     var CountMRPPrice = 0
+    var ProductIds=[]
     axios
       .get("http://localhost:3001/getcart/"+params.UserId)
       .then(res => {
@@ -88,8 +92,10 @@ export default function Cart() {
         res.data.map((product) => {
           CountSellingPrice += product.ProductSellingPrice,
             CountMRPPrice += product.ProductMRP
+          ProductIds.push(product._id)
         }
         )
+        setProducts(res.data)
         setAllProductMRP(CountMRPPrice)
         setAllProductSellingPrice(CountSellingPrice)
       })
@@ -142,7 +148,7 @@ export default function Cart() {
             display: "flex",
             justifyContent: "flex-end"
           }}
-        ><Button size="small" variant="contained">Place Orders</Button></div>
+        ><Button size="small" onClick={PlaceOrder} variant="contained">Place Orders</Button></div>
       </Paper>
       </Grid>
       <Grid md={3}  item className="Cart-Right">

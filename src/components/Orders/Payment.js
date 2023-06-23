@@ -56,15 +56,19 @@ const Payment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const OrderedId=[]
-    var OrderValue=0
-    var OrderMRPvalue=0
+    var OrderValue=[]
+    var OrderMRPvalue=[]
+    var OrderImages=[]
+    var OrderName=[]
     Products.map((ele)=>{
       OrderedId.push(ele._id)
-      OrderValue+=ele.ProductSellingPrice
-      OrderMRPvalue+=ele.ProductMRP
+      OrderValue.push(ele.ProductSellingPrice)
+      OrderMRPvalue.push(ele.ProductMRP)
+      OrderImages.push(ele.ProductImages[0])
+      OrderName.push(ele.ProductTitle)
     })
     console.log(OrderedId,OrderMRPvalue,OrderValue)
-    let res =await axios.post("http://localhost:3001/orders/new", { Name, Phone, CustomerId: Valid, OrderDestination: Address + "," + Locality + "," + City + "," + State + "," + Pincode + "," + " , Near" + Landmark, AlternatePhone: Alternate, Ordereditem:OrderedId, OrderValue, OrderMRPvalue })
+    let res =await axios.post("http://localhost:3001/orders/new", { Name, Phone, CustomerId: Valid, OrderDestination: Address + "," + Locality + "," + City + "," + " , Near " + Landmark + "," + State + "," + Pincode , AlternatePhone: Alternate, Ordereditem:OrderedId, OrderValue, OrderMRPvalue,OrderImages,OrderName })
     console.log(res)
   };
   React.useEffect(() => {

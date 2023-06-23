@@ -13,11 +13,12 @@ import Cart from './components/Cart/Cart';
 import Details from './components/Product_details/Detail';
 import SearchProduct from './components/ProductSearch/SearchProduct';
 import SellerRegister from './components/seller/sellerRegister';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Payment from './components/Orders/Payment';
 import OrderSuccessPage from './components/Orders/OrderSuccessPlace';
 import SellerLogin from './components/seller/sellerLogin';
 import HorizontalNonLinearStepper from './components/Orders/progress_stepper';
+import OrderDetails from './components/Orders/OrderDetails';
 import { OrderState } from './Context/OrderContext';
 import { CartState } from './Context/CartContext';
 function requireAuth(nextState, replace, next) {
@@ -47,7 +48,8 @@ function App() {
               <Route path="/seller/register" element={<><SellerRegister /></>} />
               <Route path='/payment' element={<><NavBar /><Payment /><Footer /></>} />
               <Route path='/ordersuccess' element={<><NavBar /><OrderSuccessPage /><Footer /></>} />
-              <Route path='/buyproduct/:ProductId' element={<><NavBar /><HorizontalNonLinearStepper /><Footer /></>} />
+              <Route path='/buyproduct' element={<><NavBar /><HorizontalNonLinearStepper /><Footer /></>} />
+              <Route path='/orderdetails/:OrderId' element={<><NavBar /><OrderDetails/><Footer /></>} />
               <Route path='/seller/login' element={<><NavBar /><SellerLogin /></>} />
               <Route path='/admin/info/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
               <Route path='/admin/catlog/:SellerId' element={<>< NavBar /><SellerProfile /><Footer /></>} />
