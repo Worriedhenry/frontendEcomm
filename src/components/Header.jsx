@@ -102,7 +102,7 @@ export default function NavBar() {
             </Grid>
         </Grid>
         <Grid item md={4} xs={4} sm={4} style={{ width: "fitContent", display: "flex", justifyContent: "space-around" }}>
-            <Button sx={{ fontSize: 10 }} size="small" style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} onClick={() => navigate("/seller/register")} ><StyledTypography>Become a Seller</StyledTypography></Button>
+            <Button sx={{ fontSize: 10 }} size="small" style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} onClick={() => navigate("/seller/login")} ><StyledTypography>Become a Seller</StyledTypography></Button>
             <div>
                 <Button style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} endIcon={!Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
                     onClick={handleClick}

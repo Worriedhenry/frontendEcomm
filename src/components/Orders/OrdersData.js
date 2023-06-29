@@ -8,6 +8,8 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import axios from "axios"
 import { Img } from "../UtlityComponents/StyledImage";
+import EmptyCart from "./empty cart.png"
+
 import { useNavigate } from "react-router-dom";
 
 const Arr=Array(2).fill(2)
@@ -56,14 +58,32 @@ function CatlogCard({Order}) {
       </Paper>
     );
   }
-export default function OrdersRight(){
+export default function OrdersRight(props){
     const [Orders,setOrders]=useState(false)
     const {Valid}=React.useContext(AuthContext)
+    const FilterParams=props.FilterParams
+    const setFilterParams=props.setFilterParams
+    if(FilterParams.get("query")){
+    const queryArr=FilterParams.get("query").split(",")
+    const newQuery = queryArr.map((element) => {
+      if (element === 'On the way') return 1;
+      if (element === 'Cancelled') return 2;
+      if (element === 'Delivered') return 3;
+      if (element === 'Returned') return 4;
+
+    });
+  }
+    // const data1=
+    // console.log(newQuery)
     useEffect(()=>{
       axios
         .get("http://localhost:3001/orders/get/"+Valid)
         .then(res =>{
+          // const newdata=res.data.filter((element)=>{
+          //   return newQuery.includes(element.OrderStatus)
+          // })
             setOrders(res.data)
+            // console.log(res.data)
         } )
         .catch(err => console.error(err));
     },[])
@@ -77,13 +97,13 @@ export default function OrdersRight(){
           <Skeleton height={180} />
           <Skeleton height={180} />
         </Stack>
-
         }
         { Orders &&  Orders.map((order)=>
         <React.Fragment key={order._id}>
         <CatlogCard Order={order} />
       </React.Fragment>
-        )}    
+        )}
+
 
     </div>
 }

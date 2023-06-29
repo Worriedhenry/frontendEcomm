@@ -1,60 +1,72 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from "@mui/material"
+import { TextField, Button, Grid, Container, Typography, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const SellerLogin = () => {
-  const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+  const isMediumOrLargeScreen = useMediaQuery('(min-width: 960px)');
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
 
-  const handleLogin = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     console.log('Phone Number:', phoneNumber);
     console.log('Password:', password);
-
-    handleClose();
   };
 
   return (
-    <div>
-
-          <TextField
-            autoFocus
-            margin="dense"
-            id="phone-number"
-            label="Phone Number"
-            type="text"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="password"
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            fullWidth
-          />
-          <Link to="/seller/register" style={{color:"rgb(71, 160, 251)" , textDecoration:"none" , alignContent:"flex-start"}} >Register for new account</Link>
-
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleLogin} color="primary">
-            Login
-          </Button>
-
-    </div>
+    <Container maxWidth="sm" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={2} direction="column" alignItems="center">
+          <Grid item xs={12}>
+            <Typography variant="h5">Login</Typography>
+          </Grid>
+          <Grid item xs={12} style={{width:"100%"}}>
+            <TextField
+              label="Phone Number"
+              variant="outlined"
+              fullWidth
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
+            />
+          </Grid>
+          <Grid item xs={12} style={{width:"100%"}}>
+            <TextField
+              label="Password"
+              type="password"
+              variant="outlined"
+              fullWidth
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </Grid>
+          <Grid item xs={12} container justifyContent="space-between" alignItems="center">
+            <Grid item>
+              <Typography variant="body2">
+              <Link to="/seller/register" style={{textDecoration:"none" ,color:"#047BD5" ,fontWeight:"600"}}>Register for new account</Link>
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Login
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </form>
+    </Container>
   );
 };
 
-export default SellerLogin ;
+export default SellerLogin;
