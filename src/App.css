@@ -127,7 +127,17 @@ paper-button {
     position: sticky;
     top:11vh;
 }
-
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%; /* Adjust this value to set the desired maximum length */
+}
+.TypoGraphy-Truncate{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .Footer{
   height: 7vh;
   background-color: #172337;

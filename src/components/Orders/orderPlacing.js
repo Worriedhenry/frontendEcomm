@@ -13,17 +13,9 @@ import {
 } from "@mui/material";
 
 const PlaceOrderPage = () => {
-  const [name, setName] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [locality, setLocality] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [additionalPhone, setAdditionalPhone] = useState("");
-  const [deliveryType, setDeliveryType] = useState("home");
 
+  const [deliveryType, setDeliveryType] = useState("home");
+  const {Name,setName,Phone,setPhone,Pincode,setPincode,Locality,setLocality,Address,setAddress,City,setCity,State,setState,Landmark,setLandmark,Alternate,setAlternate}=React.useContext(OrderContext)
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -36,7 +28,7 @@ const PlaceOrderPage = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               label="Name"
-              value={name}
+              value={Name}
               onChange={(e) => setName(e.target.value)}
               required
               fullWidth
@@ -45,8 +37,8 @@ const PlaceOrderPage = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               label="Mobile Number"
-              value={mobileNumber}
-              onChange={(e) => setMobileNumber(e.target.value)}
+              value={Phone}
+              onChange={(e) => setPhone(e.target.value)}
               required
               type="tel"
               pattern="[0-9]{10}"
@@ -56,16 +48,17 @@ const PlaceOrderPage = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               label="Pincode"
-              value={pincode}
+              value={Pincode}
               onChange={(e) => setPincode(e.target.value)}
               required
+              type="number"
               fullWidth
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               label="Locality"
-              value={locality}
+              value={Locality}
               onChange={(e) => setLocality(e.target.value)}
               required
               fullWidth
@@ -74,7 +67,7 @@ const PlaceOrderPage = () => {
           <Grid item xs={12}>
             <TextField
               label="Address"
-              value={address}
+              value={Address}
               onChange={(e) => setAddress(e.target.value)}
               multiline
               minRows={2}
@@ -85,7 +78,7 @@ const PlaceOrderPage = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               label="City/District/Town"
-              value={city}
+              value={City}
               onChange={(e) => setCity(e.target.value)}
               required
               fullWidth
@@ -94,7 +87,7 @@ const PlaceOrderPage = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               label="State"
-              value={state}
+              value={State}
               onChange={(e) => setState(e.target.value)}
               required
               fullWidth
@@ -103,7 +96,7 @@ const PlaceOrderPage = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               label="Landmark (Optional)"
-              value={landmark}
+              value={Landmark}
               onChange={(e) => setLandmark(e.target.value)}
               fullWidth
             />
@@ -111,8 +104,8 @@ const PlaceOrderPage = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               label="Additional Phone (Optional)"
-              value={additionalPhone}
-              onChange={(e) => setAdditionalPhone(e.target.value)}
+              value={Alternate}
+              onChange={(e) => setAlternate(e.target.value)}
               type="tel"
               pattern="[0-9]{10}"
               fullWidth

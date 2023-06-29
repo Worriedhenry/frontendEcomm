@@ -10,7 +10,6 @@ export default function SellerProfile() {
   const pathSegments = location.pathname.split('/');
   const [, category, path] = pathSegments;
 
-  console.log(category);
   return <Grid spacing={2} container style={{ background: "#f3f0f0", display: "flex", padding: "14px 3vw" }} >
     <Grid position="sticky" top="11vh" xs={4} sm={3} md={2.5} item>
       <SellerLeft path={path} />

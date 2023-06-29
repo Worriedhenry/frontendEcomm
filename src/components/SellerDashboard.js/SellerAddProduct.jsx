@@ -1,12 +1,13 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, FormControlLabel, InputAdornment, OutlinedInput, Snackbar, TextField, Typography,Alert,CircularProgress } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Button, FormControlLabel, InputAdornment, OutlinedInput, Snackbar, TextField, Typography,Alert,CircularProgress,Grid, IconButton } from "@mui/material"
 import React, { useState } from "react"
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import axios from "axios";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import {CheckBox, ExpandMoreOutlined} from "@mui/icons-material"
-
 export default function SellerAddProduct() {
 
   const [Category, setCategory] = useState('');
@@ -22,18 +23,33 @@ export default function SellerAddProduct() {
   const [ProductMRP,setProductMRP]=useState(0)
   const [ProductSellingPrice,setProductSellingPrice]=useState(0)
   const [ProductQuantity,setProductQuantity]=useState('')
-  const [ProductModelNumber,setProductModelNumber]=useState(0)
-  const [ProductModelName,setProductModelName]=useState("")
-  const [ProductColor,setProductColor]=useState('')
-  const [ProductLength,setProductLength]=useState('')
-  const [ProductHeight,setProductHeight]=useState(0)
-  const [ProductWeight,setProductWeight]=useState()
-  const [ProductWidth,setProductWidth]=useState()
-  const [ProductWarrantySummary,setProductWarrantySummary]=useState()
-  const [ProductServiceType,setProductServiceType]=useState()
-  const [ProductServiceCover,setProductServiceCover]=useState()
+  const [ProductWarrantySummary,setProductWarrantySummary]=useState("")
+  const [ProductServiceType,setProductServiceType]=useState("")
+  const [ProductServiceCover,setProductServiceCover]=useState("")
   const [SnackbarControl,setSnackbarControl]=useState(false)
   const [EmptyFeildError,setEmptyFeildError]=useState("")
+  const [specifications, setSpecifications] = useState([{ key: "", value: "" }]);
+  
+
+  const handleAddSpecification = () => {
+    if (specifications.length < 12) {
+      setSpecifications([...specifications, { key: "", value: "" }]);
+    }
+  };
+  const handleSpecificationChange = (index, field, value) => {
+    const updatedSpecifications = [...specifications];
+    updatedSpecifications[index][field] = value;
+    if (field === "value" && updatedSpecifications[index].key === "" && value !== "") {
+      updatedSpecifications[index].key = "Untitled";
+    }
+
+    setSpecifications(updatedSpecifications);
+  };
+  const handleRemoveSpecification = (index) => {
+    const updatedSpecifications = [...specifications];
+    updatedSpecifications.splice(index, 1);
+    setSpecifications(updatedSpecifications);
+  };
   const InputFeildsStyle={
     margin:"20px 0px"
   }
@@ -97,11 +113,6 @@ export default function SellerAddProduct() {
       setSnackbarControl(true)
       return 
     }
-    else if (ProductModelName.length===0 || ProductModelNumber===0 || ProductColor.length===0){
-      setEmptyFeildError("Fill all feilds in Specification")
-      setSnackbarControl(true)
-      return 
-    }
     ImagePublicID.map((e)=>{
       if (e==null){
         setEmptyFeildError("Upload all images of Product")
@@ -109,8 +120,14 @@ export default function SellerAddProduct() {
         return 
       }
     })
-    if(ProductLength===0 || ProductWeight===0 || ProductWidth===0){
-      setEmptyFeildError("Fill all required feilds in Dimensions")
+
+    const filteredSpecifications = specifications.filter(
+      (specification) => specification.key !== "Untitled"
+    );
+    setSpecifications(filteredSpecifications);
+    const isValid = specifications.every((specification) => specification.key !== "" && specification.value !== "");
+    if(!isValid || specifications.length===0){
+      setEmptyFeildError("Specifcation cannot be empty")
       setSnackbarControl(true)
       return 
     }
@@ -123,9 +140,12 @@ export default function SellerAddProduct() {
       Category:age,
       ProductTitle:ProductName,
       ProductDescription,
-      ProductMRP,ProductSellingPrice,ProductQuantity,ProductBrandName,ProductColor,ProductHeight,ProductLength,ProductModelName,ProductModelNumber,ProductWidth,ProductWarrantySummary,ProductWeight,ProductServiceCover,ProductServiceType,ImagePublicID
+      ProductMRP,ProductSellingPrice,ProductQuantity,ProductBrandName,ProductWarrantySummary,specifications, ProductServiceCover,ProductServiceType,ImagePublicID
     }
     let UploadResponse=await axios.post("http://localhost:3001/AddProductToCatlog",UploadLoad)
+    if (UploadResponse.status==200){
+      setUploadImageSnackbarControl(true)
+    }
   }
   const RenderBoxes = () => {
     const [UploadingImage,setUploadingImage]=useState(false)
@@ -284,79 +304,26 @@ export default function SellerAddProduct() {
         <Typography>Add Specification</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <div style={InputFeildsStyle}>
-        <label>Model Number/ID *</label>
-        <br />
-        <TextField onChange={(e)=>setProductModelNumber(e.target.value)} required size="small" value={ProductModelNumber} ></TextField>
-        </div>
-        <div style={InputFeildsStyle}>
-        <label>Model Name/Type *</label>
-        <br />
-        <TextField onChange={(e)=>setProductModelName(e.target.value)} required size="small" value={ProductModelName} ></TextField>
-        </div>
-        <div style={InputFeildsStyle}>
-        <label>Color *</label>
-        <br />
-        <TextField onChange={(e)=>setProductColor(e.target.value)} required value={ProductColor} size="small" ></TextField>
-        </div>
-      </AccordionDetails>
-    </Accordion>
-    <Accordion>
-      <AccordionSummary
-      expandIcon={<ExpandMoreOutlined/>}
-      >
-        <Typography>Add Dimensions</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-      <h5>* fields are required</h5>
-        <div style={InputFeildsStyle}>
-        <label>Length *</label>
-        <br />
-        <OutlinedInput
-        value={ProductLength}
-        size="small"
-        required
-        onChange={(e)=>setProductLength(e.target.value)}
-        endAdornment={<InputAdornment position="end">m</InputAdornment>}
-        >
-        </OutlinedInput>
-        </div>
-        <div style={InputFeildsStyle}>
-        <label>Height *</label>
-        <br />
-        <OutlinedInput
-        value={ProductHeight}
-        onChange={(e)=>setProductHeight(e.target.value)}
-        size="small"
-        required
-        endAdornment={<InputAdornment position="end">m</InputAdornment>}
-        >
-        </OutlinedInput>
-        </div>
-        <div style={InputFeildsStyle}>
-        <label>Weigth *</label>
-        <br />
-        <OutlinedInput
-        value={ProductWeight}
-        size="small"
-        onChange={(e)=>setProductWeight(e.target.value)}
-        required
-        endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-        >
-        </OutlinedInput>
-        </div>
-        <div style={InputFeildsStyle}>
-        <label>Width *</label>
-        <br />
-        <OutlinedInput
-        value={ProductWidth}
-        size="small"
-        onChange={(e)=>setProductWidth(e.target.value)}
-        required
-        endAdornment={<InputAdornment position="end">m</InputAdornment>}
-        >
-        </OutlinedInput>
-        </div>
+        {specifications.map((element,index)=>
+          <Grid m={2} key={index} container >
+          <Grid item>
+            <TextField
+            value={element.key}
+            onChange={(e) => handleSpecificationChange(index, "key", e.target.value)}
+            label="Field Name" />
+          </Grid>
+          <Grid item>
+            <TextField
+            value={element.value}
+            onChange={(e) => handleSpecificationChange(index, "value", e.target.value)}
+            label="Field Value" />
+          </Grid>
+          <Grid item>
+            <IconButton onClick={() => handleRemoveSpecification(index)} ><RemoveIcon /></IconButton>
+          </Grid>
+        </Grid>
+        )}
+        <IconButton onClick={handleAddSpecification}><AddIcon/></IconButton>
       </AccordionDetails>
     </Accordion>
     <Accordion>
@@ -406,7 +373,7 @@ export default function SellerAddProduct() {
       anchorOrigin={{vertical:"bottom",horizontal: "center"}}
       >
       <Alert onClose={()=>setSnackbarControl(false)} severity="success" sx={{ width: '100%' }}>
-        Image Uploaded
+       Operation Successful
       </Alert>
     </Snackbar>
   </div>

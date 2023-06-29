@@ -24,18 +24,13 @@ export default function SellerLeft({path}) {
                 <img style={{ width: "50px", borderRadius: "50%", marginRight: "16px" }} src={Logo} />
                 <div>
                     <p
-                        style={{ margin: "0px" }}
+                        style={{ margin: "0px",fontSize:"1.3vw" }}
                     ><b>Hello,</b></p>
-                    <p style={{ margin: "0px" }}><b>UserName</b></p>
+                    <p style={{ margin: "0px" }}><b>Seller</b></p>
                 </div>
             </div>
-
         </div>
         <div className="Profile-Offers">
-            <Divider />
-            <p style={{ display: "flex", alignItem: "center" }}>
-                <PersonIcon />  Account Settings
-            </p>
             <Divider />
             <Button onClick={(e)=>navigate("/admin/info/"+SellerId)} style={{ width: "100%", paddingRight: "30%",backgroundColor:path=="info"? "#29a0ed":"white",textTransform:"none",color:path=="info" ?"white" : "black",textAlign:"left" }}>
                 <StyledTypography>Seller Info </StyledTypography>    

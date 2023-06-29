@@ -13,14 +13,14 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Button, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
-
+import { Link } from 'react-router-dom';
+import { SnackbarContext } from '../../Context/SnackbarContext';
 
 export default function FirstPageSeller() {
     const [isDisable,setdisable]=React.useState(false)
     const [Gst,setstate]=React.useState("Enter GSTIN")
     const [Msg,setmsg]=React.useState("GSTIN is required to sell products on Flipkart. You can also share it in the final step.")
-    const [Phone,setPhone]=React.useState("")
-    const [Email,setEmail]=React.useState("")
+    const {Phone,setPhone,EmailId,setEmailId,GSTIN,setGSTIN}=React.useContext(SnackbarContext)
     const [refNo,setrefNo]=React.useState("")
 
 
@@ -50,7 +50,8 @@ export default function FirstPageSeller() {
             label="Phone No."
             style={{borderRadius:"10px" ,height:"50px"}}
             onChange={(e)=>setPhone(e.target.value)}
-
+            value={Phone}
+            required
           />
         </FormControl>
 
@@ -60,9 +61,12 @@ export default function FirstPageSeller() {
           <OutlinedInput
             id="outlined-adornment-amount"
             label="Email ID"
+            type="email"
+            value={EmailId}
             style={{borderRadius:"10px" ,height:"50px"}}
-            onChange={(e)=>setEmail(e.target.value)}
-
+            onChange={(e)=>setEmailId(e.target.value)}
+            pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+            required
           />      
         </FormControl>    
         <div>
@@ -74,12 +78,14 @@ export default function FirstPageSeller() {
           <InputLabel htmlFor="outlined-adornment-amount" style={{fontSize:"0.9rem"}}>{Gst}</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
-            label="isGST"
+            label="isGSTLong "
+            value={GSTIN}
             style={{borderRadius:"10px" ,height:"50px"}}
-            onChange={(e)=>setrefNo(e.target.value)}
+            onChange={(e)=>setGSTIN(e.target.value)}
 
           />
-        </FormControl>    
+        </FormControl>  
+        <Link to="/seller/login" activeClassName="active" ></Link>  
         <Typography style={{padding:"7px"}}>{Msg}</Typography>
       </div>
 

@@ -1,4 +1,4 @@
-import {Button, Rating} from "@mui/material"
+import {Button, Rating,Skeleton, Stack} from "@mui/material"
 import Data from "../../data_resourses/nav_data"
 import { AuthContext } from "../../Context/AuthContext";
 import React, { useEffect, useState } from 'react'
@@ -6,8 +6,6 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
-import SearchIcon from '@mui/icons-material/Search';
 import axios from "axios"
 import { Img } from "../UtlityComponents/StyledImage";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Arr=Array(2).fill(2)
 
 function CatlogCard({Order}) {
+  console.log(Order.createdAt,new Date()-new Date(Order.createdAt)+24*60*60*1000)
   const navigate=useNavigate()
     return (
       <Paper
@@ -34,7 +33,7 @@ function CatlogCard({Order}) {
         <Grid container mt={1}>
             <Grid  md={10}  container>
               <Grid md={3} item>
-                <Img src={Order.OrderedItemImage}></Img>
+                <Img loading="lazy" src={Order.OrderedItemImage}></Img>
               </Grid>
               <Grid md={5} ml={2} item>
               <Typography gutterBottom style={{ fontWeight: "bold" }} variant="h1.heading" component="div">
@@ -48,7 +47,10 @@ function CatlogCard({Order}) {
               </Grid>
             </Grid>
             <Grid md={2} item container>
-              Ordered
+              {new Date()-new Date(Order.createdAt)<24*60*60*1000 && "Ordered"}
+              {new Date()-new Date(Order.createdAt)<48*60*60*1000  && new Date()-new Date(Order.createdAt)>24*60*60*1000  && "Shipped"}
+              {new Date()-new Date(Order.createdAt)<72*60*60*1000  && new Date()-new Date(Order.createdAt)>48*60*60*1000 && "On the Way"}
+              {new Date()-new Date(Order.createdAt)>72*60*60*1000 && "Ordered"}
             </Grid>
         </Grid>
       </Paper>
@@ -61,7 +63,6 @@ export default function OrdersRight(){
       axios
         .get("http://localhost:3001/orders/get/"+Valid)
         .then(res =>{
-          console.log(res.data)
             setOrders(res.data)
         } )
         .catch(err => console.error(err));
@@ -71,6 +72,13 @@ export default function OrdersRight(){
        <Typography gutterBottom style={{ fontWeight: "bold",textAlign:"center" }} variant="h1.heading" component="h1">
           My Orders
         </Typography>
+        {!Orders && <Stack>
+          <Skeleton height={180} />
+          <Skeleton height={180} />
+          <Skeleton height={180} />
+        </Stack>
+
+        }
         { Orders &&  Orders.map((order)=>
         <React.Fragment key={order._id}>
         <CatlogCard Order={order} />

@@ -20,7 +20,7 @@ const Payment = () => {
   const [upiId, setUpiId] = useState('');
   const { Valid } = React.useContext(AuthContext)
   const {Products}=React.useContext(CartContext)
-  const { Name, setName, Phone, setPhone, Pincode, setPincode, Locality, setLocality, Address, setAddress, City, setCity, State, setState, Landmark, setLandmark, Alternate, setAlternate, AddressType, setAddressType } = React.useContext(OrderContext)
+  const { Name, Phone, Pincode, Locality, Address,City, State, Landmark, Alternate} = React.useContext(OrderContext)
 
 
 
@@ -67,13 +67,13 @@ const Payment = () => {
       OrderImages.push(ele.ProductImages[0])
       OrderName.push(ele.ProductTitle)
     })
-    console.log(OrderedId,OrderMRPvalue,OrderValue)
-    let res =await axios.post("http://localhost:3001/orders/new", { Name, Phone, CustomerId: Valid, OrderDestination: Address + "," + Locality + "," + City + "," + " , Near " + Landmark + "," + State + "," + Pincode , AlternatePhone: Alternate, Ordereditem:OrderedId, OrderValue, OrderMRPvalue,OrderImages,OrderName })
+    let res =await axios.post("http://localhost:3001/orders/new", { Name, Phone, CustomerId: Valid, OrderDestination: Address + ", " + Locality + ", " + City + ", " + " , Near " + Landmark + ", " + State + ", " + Pincode , AlternatePhone: Alternate, Ordereditem:OrderedId, OrderValue, OrderMRPvalue,OrderImages,OrderName })
     console.log(res)
+    if(res.status==200){
+      navigate("/ordersuccess")
+    }
   };
-  React.useEffect(() => {
-    console.log(selectedOption)
-  })
+
   return (
     <div style={{ maxWidth: '70%', margin: '0 auto', padding: '20px' }}>
       <Typography variant="h6" align="center" gutterBottom>

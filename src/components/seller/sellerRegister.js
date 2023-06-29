@@ -6,6 +6,7 @@ import Logo from "../Flip-Logo.jpg";
 import WhySell from "../WhySell.png"
 
 import Container from '@mui/material/Container';
+import { Link } from '@mui/material';
 function SellerRegister(){
     return (
         <div>
@@ -18,6 +19,7 @@ function SellerRegister(){
                   <Box sx={{ bgcolor: '', height: '90vh' ,paddingTop:"10vh"}} >
                       <HorizontalNonLinearStepper/>
                   </Box>
+                  <Link href='/seller/login'>Already a seller ? Login Instead</Link>
                 </Container>
                 <div style={{width:"100%" ,display:"flex" ,justifyContent:"center"}}>
 

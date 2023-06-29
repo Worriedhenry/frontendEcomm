@@ -6,10 +6,12 @@ import { AuthContext } from "../../Context/AuthContext";
 import { CartContext } from "../../Context/CartContext";
 import { useParams,useNavigate } from "react-router-dom"
 import axios from "axios"
+import { Img } from "../UtlityComponents/StyledImage";
 const LittleImagesStyle = {
     padding: "0px", width: "49px", border: " 1px solid #f0f0f0",
     marginBottom: "17px"
 }
+
 function Left_part({ product,InCart,setInCart }) {
     const Context=React.useContext(AuthContext)
     const {setProducts}=React.useContext(CartContext)
@@ -51,7 +53,7 @@ function Left_part({ product,InCart,setInCart }) {
         }
     }, [product])
     return (
-        <div style={{ minWidth: "40%", padding: "41px 23px 0px 10px", position: "sticky", top: "10vh" }}>
+        <div style={{ minWidth: "40%", padding: "15px 23px 0px 10px", position: "sticky", top: "10vh" }}>
             <div
                 style={{
                     display: "flex"
@@ -69,9 +71,9 @@ function Left_part({ product,InCart,setInCart }) {
                     <ButtonBase><img src={product.ProductImages[3]} onClick={() => setPrimaryImage(product.ProductImages[3])} alt="" style={LittleImagesStyle} /></ButtonBase>
                     <ButtonBase><img src={product.ProductImages[4]} onClick={() => setPrimaryImage(product.ProductImages[4])} alt="" style={LittleImagesStyle} /></ButtonBase>
                 </div>}
-                <div style={{ border: " 1px solid #f0f0f0", width: "90%", position: "sticky", top: "10vh" }} >
+                <div style={{ border: " 1px solid #f0f0f0", width: "90%", position: "sticky", top: "10vh" , padding:"3%" }} >
                     {!product && <Skeleton style={{ margin: "0px" }} height={400} />}
-                    {product && <img src={PrimaryImage} alt="" style={{ padding: "10px", width: "416px" }} />}
+                    {product && <Img src={PrimaryImage} alt=""  />}
                 </div>
             </div>
             {product && <>

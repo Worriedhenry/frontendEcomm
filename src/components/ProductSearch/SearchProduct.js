@@ -37,7 +37,7 @@ function CatlogCard({ product }) {
       }}
     >
       <Grid container spacing={2}>
-        <Grid item sm={3}>
+        <Grid item  container justifyContent="center" sm={3}>
           <ButtonBase sx={{ width: 200, height: 200 }}>
             <Img alt="complex" src={product.ProductImages[0]} />
           </ButtonBase>
@@ -45,28 +45,30 @@ function CatlogCard({ product }) {
         <Grid item xs={12} sm={9} container>
           <Grid item xs sm={8} container direction="column" spacing={2}>
             <Grid item  >
-              <Typography gutterBottom variant="h3.heading" component="h2">
+              <Typography gutterBottom sx={{fontSize:"large"}} variant="h3.heading" component="h2">
                 {product.ProductTitle}
               </Typography>
-              <Typography variant="subtitle2" gutterBottom>
+              <Typography className='TypoGraphy-Truncate' sx={{fontSize:"larger"}} variant="subtitle2" gutterBottom>
                 <div
+                className='TypoGraphy-Truncate'
                   style={{
                     display: "flex",
                     justifyContent: "left",
-                    alignItems: "center"
+                    alignItems: "center",
+                    fontSize:"medium"
                   }}
                 >
-                  <Rating readOnly size="small" defaultValue={product.ProductNumericalRating} precision={0.5} name="size-small" />
+                  <Rating readOnly size="small" defaultValue={product.ProductNumericalRating} precision={0.5}  />
                   &nbsp; {product.ProductNumericalRating} rating & {product.reviews.length} reviews
                 </div>
               </Typography>
-              <Typography variant='subtitle2' component="h5">
+              <Typography className='TypoGraphy-Truncate' variant='subtitle2' component="h5">
                 {product.ProductDescription}
               </Typography>
             </Grid>
           </Grid>
-          <Grid item sm={4}>
-            <Typography variant='h2.heading' component="h2" >
+          <Grid item  sm={4}>
+            <Typography sx={{fontSize:"large"}} variant='h2.heading' component="h2" >
               &#8377; {product.ProductSellingPrice}
             </Typography>
             <div
@@ -105,6 +107,7 @@ export default function SearchProduct() {
     style={{
       display: "flex",
       // padding: "7px",
+      justifyContent:"center",
       backgroundColor:"#f3f0f0"
     }}
   > <Grid xs={0} md={2} item>
@@ -128,14 +131,14 @@ export default function SearchProduct() {
       </Stack>}
     </Paper>
     </Grid>
-    <Grid xs={10} md={10}  item>
+    <Grid xs={11.5} md={10}  item>
     <Paper
       style={{
         margin: "0px 0px 0px 11px"
       }}
     >
 
-      { SearchResult && <h3>Found {SearchResult.length} results for "{searchParams.get("query")}"</h3>}
+      { SearchResult && <h3 style={{textAlign:"center",fontSize:"large"}}>Found {SearchResult.length} results for "{searchParams.get("query")}"</h3>}
       { !SearchResult && <Skeleton  height={60}/>}
       <Divider />
       {!SearchResult &&<Stack spacing={1}>

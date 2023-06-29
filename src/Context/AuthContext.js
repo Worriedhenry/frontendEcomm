@@ -7,6 +7,7 @@ const AuthState= ({children})=>{
     const [LoginOpen,setLoginOpen]=useState(false)
     const [SignOpen,setSignOpen]=useState(false)
     const [Next,setNext]=useState("/")
+    const [Loading,setLoading]=useState(true)
     useEffect(()=>{
         if (localStorage.getItem("token")){
             const headers = {
@@ -17,6 +18,7 @@ const AuthState= ({children})=>{
             axios
               .post("http://localhost:3001/jwt",{token:localStorage.getItem("token")})
               .then(res =>{
+                setLoading(false)
                 if (res.status==200){
                     console.log(res.data)
                     setValid(res.data.id)
@@ -27,9 +29,12 @@ const AuthState= ({children})=>{
                 console.log(err)
               }
         }
+        else{
+          setLoading(false)
+        }
     },[])
     return (
-        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext}}>
+        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext,Loading,setLoading}}>
             {children}
         </AuthContext.Provider>
     )

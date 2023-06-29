@@ -29,7 +29,7 @@ function Details(){
             <Grid item  md={0} lg={4.8} sm={8} xs={12} >
                 <Left_part product={Product} InCart={InCart} setInCart={setInCart} />
             </Grid>
-            <Grid item md={3} lg={7} sm={12} xs={12} style={{marginTop:"50px"}}>
+            <Grid item md={3} lg={7} sm={12} xs={12} style={{marginTop:"15px"}}>
                 <Right_Part product={Product}  />
             </Grid>
         </Grid>

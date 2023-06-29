@@ -24,9 +24,7 @@ const SellerLogin = () => {
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="login-dialog-title">
-        <DialogTitle id="login-dialog-title">Log In</DialogTitle>
-        <DialogContent>
+
           <TextField
             autoFocus
             margin="dense"
@@ -47,16 +45,14 @@ const SellerLogin = () => {
             fullWidth
           />
           <Link to="/seller/register" style={{color:"rgb(71, 160, 251)" , textDecoration:"none" , alignContent:"flex-start"}} >Register for new account</Link>
-        </DialogContent>
-        <DialogActions>
+
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
           <Button onClick={handleLogin} color="primary">
             Login
           </Button>
-        </DialogActions>
-      </Dialog>
+
     </div>
   );
 };

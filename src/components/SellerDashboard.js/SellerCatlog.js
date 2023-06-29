@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ButtonBase from '@mui/material/ButtonBase';
 import StyledTypography from '../UtlityComponents/StyledTypo';
+import { SnackbarContext } from '../../Context/SnackbarContext';
+import { SuccessSnackBar,WarningSnackBar,ErrorSnackBar } from '../UtlityComponents/Snackbar';
 import axios from 'axios';
 const Img = styled('img')({
   margin: 'auto',
@@ -15,8 +17,14 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackbarControl }) {
-  console.log(Detail)
   const [RemoveLoader, setRemoveLoader] = useState(false)
+  const [Listed,setListed]=useState(Detail.Listed)
+  const ListProduct=async ()=>{
+    let res=await axios.put("http://localhost:3001/product/changelisting",{productId:Detail._id,Listed:Listed})
+    if(res.status==200){
+      setListed(!Listed)
+    }
+  }
   const RemoveProduct = () => {
     setRemoveLoader(true)
     axios
@@ -32,6 +40,7 @@ function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackb
       })
       .catch(err => console.error(err));
   }
+
   return (
     <Paper
       elevation={3}
@@ -66,8 +75,8 @@ function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackb
               </Typography>
             </Grid>
             <Grid item spacing={2}>
-              {!Detail.Listed && <Button variant='contained' size='small' color="success"><StyledTypography>List</StyledTypography></Button>}
-              {Detail.Listed && <Button variant='contained' size='small' color="error"><StyledTypography>De List</StyledTypography></Button>}
+              {!Listed && <Button onClick={ListProduct} variant='contained' size='small' color="success"><StyledTypography>List</StyledTypography></Button>}
+              {Listed && <Button onClick={ListProduct} variant='contained' size='small' color="error"><StyledTypography>De List</StyledTypography></Button>}
               <Button style={{ margin: "5px" }} size="small" disabled={RemoveLoader ? true : false} onClick={RemoveProduct} variant='contained' color="error"><StyledTypography>{RemoveLoader ? <CircularProgress size={24} /> : "Remove"}</StyledTypography></Button>
             </Grid>
           </Grid>
@@ -96,7 +105,6 @@ export default function SellerCatlog() {
             setLoaderControl(false)
             setCatlogProducts(res.data.CatlogProducts)
           }, 500);
-          console.log(LoaderControl)
         }
       })
       .catch(err => console.error(err));

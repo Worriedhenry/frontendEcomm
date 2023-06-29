@@ -31,8 +31,11 @@ export default function NavBar() {
             setAnchorEl(null)
         }
     };
-    const handleClose = () => {
-        setAnchorEl(null);
+    const LogOut = () => {
+        console.log("hi")
+        localStorage.clear()
+        location.reload()
+        navigate("/")
     };
 
     const HandleCart = () => {
@@ -108,7 +111,7 @@ export default function NavBar() {
                     id="basic-menu"
                     open={Open}
                     anchorEl={anchorEl}
-                    onClose={handleClose}
+                    onClose={()=>setAnchorEl(null)}
                     // onBlur={handleClose}
 
                     style={{ width: "100%" }}
@@ -122,7 +125,7 @@ export default function NavBar() {
                     <Divider />
                     <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} >Whislist</MenuItem>
                     <Divider />
-                    <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={LogOut}>Logout</MenuItem>
                 </Menu>
             </div>
             <Button style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} className="Header-Cart" onClick={HandleCart} startIcon={<ShoppingCartIcon />} >Cart</Button>

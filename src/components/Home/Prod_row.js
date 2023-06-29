@@ -14,9 +14,9 @@ function Data1(props){
                 <img src={props.url} style={{height:"10vw"}} />
             </div>
             <div  style={{textAlign:"center"}}>
-                <p style={{fontWeight:"999" ,color:"black"}}>{props.title.shortTitle}</p>
-                <p style={{color:"green"}}>{props.price.offer}</p>
-                <p style={{color:"grey"}}>{props.title.company}</p>
+                <p class="truncate" style={{fontWeight:"999" ,color:"black",fontSize:"small"}}>{props.title.shortTitle}</p>
+                <p class="truncate" style={{color:"green",fontSize:"small"}}>{props.price.offer}</p>
+                <p class="truncate" style={{color:"grey",fontSize:"small"}}>{props.title.company}</p>
             </div>
         </div>
     )

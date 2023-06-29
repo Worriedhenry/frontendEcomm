@@ -41,7 +41,8 @@ export default function SignUp() {
     }
     let result=await axios.post("http://localhost:3001/register",Payload)
       if(result.status===200){
-          navigate("/account")
+          localStorage.setItem("token",result.data.token)
+          navigate("/account/info/"+result.data.id)
       }
       else if(result.status==302){
         setError("Phone/Email/Password is incorrect! Please try again")

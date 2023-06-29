@@ -12,7 +12,6 @@ const steps = ['EMAIL ID & GST', 'PASSWORD CREATION'];
 function HorizontalNonLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
-
   const totalSteps = () => {
     return steps.length;
   };
@@ -30,7 +29,6 @@ function HorizontalNonLinearStepper() {
   };
 
   const handleNext = () => {
-    console.log(activeStep)
     const newActiveStep =
       isLastStep()
         ? // It's the last step, but not all steps have been completed,
@@ -87,11 +85,8 @@ function HorizontalNonLinearStepper() {
               </Button>
                <Box sx={{ flex: '1 1 auto' }} />{
 
-              !isLastStep() ?<Button variant='contained' onClick={handleNext} sx={{ mr: 1 }}>
+              !isLastStep() && <Button variant='contained' onClick={handleNext} sx={{ mr: 1 }}>
                 Next
-              </Button> :
-              <Button variant='contained' onClick={handleNext} sx={{ mr: 1 }}>
-                Register & continue
               </Button>             
               }
  
