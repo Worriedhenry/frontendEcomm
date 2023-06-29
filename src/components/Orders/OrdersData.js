@@ -10,6 +10,8 @@ import ButtonBase from '@mui/material/ButtonBase';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from "axios"
 import { Img } from "../UtlityComponents/StyledImage";
+import EmptyCart from "./empty cart.png"
+
 import { useNavigate } from "react-router-dom";
 
 const Arr=Array(2).fill(2)
@@ -54,15 +56,31 @@ function CatlogCard({Order}) {
       </Paper>
     );
   }
-export default function OrdersRight(){
+export default function OrdersRight(props){
     const [Orders,setOrders]=useState(false)
     const {Valid}=React.useContext(AuthContext)
+    const FilterParams=props.FilterParams
+    const setFilterParams=props.setFilterParams
+    if(FilterParams.get("query")){
+    const queryArr=FilterParams.get("query").split(",")
+    const newQuery = queryArr.map((element) => {
+      if (element === 'On the way') return 1;
+      if (element === 'Cancelled') return 2;
+      if (element === 'Delivered') return 3;
+      if (element === 'Returned') return 4;
+
+    });
+  }
+    // const data1=
+    // console.log(newQuery)
     useEffect(()=>{
       axios
         .get("http://localhost:3001/orders/get/"+Valid)
         .then(res =>{
-          console.log(res.data)
-            setOrders(res.data)
+          const newdata=res.data.filter((element)=>{
+            return newQuery.includes(element.OrderStatus)
+          })
+            setOrders(newdata)
         } )
         .catch(err => console.error(err));
     },[])
@@ -71,11 +89,15 @@ export default function OrdersRight(){
        <Typography gutterBottom style={{ fontWeight: "bold",textAlign:"center" }} variant="h1.heading" component="h1">
           My Orders
         </Typography>
-        { Orders &&  Orders.map((order)=>
+        { Orders  ? Orders.map((order)=>
         <React.Fragment key={order._id}>
         <CatlogCard Order={order} />
       </React.Fragment>
-        )}    
+        ) : 
+        <div style={{width:"27%",minWidth:"120px" ,height:"50%" ,marginLeft:"36%" ,marginTop:"10%"}}>
+          <img style={{width:"100%" ,height:"100%"}} src={EmptyCart} /> 
+        </div>
+        }    
 
     </div>
 }

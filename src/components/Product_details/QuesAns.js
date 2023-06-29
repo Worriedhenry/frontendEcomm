@@ -6,7 +6,7 @@ function Ques(){
     return (
         <div>
 
-            <div style={{marginTop:"24px" ,borderRadius:"2px" ,border:"1px solid #f0f0f0" }}>
+            {/* <div style={{marginTop:"24px" ,borderRadius:"2px" ,border:"1px solid #f0f0f0" }}>
                 <div>
                     <div style={{fontSize:"24px" ,padding:"24px 0px 24px 24px",fontWeight:"550" ,color:"#212121", borderBottom:"1px solid #f0f0f0"}}>Questions & Answers</div>
                     <div>
@@ -65,7 +65,7 @@ function Ques(){
 
 
 
-            </div>      
+            </div>       */}
         </div>
     )
 }

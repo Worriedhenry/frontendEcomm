@@ -11,6 +11,7 @@ import {useNavigate, useParams} from "react-router-dom"
 import axios from "axios";
 import { CartContext } from "../../Context/CartContext";
 import { Img } from "../UtlityComponents/StyledImage";
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
 function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }){
   const {UserId}=useParams()
@@ -129,12 +130,16 @@ export default function Cart() {
           <Skeleton variant="rounded" height={140} />
         </Stack>}
         <div style={{minHeight:"69vh"}} className="CartItemContainer">
-          {Cart && Cart.map((product) =>
+          {Cart && Cart.length>0 ? Cart.map((product) =>
             <>
               <CatlogCard product={product} setCart={setCart} setAllProductSellingPrice={setAllProductSellingPrice} setAllProductMRP={setAllProductMRP} AllProductMRP={AllProductMRP} AllSellingPrice={AllSellingPrice} />
 
             </>
-          )}
+          )
+          :
+          <> <div style={{width:"20%" ,height:"auto" ,margin:"auto" }}>< ProductionQuantityLimitsIcon style={{width:"100%" , height:"auto" , marginTop:"20%"}} /> <Typography style={{margin:"auto" ,fontWeight:"600" ,fontSize:"1rem" ,marginTop:"20%"}}>Oops your cart is empty</Typography></div></>
+        
+        }
         </div>
         <div
           style={{
