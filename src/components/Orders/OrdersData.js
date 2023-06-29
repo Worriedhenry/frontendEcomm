@@ -77,10 +77,11 @@ export default function OrdersRight(props){
       axios
         .get("http://localhost:3001/orders/get/"+Valid)
         .then(res =>{
-          const newdata=res.data.filter((element)=>{
-            return newQuery.includes(element.OrderStatus)
-          })
-            setOrders(newdata)
+          // const newdata=res.data.filter((element)=>{
+          //   return newQuery.includes(element.OrderStatus)
+          // })
+            setOrders(res.data)
+            // console.log(res.data)
         } )
         .catch(err => console.error(err));
     },[])
@@ -89,7 +90,7 @@ export default function OrdersRight(props){
        <Typography gutterBottom style={{ fontWeight: "bold",textAlign:"center" }} variant="h1.heading" component="h1">
           My Orders
         </Typography>
-        { Orders  ? Orders.map((order)=>
+        {/* { Orders  ? Orders.map((order)=>
         <React.Fragment key={order._id}>
         <CatlogCard Order={order} />
       </React.Fragment>
@@ -97,7 +98,12 @@ export default function OrdersRight(props){
         <div style={{width:"27%",minWidth:"120px" ,height:"50%" ,marginLeft:"36%" ,marginTop:"10%"}}>
           <img style={{width:"100%" ,height:"100%"}} src={EmptyCart} /> 
         </div>
-        }    
+        }     */}
+        { Orders &&  Orders.map((order)=>
+        <React.Fragment key={order._id}>
+        <CatlogCard Order={order} />
+      </React.Fragment>
+        )}
 
     </div>
 }

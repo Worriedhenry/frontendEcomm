@@ -97,6 +97,6 @@ function Specs(){
             </div>      
         </div>
     )
-}
+} 
 
 export default Specs;
