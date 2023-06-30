@@ -1,8 +1,7 @@
 import { Button, Divider, styled,Typography} from "@mui/material"
 import React, { useState,useEffect } from "react"
 import Logo from "../Flip-Logo.jpg"
-import InventoryIcon from '@mui/icons-material/Inventory';
-import PersonIcon from '@mui/icons-material/Person';
+import { AuthContext } from "../../Context/AuthContext"
 import {useNavigate,useParams} from "react-router-dom"
 import axios from "axios"
 
@@ -20,6 +19,7 @@ export default function ProFileLeft(props) {
     const [Page,setPage]=useState(0)
     const [Name,setName]=useState("")
     const params=useParams()
+    const {Valid}=React.useContext(AuthContext)
     const UpdateP =(e)=>{
         setPage(e)
         props.UpdateParent(e)
@@ -50,7 +50,7 @@ export default function ProFileLeft(props) {
         </div>
         <div className="Profile-Offers">
             <Button
-                onClick={()=> navigate("/account/orders")}
+                onClick={()=> navigate("/account/orders/"+Valid)}
                 
                 style={{ width: "100%", height: "4vw", paddingRight: "30%" ,textTransform:"none"}}>
                 <StyledTypography>My Orders</StyledTypography>

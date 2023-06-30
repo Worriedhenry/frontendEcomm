@@ -43,8 +43,7 @@ function CatlogCard({ product }) {
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm={9} container>
-          <Grid item xs sm={8} container direction="column" spacing={2}>
-            <Grid item  >
+          <Grid item xs sm={8} sx={{maxHeight:"45vh"}} container direction="column" spacing={2}>
               <Typography gutterBottom sx={{fontSize:"large"}} variant="h3.heading" component="h2">
                 {product.ProductTitle}
               </Typography>
@@ -62,10 +61,9 @@ function CatlogCard({ product }) {
                   &nbsp; {product.ProductNumericalRating} rating & {product.reviews.length} reviews
                 </div>
               </Typography>
-              <Typography className='TypoGraphy-Truncate' variant='subtitle2' component="h5">
+              <Typography className='TypoGraphy-Truncate' sx={{height:"45%"}} variant='subtitle2' component="h5">
                 {product.ProductDescription}
               </Typography>
-            </Grid>
           </Grid>
           <Grid item  sm={4}>
             <Typography sx={{fontSize:"large"}} variant='h2.heading' component="h2" >
@@ -119,16 +117,16 @@ export default function SearchProduct() {
       }}
     >
       {SearchResult &&<h3 style={{textAlign:"center"}}>Filter</h3>}
-      {!SearchResult && <Skeleton height={50} />}
+      <Skeleton height={50} />
       <Divider />
-      {!SearchResult &&<Stack spacing={5}>
+      <Stack spacing={5}>
         <Skeleton  />
         <Skeleton  />
         <Skeleton  />
         <Skeleton  />
         <Skeleton  />
         <Skeleton  />
-      </Stack>}
+      </Stack>
     </Paper>
     </Grid>
     <Grid xs={11.5} md={10}  item>

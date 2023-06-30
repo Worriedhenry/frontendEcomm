@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid, Container, Typography, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 const SellerLogin = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const isMediumOrLargeScreen = useMediaQuery('(min-width: 960px)');
-
+  const navigate=useNavigate()
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
   };
@@ -17,6 +18,15 @@ const SellerLogin = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    axios
+      .post("http://localhost:3001/seller/login", { PhoneNumber:phoneNumber, Password:password })
+      .then(res => {
+        if (res.status === 200) {
+          localStorage.setItem("SellerToken",res.data.token)
+          navigate("/admin/info/"+res.data.sellerId)
+        }
+      })
+      .catch(err => console.error(err));
     console.log('Phone Number:', phoneNumber);
     console.log('Password:', password);
   };
@@ -28,7 +38,7 @@ const SellerLogin = () => {
           <Grid item xs={12}>
             <Typography variant="h5">Login</Typography>
           </Grid>
-          <Grid item xs={12} style={{width:"100%"}}>
+          <Grid item xs={12} style={{ width: "100%" }}>
             <TextField
               label="Phone Number"
               variant="outlined"
@@ -37,7 +47,7 @@ const SellerLogin = () => {
               onChange={handlePhoneNumberChange}
             />
           </Grid>
-          <Grid item xs={12} style={{width:"100%"}}>
+          <Grid item xs={12} style={{ width: "100%" }}>
             <TextField
               label="Password"
               type="password"
@@ -50,7 +60,7 @@ const SellerLogin = () => {
           <Grid item xs={12} container justifyContent="space-between" alignItems="center">
             <Grid item>
               <Typography variant="body2">
-              <Link to="/seller/register" style={{textDecoration:"none" ,color:"#047BD5" ,fontWeight:"600"}}>Register for new account</Link>
+                <Link to="/seller/register" style={{ textDecoration: "none", color: "#047BD5", fontWeight: "600" }}>Register for new account</Link>
               </Typography>
             </Grid>
             <Grid item>

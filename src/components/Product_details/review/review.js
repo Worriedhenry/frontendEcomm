@@ -5,7 +5,7 @@ import Answer from "./Answer";
 import Write_review from "./write_review/write_review";
 import { useNavigate } from "react-router-dom"
 
-function Reviews(){
+function Reviews({ProductId}){
     
     const navigate=useNavigate()
     return(
@@ -17,8 +17,8 @@ function Reviews(){
                         
                         <div style={{fontSize:"24px" ,fontWeight:"550" ,padding:"24px 0 0 24px"}}> Review & Ratings</div>
                         
-                        <div onClick={()=> navigate("/writereview")} style={{textAlign:"right" ,boxSizing:"border-box"}}>
-                            <button type="submit" style={{boxShadow:"0 1px 2px 0 rgba(0,0,0,.26)" ,border:"none",cursor:"pointer" ,color:"#212121",fontSize:"14px" ,padding:"16px 36px" ,margin:"18px 18px 0 0"}}><span>Rate Product</span></button>
+                        <div onClick={()=> navigate("/writereview/"+ProductId)} style={{textAlign:"right" ,boxSizing:"border-box"}}>
+                            <button type="submit" style={{boxShadow:"0 1px 2px 0 rgba(0,0,0,.26)" ,border:"none",cursor:"pointer" ,color:"#212121",fontSize:"14px" ,padding:"16px 36px" ,margin:"18px 18px 0 0"}}><span >Rate Product</span></button>
                         </div>
                     </div>
 

@@ -8,19 +8,15 @@ const AuthState= ({children})=>{
     const [SignOpen,setSignOpen]=useState(false)
     const [Next,setNext]=useState("/")
     const [Loading,setLoading]=useState(true)
+    const [SellerValid,setSellerValid]=useState(false)
     useEffect(()=>{
         if (localStorage.getItem("token")){
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem("token")
-              }
               try{
             axios
               .post("http://localhost:3001/jwt",{token:localStorage.getItem("token")})
               .then(res =>{
                 setLoading(false)
                 if (res.status==200){
-                    console.log(res.data)
                     setValid(res.data.id)
                 }
               } )
@@ -32,9 +28,21 @@ const AuthState= ({children})=>{
         else{
           setLoading(false)
         }
+
+        if(localStorage.getItem("SellerToken")){
+          axios
+            .post("http://localhost:3001/sellerAuth",{token:localStorage.getItem("SellerToken")})
+            .then(res =>{
+                if(res.status==200){
+                  console.log(res.data)
+                  setSellerValid(res.data.id)
+                }
+            } )
+            .catch(err => console.error(err));
+        }
     },[])
     return (
-        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext,Loading,setLoading}}>
+        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext,Loading,setLoading,SellerValid}}>
             {children}
         </AuthContext.Provider>
     )

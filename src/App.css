@@ -134,7 +134,7 @@ paper-button {
   max-width: 90%; /* Adjust this value to set the desired maximum length */
 }
 .TypoGraphy-Truncate{
-  white-space: nowrap;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
 }

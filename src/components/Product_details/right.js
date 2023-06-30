@@ -129,7 +129,7 @@ function Right_Part({ product }) {
                 </tr>
             </Table>}
             <Specs />
-            <Reviews />
+            <Reviews ProductId={product._id} />
             <Ques />
 
         </>

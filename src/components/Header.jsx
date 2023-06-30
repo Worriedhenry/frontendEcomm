@@ -13,15 +13,11 @@ import { StyledTypography, InputPaper, StyledButton, GridItem } from "./UtlityCo
 
 export default function NavBar() {
     const Context = React.useContext(AuthContext)
-    const { Valid, setLoginOpen, setNext } = Context
+    const { Valid, setLoginOpen, setNext,SellerValid } = Context
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [SearchQuery, setSearchQuery] = React.useState("")
     const navigate = useNavigate()
     const Open = Boolean(anchorEl);
-
-    React.useEffect(() => {
-        console.log(Context)
-    })
 
     const handleClick = (event) => {
         if (anchorEl == null) {
@@ -46,6 +42,15 @@ export default function NavBar() {
         else {
             setLoginOpen(true)
             setNext("/viewcart")
+        }
+    }
+    const handleSellerClick=()=>{
+        console.log(SellerValid)
+        if(SellerValid){
+            navigate("/admin/info/"+SellerValid)
+        }
+        else{
+            navigate("/seller/login")
         }
     }
     const HandleProfile = () => {
@@ -102,7 +107,7 @@ export default function NavBar() {
             </Grid>
         </Grid>
         <Grid item md={4} xs={4} sm={4} style={{ width: "fitContent", display: "flex", justifyContent: "space-around" }}>
-            <Button sx={{ fontSize: 10 }} size="small" style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} onClick={() => navigate("/seller/login")} ><StyledTypography>Become a Seller</StyledTypography></Button>
+            <Button sx={{ fontSize: 10 }} size="small" style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} onClick={handleSellerClick} ><StyledTypography>Become a Seller</StyledTypography></Button>
             <div>
                 <Button style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} endIcon={!Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
                     onClick={handleClick}

@@ -8,6 +8,7 @@ import axios from "axios";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import {CheckBox, ExpandMoreOutlined} from "@mui/icons-material"
+import { useParams } from "react-router-dom";
 export default function SellerAddProduct() {
 
   const [Category, setCategory] = useState('');
@@ -142,7 +143,7 @@ export default function SellerAddProduct() {
       ProductDescription,
       ProductMRP,ProductSellingPrice,ProductQuantity,ProductBrandName,ProductWarrantySummary,specifications, ProductServiceCover,ProductServiceType,ImagePublicID
     }
-    let UploadResponse=await axios.post("http://localhost:3001/AddProductToCatlog",UploadLoad)
+    let UploadResponse=await axios.post("http://localhost:3001/AddProductToCatlog/"+useParams().SellerId,UploadLoad)
     if (UploadResponse.status==200){
       setUploadImageSnackbarControl(true)
     }
@@ -207,7 +208,7 @@ export default function SellerAddProduct() {
 
       </div>
         {<div>
-          <Button style={{display:Files[index] ? "inline":"none"}} color="success" variant="contained" size="small" onClick={() => handleUpload(index,setUploadingImage)}>{UploadingImage ? <CircularProgress size={15} style={{color:"white"}} /> : 'Upload'}</Button>
+          <Button disable={UploadingImage} style={{display:Files[index] ? "inline":"none"}} color="success" variant="contained" size="small" onClick={() => handleUpload(index,setUploadingImage)}>{UploadingImage ? <CircularProgress size={15} style={{color:"white"}} /> : 'Upload'}</Button>
           {Files[index] && <Button  color="error" variant="contained" size="small" onClick={() => handleDelete(index)}>Delete</Button>}
         </div>}
       </div>

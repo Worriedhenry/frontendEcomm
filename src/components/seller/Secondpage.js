@@ -10,6 +10,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { SnackbarContext } from '../../Context/SnackbarContext';
 import { StyledButton, StyledTypography } from '../UtlityComponents/HeaderStyledElement';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 export default function SecondPageSeller() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -19,14 +20,16 @@ export default function SecondPageSeller() {
   const [StoreName, setStoreName] = React.useState("")
   const [Location, setLocation] = React.useState("")
   const {Phone,GSTIN,EmailId}=React.useContext(SnackbarContext)
-
+  const navigate=useNavigate()
   const RegisterSeller=async ()=>{
-    console.log(Phone)
     const payload={
       Password,PhoneNumber:Phone,FirstName:Fname,LastName:Lname,Email:EmailId,StoreName,GSTIN,StoreLocation:Location
     }
     let response=await axios.post("http://localhost:3001/seller/new",payload)
-
+    if(response.status===200){
+      localStorage.setItem("SellerToken",response.data.token)
+      navigate("/admin/info/"+response.data.id)
+    }
   }
 
 

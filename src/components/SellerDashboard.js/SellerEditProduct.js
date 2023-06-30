@@ -37,7 +37,7 @@ export default function AddProduct() {
     margin:"20px 0px"
   }
   
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event) => {
     setAge(event.target.value);
   };
 

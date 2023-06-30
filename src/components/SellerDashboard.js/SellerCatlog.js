@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ButtonBase from '@mui/material/ButtonBase';
 import StyledTypography from '../UtlityComponents/StyledTypo';
+import { useParams,useNavigate} from 'react-router-dom';
 import { SnackbarContext } from '../../Context/SnackbarContext';
 import { SuccessSnackBar,WarningSnackBar,ErrorSnackBar } from '../UtlityComponents/Snackbar';
 import axios from 'axios';
@@ -19,6 +20,7 @@ const Img = styled('img')({
 function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackbarControl }) {
   const [RemoveLoader, setRemoveLoader] = useState(false)
   const [Listed,setListed]=useState(Detail.Listed)
+  const navigate=useNavigate()
   const ListProduct=async ()=>{
     let res=await axios.put("http://localhost:3001/product/changelisting",{productId:Detail._id,Listed:Listed})
     if(res.status==200){
@@ -59,10 +61,13 @@ function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackb
             <Img alt="complex" src={Detail.ProductImages[0]} />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm container>
+        <Grid
+          
+          item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item >
-              <Typography gutterBottom variant="h3.heading" component="div">
+              <Typography style={{cursor:"pointer"}}
+          onClick={()=>navigate("/admin/edit/"+Detail._id)}  gutterBottom variant="h3.heading" component="div">
                 {Detail.ProductTitle}
               </Typography>
               <Typography variant="body2" color="text.secondary" gutterBottom>
@@ -94,17 +99,15 @@ export default function SellerCatlog() {
   const [LoaderControl, setLoaderControl] = useState(true)
   const [SnackbarControl,setSnackbarControl]=useState(false)
   const [EmptyFeildError,setEmptyFeildError]=useState("")
-
+  const SellerId=useParams().SellerId
   useEffect(() => {
+    console.log(SellerId)
     axios
-      .post("http://localhost:3001/ProvideCatlog/6486df492b170505b6b04d1c")
+      .post("http://localhost:3001/ProvideCatlog/"+SellerId)
       .then(res => {
         if (res.status === 200) {
-          setTimeout(() => {
-
             setLoaderControl(false)
             setCatlogProducts(res.data.CatlogProducts)
-          }, 500);
         }
       })
       .catch(err => console.error(err));
@@ -113,7 +116,7 @@ export default function SellerCatlog() {
     <div style={{ display: "flex", justifyContent: "space-between" }}><h3>My Catlog</h3><Tooltip title="Refresh"><IconButton ><RefreshIcon /></IconButton></Tooltip></div>
     <Divider />
     {LoaderControl && <div style={{ width: "100%", height: "60%", display: "flex", justifyContent: "center", alignItems: "center" }}><CircularProgress /></div>}
-    {CatlogProducts.map((e, index) => <><CatlogCard setCatlogProducts={setCatlogProducts} setSnackbarControl={setSnackbarControl} index={index} Detail={e} CatlogProducts={CatlogProducts} /><Divider /></>)}
+    {CatlogProducts && CatlogProducts.map((e, index) => <><CatlogCard setCatlogProducts={setCatlogProducts} setSnackbarControl={setSnackbarControl} index={index} Detail={e} CatlogProducts={CatlogProducts} /><Divider /></>)}
     <Snackbar
       open={SnackbarControl}
       autoHideDuration={3000}
