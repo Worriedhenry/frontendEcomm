@@ -1,11 +1,14 @@
-import { Button, IconButton, TextField, Grid } from '@mui/material';
+import { Button, IconButton, TextField, Grid, Typography } from '@mui/material';
 import React from 'react'
 import { AuthContext } from "../Context/AuthContext";
 import { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useForm } from 'react-hook-form'; 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Logo from "./Flip-Logo.jpg"
 import axios from 'axios';
+import * as yup from 'yup'
+import {yupResolver} from "@hookform/resolvers/yup"
 
 function Login() {
   let [showPass, setShowPass] = useState(true);
@@ -15,6 +18,14 @@ function Login() {
   const [Password, setPassword] = useState("")
   const [PhoneEmailHelperText, setPhoneEmailHelperText] = useState("")
   const [PasswordHelperText, setPasswordHelperText] = useState("")
+  
+  const schema=yup.object().shape({
+    EmailPhone:yup.string().max(10).min(10).required(),
+    password :yup.string().required()
+  })
+  const {register ,handleSubmit ,formState:{errors}}=useForm({
+    resolver:yupResolver(schema)
+  })
 
   const HandleDialogChange = () => {
     setLoginOpen(false)
@@ -26,19 +37,7 @@ function Login() {
     const PayLoad = {
       Phone: PhoneEmail, Password
     }
-    if (PhoneEmail == "") {
-      setPhoneEmailHelperText("Field cannot be empty")
-      seterrorstateEmail("error")
-      return
-    }
-    if (Password == "") {
-      setPasswordHelperText("Field cannot be empty")
-      setPhoneEmailHelperText("")
-      seterrorstatePass("error")
-      return
-    }
-    setPasswordHelperText("")
-    setPhoneEmailHelperText("")
+
     let result = await axios.post("http://localhost:3001/login", PayLoad)
     if (result?.status === 200) {
       localStorage.setItem("token", result.data.token)
@@ -50,7 +49,7 @@ function Login() {
       setError("Phone/Email/Password is incorrect! Please try again")
     }
     else {
-      setError("An unknown erroe occured on our side , please try again")
+      setError("An unknown error occured on our side , please try again")
     }
 
   }
@@ -72,10 +71,11 @@ function Login() {
             autoFocus
             variant='filled'
             fullWidth
+            {...register("EmailPhone")}
             style={{ width: "80%" }}
             label="Enter Email/Phone Number"
             onChange={(e) => setPhoneEmail(e.target.value)}
-            helperText={PhoneEmailHelperText}
+            helperText={errors.EmailPhone &&  <Typography style={{color:"red" ,fontSize:"1em"}}> *Please Enter a valid Email*</Typography>}
           />
           <TextField
             variant='filled'
@@ -83,7 +83,7 @@ function Login() {
             style={{ width: "80%" }}
             type={showPass ? "password" : "text"}
             onChange={(e) => setPassword(e.target.value)}
-            helperText={PasswordHelperText}
+            {...register("password")}
             InputProps={{
               endAdornment:
                 <IconButton onClick={() => { setShowPass(!showPass) }} >
@@ -93,7 +93,7 @@ function Login() {
             }}
           />
         </div>
-        <Button style={{ background: "rgb(247 114 0)", color: "white", width: "80%" }} onClick={handleLogin} variant="filled">Login</Button>
+        <Button style={{ background: "rgb(247 114 0)", color: "white", width: "80%" }} onClick={handleSubmit(handleLogin)} variant="filled">Login</Button>
 
         <p style={{ color: "#047BD5", cursor: "pointer" }} onClick={HandleDialogChange} ><b>New to Flipkart ? Create an Account</b></p>
       </Grid></Grid>

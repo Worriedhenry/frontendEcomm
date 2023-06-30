@@ -8,10 +8,24 @@ import Typography from '@mui/material/Typography';
 import FirstPageSeller from './firstpage';
 import SecondPageSeller from './Secondpage';
 const steps = ['EMAIL ID & GST', 'PASSWORD CREATION'];
-
+import { useForm } from 'react-hook-form'; 
+import * as yup from 'yup'
+import {yupResolver} from "@hookform/resolvers/yup"
 function HorizontalNonLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
+
+  const schema=yup.object().shape({
+    Phone:yup.number().test(val => val.toString().length === 10),
+    GST :yup.string().required(),
+    Email:yup.string().email().required()
+  })
+  const {register ,handleSubmit ,formState:{errors}}=useForm({
+    resolver:yupResolver(schema)
+  })
+
+
+
   const totalSteps = () => {
     return steps.length;
   };
@@ -28,7 +42,8 @@ function HorizontalNonLinearStepper() {
     return completedSteps() === totalSteps();
   };
 
-  const handleNext = () => {
+  const handleNext = (data) => {
+    console.log(data)
     const newActiveStep =
       isLastStep()
         ? // It's the last step, but not all steps have been completed,
@@ -59,6 +74,9 @@ function HorizontalNonLinearStepper() {
   };
 
   return (
+
+
+
     <Box sx={{ width: '100%' }}>
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
@@ -71,7 +89,7 @@ function HorizontalNonLinearStepper() {
       </Stepper>
       <div>
           <React.Fragment>
-            {activeStep===0 && <FirstPageSeller />}
+            {activeStep===0 && <FirstPageSeller register={register} errors={errors} />}
             {activeStep===1 && <SecondPageSeller />}
 
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -85,7 +103,7 @@ function HorizontalNonLinearStepper() {
               </Button>
                <Box sx={{ flex: '1 1 auto' }} />{
 
-              !isLastStep() && <Button variant='contained' onClick={handleNext} sx={{ mr: 1 }}>
+              !isLastStep() && <Button variant='contained' onClick={handleSubmit(handleNext)} sx={{ mr: 1 }}>
                 Next
               </Button>             
               }

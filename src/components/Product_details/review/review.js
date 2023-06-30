@@ -4,9 +4,17 @@ import StarIcon from '@mui/icons-material/Star';
 import Answer from "./Answer";
 import Write_review from "./write_review/write_review";
 import { useNavigate } from "react-router-dom"
+import { useState } from "react";
 
 function Reviews(){
-    
+    const [showmoreReviews, setshowmoreReviews] = useState(3);
+    const handleLoadMore = () => {
+        setVisibleComments(reviews.length);
+      };
+
+    const shownReviews = reviews.slice(0, visibleComments).map((review) => (
+    <Answer props={review} />
+    ));
     const navigate=useNavigate()
     return(
         
@@ -34,7 +42,8 @@ function Reviews(){
                     </div>
 
                 </div>
-                <Answer/>
+                {shownReviews}
+                <button onClick={handleLoadMore}>View More</button>
                 
             </div>
         </div>

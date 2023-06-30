@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid, Container, Typography, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
-
+import { useForm } from 'react-hook-form'; 
+import * as yup from 'yup'
+import {yupResolver} from "@hookform/resolvers/yup"
 const SellerLogin = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const isMediumOrLargeScreen = useMediaQuery('(min-width: 960px)');
+
+
+  const schema=yup.object().shape({
+    phoneNumber:yup.string().max(10).min(10).required(),
+    Password :yup.string().required()
+  })
+  const {register ,handleSubmit ,formState:{errors}}=useForm({
+    resolver:yupResolver(schema)
+  })
+
 
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
@@ -15,10 +27,9 @@ const SellerLogin = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Phone Number:', phoneNumber);
-    console.log('Password:', password);
+  const handleLogin = (data) => {
+    console.log(data)
+
   };
 
   return (
@@ -33,8 +44,9 @@ const SellerLogin = () => {
               label="Phone Number"
               variant="outlined"
               fullWidth
-              value={phoneNumber}
               onChange={handlePhoneNumberChange}
+              {... register("phoneNumber")}
+              helperText={errors.phoneNumber && <Typography style={{fontSize:"1em" ,color:"red"}}>*Please enter valid 10 digit phone no. *</Typography>}
             />
           </Grid>
           <Grid item xs={12} style={{width:"100%"}}>
@@ -43,7 +55,7 @@ const SellerLogin = () => {
               type="password"
               variant="outlined"
               fullWidth
-              value={password}
+              {...register("Password")}
               onChange={handlePasswordChange}
             />
           </Grid>
@@ -58,6 +70,7 @@ const SellerLogin = () => {
                 type="submit"
                 variant="contained"
                 color="primary"
+                onClick={handleSubmit(handleLogin)}
               >
                 Login
               </Button>

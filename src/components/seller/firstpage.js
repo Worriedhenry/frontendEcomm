@@ -15,16 +15,25 @@ import { Button, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 import { SnackbarContext } from '../../Context/SnackbarContext';
+import { useForm } from 'react-hook-form'; 
+import * as yup from 'yup'
+import {yupResolver} from "@hookform/resolvers/yup"
+import { Email } from '@mui/icons-material';
 
-export default function FirstPageSeller() {
+
+
+export default function FirstPageSeller(props) {
     const [isDisable,setdisable]=React.useState(false)
     const [Gst,setstate]=React.useState("Enter GSTIN")
     const [Msg,setmsg]=React.useState("GSTIN is required to sell products on Flipkart. You can also share it in the final step.")
     const {Phone,setPhone,EmailId,setEmailId,GSTIN,setGSTIN}=React.useContext(SnackbarContext)
     const [refNo,setrefNo]=React.useState("")
 
-
+    const register=props.register;
+    // const errors=props.errors;
     //onclick on next handle krna h abhi 
+
+
 
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -50,8 +59,9 @@ export default function FirstPageSeller() {
             label="Phone No."
             style={{borderRadius:"10px" ,height:"50px"}}
             onChange={(e)=>setPhone(e.target.value)}
-            value={Phone}
-            required
+            {...register("Phone")}
+            // FormHelperText={errors.Phone && <Typography style={{fontSize:"1em", color:"red"}}>*Please enter valid 10 digit phone no. *</Typography>}
+            FormHelperText="jijjijij"
           />
         </FormControl>
 
@@ -62,8 +72,8 @@ export default function FirstPageSeller() {
             id="outlined-adornment-amount"
             label="Email ID"
             type="email"
-            value={EmailId}
             style={{borderRadius:"10px" ,height:"50px"}}
+            {...register("Email")}
             onChange={(e)=>setEmailId(e.target.value)}
             pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
             required
@@ -79,7 +89,7 @@ export default function FirstPageSeller() {
           <OutlinedInput
             id="outlined-adornment-amount"
             label="isGSTLong "
-            value={GSTIN}
+            {...register("GST")}
             style={{borderRadius:"10px" ,height:"50px"}}
             onChange={(e)=>setGSTIN(e.target.value)}
 
