@@ -36,7 +36,6 @@ export default function SellerEditProduct() {
     axios
       .get("http://localhost:3001/seller/getproduct/"+ProductId)
       .then(res =>{
-        console.log(res.status)
         if(res.status!==200){
           setEmptyFeildError("En error Occured")
           setSnackbarControl(true)
@@ -85,7 +84,8 @@ export default function SellerEditProduct() {
   };
 
   const UpdateProduct = async () => {
-    if (ProductName.length === 0 || ProductDescription.length === 0 || ProductBrandName.length === 0 || ProductMRP === 0 || ProductSellingPrice === 0) {
+    try{
+    if (ProductName.length === 0 || ProductDescription.length === 0 || ProductMRP === 0 || ProductSellingPrice === 0) {
       setEmptyFeildError('Fill all feilds in General')
       setSnackbarControl(true)
       return
@@ -100,20 +100,19 @@ export default function SellerEditProduct() {
       setSnackbarControl(true)
       return
     }
-  
     const UpdateLoad = {
       ProductTitle: ProductName,
       ProductDescription,
       ProductMRP, ProductSellingPrice, ProductQuantity, ProductBrandName, specifications
     }
     let UploadResponse = await axios.put("http://localhost:3001/product/updateProduct/"+ProductId, UpdateLoad)
-    console.log(UploadResponse)
     if (UploadResponse.status == 200) {
       setUploadImageSnackbarControl(true)
     }
-    else{
-      console.log(UploadResponse)
-    }
+  }catch(err){
+    setEmptyFeildError("An Unknown Error Occured")
+    setSnackbarControl(true)
+  }
   }
 
   const RenderBoxes = () => {

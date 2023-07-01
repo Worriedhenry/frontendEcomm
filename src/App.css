@@ -181,7 +181,11 @@ input:focus {
 input {
   outline-width: 0;
 }
-
+@media (max-width: 700px) {
+  .SearchProduct-Filters{
+    display: none;
+  }
+}
 @media (max-width: 600px) {
   .Header-Cart{
     display: none !important;
@@ -192,9 +196,7 @@ input {
   .HeaderTypography{
     font-size: 16px;
   }
-  .SearchProduct-Filters{
-    display: none;
-  }
+  
   .Profile-DetailTitle{
     font-size: 16px;
   }

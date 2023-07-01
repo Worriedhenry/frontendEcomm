@@ -10,6 +10,28 @@ import ButtonBase from '@mui/material/ButtonBase';
 import axios from 'axios';
 import { useSearchParams ,useNavigate} from "react-router-dom"
 
+const StyTypo= styled(Typography)(({ theme }) => ({
+    fontSize:"small",
+    fontWeight:"500",
+    [theme.breakpoints.down('sm')]: {
+      fontSize:"0.5em", 
+    },
+  }));
+const SellingPriceTypo= styled(Typography)(({ theme }) => ({
+    fontSize:"large",
+    fontWeight:"500",
+    [theme.breakpoints.down('sm')]: {
+      fontSize:"0.8em", 
+    },
+  }));
+    
+const StyledGrid= styled(Grid)(({ theme }) => ({
+    height:"11vw",
+    [theme.breakpoints.down('sm')]: {
+      height:"20vw", 
+    },
+  }));
+    
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -36,18 +58,18 @@ function CatlogCard({ product }) {
           theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       }}
     >
-      <Grid container spacing={2}>
-        <Grid item  container justifyContent="center" sm={3}>
-          <ButtonBase sx={{ width: 200, height: 200 }}>
+      <StyledGrid container height="10vw" spacing={2}>
+        <Grid item height="100%" container justifyContent="center" sm={3} xs={3}>
+          <ButtonBase sx={{ width: 200, height: 200,maxHeight:"100%",maxWidth:"100%" }}>
             <Img alt="complex" src={product.ProductImages[0]} />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm={9} container>
-          <Grid item xs sm={8} sx={{maxHeight:"45vh"}} direction="column" container>
-              <Typography className='truncate' gutterBottom sx={{fontSize:"large"}} variant="h3.heading" component="h2">
+        <Grid item xs={9} sm={9} container>
+          <Grid item xs={9} sm={8} sx={{maxHeight:"45vh"}} direction="column" container>
+              <SellingPriceTypo className='truncate' gutterBottom sx={{fontSize:"large",fontWeight:"bold"}} variant="h3.heading" component="h2">
                 {product.ProductTitle}
-              </Typography>
-              <Typography className='TypoGraphy-Truncate' sx={{fontSize:"larger"}} variant="subtitle2" gutterBottom>
+              </SellingPriceTypo>
+              <StyTypo className='TypoGraphy-Truncate' sx={{fontSize:"larger"}} variant="subtitle2" gutterBottom>
                 <div
                 className='TypoGraphy-Truncate'
                   style={{
@@ -58,32 +80,32 @@ function CatlogCard({ product }) {
                   }}
                 >
                   <Rating readOnly size="small" defaultValue={product.ProductNumericalRating} precision={0.5}  />
-                  &nbsp; {product.ProductNumericalRating} rating & {product.reviews.length} reviews
+                  &nbsp;<StyTypo> {product.ProductNumericalRating} rating & {product.reviews.length} reviews</StyTypo>
                 </div>
-              </Typography>
-              <Typography className='truncate' variant='subtitle2' component="h5">
+              </StyTypo>
+              <StyTypo className='truncate' variant='subtitle2' component="h5">
                 {product.ProductDescription}
-              </Typography>
+              </StyTypo>
           </Grid>
           <Grid item  sm={4}>
-            <Typography sx={{fontSize:"large"}} variant='h2.heading' component="h2" >
+            <SellingPriceTypo style={{fontWeight:"bold"}} variant='h2.heading' component="h2" >
               &#8377; {product.ProductSellingPrice}
-            </Typography>
+            </SellingPriceTypo>
             <div
               style={{
                 fontSize: "12px",
                 margin: "6px 0px"
               }}
             >
-              <strike>&#8377; {product.ProductMRP}</strike> &nbsp; {((product.ProductMRP - product.ProductSellingPrice) * 100 / product.ProductMRP).toFixed(2)}%
+              <StyTypo style={{fontWeight:"bold"}}><strike>&#8377; {product.ProductMRP}</strike> &nbsp; {((product.ProductMRP - product.ProductSellingPrice) * 100 / product.ProductMRP).toFixed(2)}%</StyTypo>
             </div>
-            <h5 style={{ marginTop: "0px",color:"green" }}>
+            <StyTypo style={{ marginTop: "0px",color:"green" }}>
               Free Delivery
-            </h5>
+              </StyTypo>
 
           </Grid>
         </Grid>
-      </Grid>
+      </StyledGrid>
     </Paper></>
   );
 }
