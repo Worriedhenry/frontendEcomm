@@ -11,7 +11,8 @@ import {useNavigate, useParams} from "react-router-dom"
 import axios from "axios";
 import { CartContext } from "../../Context/CartContext";
 import { Img } from "../UtlityComponents/StyledImage";
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import emptycart from "./emptycart.png"
+// import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
 function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }){
   const {UserId}=useParams()
@@ -137,7 +138,7 @@ export default function Cart() {
             </>
           )
           :
-          <> <div style={{width:"20%" ,height:"auto" ,margin:"auto" }}>< ProductionQuantityLimitsIcon style={{width:"100%" , height:"auto" , marginTop:"20%"}} /> <Typography style={{margin:"auto" ,fontWeight:"600" ,fontSize:"1rem" ,marginTop:"20%"}}>Oops your cart is empty</Typography></div></>
+          <div style={{justifyContent:"center"}}> <img style={{margin:"auto" ,marginLeft:"30%" ,maxWidth:"40%"}} src={emptycart}></img></div>
         
         }
         </div>

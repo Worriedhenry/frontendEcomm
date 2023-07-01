@@ -11,6 +11,7 @@ import { useParams,useNavigate} from 'react-router-dom';
 import { SnackbarContext } from '../../Context/SnackbarContext';
 import { SuccessSnackBar,WarningSnackBar,ErrorSnackBar } from '../UtlityComponents/Snackbar';
 import axios from 'axios';
+import emptyImg from "./noitem.jpg"
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -116,7 +117,10 @@ export default function SellerCatlog() {
     <div style={{ display: "flex", justifyContent: "space-between" }}><h3>My Catlog</h3><Tooltip title="Refresh"><IconButton ><RefreshIcon /></IconButton></Tooltip></div>
     <Divider />
     {LoaderControl && <div style={{ width: "100%", height: "60%", display: "flex", justifyContent: "center", alignItems: "center" }}><CircularProgress /></div>}
-    {CatlogProducts && CatlogProducts.map((e, index) => <><CatlogCard setCatlogProducts={setCatlogProducts} setSnackbarControl={setSnackbarControl} index={index} Detail={e} CatlogProducts={CatlogProducts} /><Divider /></>)}
+    {CatlogProducts.map((e, index) => <><CatlogCard setCatlogProducts={setCatlogProducts} setSnackbarControl={setSnackbarControl} index={index} Detail={e} CatlogProducts={CatlogProducts} /><Divider /></>)}
+    {CatlogProducts && CatlogProducts.length<=0 && <div style={{height:"80vh"}}><img style={{maxWidth:"40%" ,marginLeft:"30%"}} src={emptyImg}></img> <Divider /></div>}
+
+
     <Snackbar
       open={SnackbarControl}
       autoHideDuration={3000}

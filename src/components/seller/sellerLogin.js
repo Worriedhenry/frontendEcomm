@@ -12,14 +12,13 @@ const SellerLogin = () => {
   const isMediumOrLargeScreen = useMediaQuery('(min-width: 960px)');
   const navigate=useNavigate()
 
-  const schema = yup.object().shape({
-    phoneNumber: yup.number().test(val => val.toString().length === 10),
-    Password: yup.string().required()
+
+  const schema=yup.object().shape({
+    phoneNumber:yup.number().test(val => val.toString().length === 10),
+    Password :yup.string().required()
   })
 
   const handleLogin = (event) => {
-    console.log("hi")
-    console.log(event.phoneNumber)
     axios
       .post("http://localhost:3001/seller/login", { PhoneNumber: event.phoneNumber, Password: password })
       .then(res => {
@@ -29,8 +28,6 @@ const SellerLogin = () => {
         }
       })
       .catch(err => console.error(err));
-    console.log('Phone Number:', phoneNumber);
-    console.log('Password:', password);
   };
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)

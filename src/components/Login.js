@@ -74,7 +74,7 @@ function Login() {
             style={{ width: "80%" }}
             label="Phone Number"
             onChange={(e) => setPhoneEmail(e.target.value)}
-            helperText={errors.EmailPhone &&  <Typography style={{color:"red" ,fontSize:"1em"}}> Please Enter a valid Email</Typography>}
+            helperText={errors.EmailPhone &&  <Typography style={{color:"red" ,fontSize:"1em"}}> *Please Enter a valid Phone*</Typography>}
           />
           <TextField
             variant='filled'

@@ -89,7 +89,7 @@ function HorizontalNonLinearStepper() {
       </Stepper>
       <div>
           <React.Fragment>
-            {activeStep===0 && <FirstPageSeller register={register} errors={errors} />}
+            {activeStep===0 && <FirstPageSeller register={register}  />}
             {activeStep===1 && <SecondPageSeller />}
 
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -113,8 +113,9 @@ function HorizontalNonLinearStepper() {
           </React.Fragment>
         
       </div>
-      {errors.Phone && <Typography style={{fontWeight:"1em" ,color:"red" ,margin:"auto"}}>*Please enter valid 10 digit Phone no. *</Typography>}
+              {errors.Phone && <Typography style={{fontWeight:"1em" ,color:"red" ,margin:"auto"}}>*Please enter valid 10 digit Phone no. *</Typography>}
               {errors.Email && <Typography style={{fontWeight:"1em" ,color:"red" ,margin:"auto"}}>*Please enter valid email *</Typography>}
+
     </Box>
   );
 }
