@@ -11,7 +11,7 @@ const SellerLogin = () => {
 
 
   const schema=yup.object().shape({
-    phoneNumber:yup.string().max(10).min(10).required(),
+    phoneNumber:yup.number().test(val => val.toString().length === 10),
     Password :yup.string().required()
   })
   const {register ,handleSubmit ,formState:{errors}}=useForm({

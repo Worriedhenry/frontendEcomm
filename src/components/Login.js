@@ -20,7 +20,7 @@ function Login() {
   const [PasswordHelperText, setPasswordHelperText] = useState("")
   
   const schema=yup.object().shape({
-    EmailPhone:yup.string().max(10).min(10).required(),
+    EmailPhone:yup.number().test(val => val.toString().length === 10),
     password :yup.string().required()
   })
   const {register ,handleSubmit ,formState:{errors}}=useForm({
@@ -32,7 +32,8 @@ function Login() {
     setSignOpen(true)
   }
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    console.log(Password)
     console.log(Context)
     const PayLoad = {
       Phone: PhoneEmail, Password
@@ -73,9 +74,9 @@ function Login() {
             fullWidth
             {...register("EmailPhone")}
             style={{ width: "80%" }}
-            label="Enter Email/Phone Number"
+            label="Phone Number"
             onChange={(e) => setPhoneEmail(e.target.value)}
-            helperText={errors.EmailPhone &&  <Typography style={{color:"red" ,fontSize:"1em"}}> *Please Enter a valid Email*</Typography>}
+            helperText={errors.EmailPhone &&  <Typography style={{color:"red" ,fontSize:"1em"}}> *Please Enter a valid Phone*</Typography>}
           />
           <TextField
             variant='filled'
