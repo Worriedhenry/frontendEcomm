@@ -47,7 +47,7 @@ function App() {
                   <Route path='/ordersuccess' element={<OrderSuccessPage />} />
                   <Route path='/buyproduct' element={<ProtectedRoutes Component={<HorizontalNonLinearStepper />} />} />
                   <Route path='/orderdetails/:OrderId' element={<ProtectedRoutes Component={<OrderDetails />} />} />
-                  <Route path='/seller/login' element={<ProtectedRoutes Component={<SellerLogin />} />} />
+                  <Route path='/seller/login' element={<><NavBar/><SellerLogin /><Footer/></>} />
                   <Route path='/admin/info/:SellerId' element={<ProtectedRoutes Component={<SellerProfile />} />} />
                   <Route path='/admin/catlog/:SellerId' element={<ProtectedRoutes Component={<SellerProfile />} />} />
                   <Route path='/admin/addproduct/:SellerId' element={<ProtectedRoutes Component={<SellerProfile />} />} />

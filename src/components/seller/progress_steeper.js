@@ -3,17 +3,20 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
-import {Button} from '@mui/material';
+import {Button, SnackbarContent} from '@mui/material';
 import Typography from '@mui/material/Typography';
 import FirstPageSeller from './firstpage';
 import SecondPageSeller from './Secondpage';
 const steps = ['EMAIL ID & GST', 'PASSWORD CREATION'];
 import { useForm } from 'react-hook-form'; 
+import { SnackbarContext } from '../../Context/SnackbarContext';
 import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup"
 function HorizontalNonLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
+  const {Phone,setPhone,EmailId,setEmailId,GSTIN,setGSTIN}=React.useContext(SnackbarContext)
+
 
   const schema=yup.object().shape({
     Phone:yup.number().test(val => val.toString().length === 10),
@@ -43,7 +46,8 @@ function HorizontalNonLinearStepper() {
   };
 
   const handleNext = (data) => {
-    console.log(data)
+    setPhone(data.Phone)
+
     const newActiveStep =
       isLastStep()
         ? // It's the last step, but not all steps have been completed,
