@@ -43,6 +43,7 @@ const SellerLogin = () => {
   };
 
   return (
+    <div className='sellerloginDiv'>
     <Container maxWidth="sm" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
       <form onSubmit={handleLogin}>
         <Grid container spacing={2} direction="column" alignItems="center">
@@ -89,6 +90,7 @@ const SellerLogin = () => {
         </Grid>
       </form>
     </Container>
+    </div>
   );
 };
 

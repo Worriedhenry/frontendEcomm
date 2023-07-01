@@ -6,11 +6,13 @@ import Logo from "../Flip-Logo.jpg";
 import WhySell from "../WhySell.png"
 import Container from '@mui/material/Container';
 import { Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 function SellerRegister(){
+  const navigate=useNavigate();
     return (
         <div>
           <div>
-            <div style={{backgroundColor:"#047BD5" }}><img src={Logo} style={{height: "9vh"}}></img></div>
+            <div className='sellerRegisterHeader' style={{backgroundColor:"#047BD5" }}><img src={Logo}  onClick={()=>navigate("/")} ></img></div>
             <div style={{backgroundColor:'#f0f0f0' }} >
               
                 <CssBaseline />

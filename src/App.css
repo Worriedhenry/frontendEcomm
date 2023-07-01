@@ -210,3 +210,62 @@ input {
   min-width: none !important;
 }
 
+@media (max-width :600px ) {
+  .sellerloginDiv{
+    height: 89vh;
+  }
+  .sellerRegisterHeader{
+    height: 8vw;
+  }
+  .sellerRegisterHeader img{
+    height: 6vw;
+  }
+  .Orders-Right{
+    height: 89vh;
+  }
+  .manageaddressDiv{
+    height: 89vh;
+  }
+}
+
+
+@media only screen and (min-width: 600px ) and (max-width :768px )  {
+  .sellerloginDiv{
+    height: 88vh;
+  }
+  .sellerRegisterHeader{
+    height: 6vw;
+  }
+  .sellerRegisterHeader img{
+    height: 5vw;
+  }
+  .Orders-Right{
+    height: 88vh;
+  }
+  .manageaddressDiv{
+    height: 88vh;
+  }
+}
+
+
+@media (min-width :768px ) {
+  .sellerloginDiv{
+    height: 87vh;
+  }
+  .sellerRegisterHeader{
+    height: 4vw;
+  }
+  .sellerRegisterHeader img{
+    height: 4vw;
+  }
+  .Orders-Right{
+    height: 87vh;
+  }
+  .manageaddressDiv{
+    height: 87vh;
+  }
+}
+
+.sellerRegisterHeader img:hover {
+  cursor: pointer;
+}

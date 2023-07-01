@@ -130,7 +130,7 @@ export default function Cart() {
           <Skeleton variant="rounded" height={140} />
           <Skeleton variant="rounded" height={140} />
         </Stack>}
-        <div style={{minHeight:"69vh"}} className="CartItemContainer">
+        <div style={{height:"73vh"}} className="CartItemContainer">
           {Cart && Cart.length>0 ? Cart.map((product) =>
             <>
               <CatlogCard product={product} setCart={setCart} setAllProductSellingPrice={setAllProductSellingPrice} setAllProductMRP={setAllProductMRP} AllProductMRP={AllProductMRP} AllSellingPrice={AllSellingPrice} />
@@ -138,7 +138,7 @@ export default function Cart() {
             </>
           )
           :
-          <div style={{justifyContent:"center"}}> <img style={{margin:"auto" ,marginLeft:"30%" ,maxWidth:"40%"}} src={emptycart}></img></div>
+          <div style={{justifyContent:"center"}}> <img style={{margin:"auto" ,marginLeft:"30%" ,maxWidth:"40%" ,marginTop:"10vh"}} src={emptycart}></img></div>
         
         }
         </div>
