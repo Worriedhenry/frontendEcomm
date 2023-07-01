@@ -22,7 +22,7 @@ const LocalOfferIconStyle = {
 const OfferArray = Array(5).fill(0)
 
 
-function Right_Part({ product }) {
+function Right_Part({ product,Seller }) {
 
     const date = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000);
     return (
@@ -100,9 +100,7 @@ function Right_Part({ product }) {
                         <ul>
                             <table>
                                 <tr>
-                                    <td><a style={{ color: "#486EEF", textDecoration: "none" }} href="">AnkitTech</a></td>
-                                    {/* Change required in below line to correct widht of 4*    */}
-                                    <td><Button style={{ height: "15px", maxwidth: "27px", backgroundColor: "#486EEF", color: "white", borderRadius: "2rem", fontSize: "0.6rem", fontWeight: "600" }} endIcon={<StarOutlinedIcon style={{ marginLeft: "-6px", fontSize: "0.7rem", color: "white" }} />}> 4.4</Button></td>
+                                    <td><a style={{ color: "#486EEF", textDecoration: "none" }} href="">{Seller}</a></td>
                                 </tr>
                             </table>
                             <li startIcon={<HelpOutlineIcon />}>

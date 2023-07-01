@@ -17,7 +17,7 @@ export default function OrderProgresSteeper({step}) {
       <Stepper activeStep={step-1} alternativeLabel>
         {steps.map((label) => (
           <Step  key={label}>
-            <StepLabel>{label}</StepLabel>
+            <StepLabel sx={{fontSize:"0.5em"}} >{label}</StepLabel>
           </Step>
         ))}
       </Stepper>

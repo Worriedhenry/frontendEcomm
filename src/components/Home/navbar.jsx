@@ -8,11 +8,15 @@ const StyBox =styled(Box)`
     justify-content:space-between;
     overflow-x:scroll;
 `
-const StyTypo= styled(Typography)`
-    font-size:14px;
-    font-weight:500;
+const StyTypo= styled(Typography)(({ theme }) => ({
+    fontSize:"small",
+    fontWeight:"500",
+    [theme.breakpoints.down('sm')]: {
+      fontSize:"0.5em", 
+    },
+  }));
+    
 
-`
 const InnerImgBox=styled(Box)`
     padding:12px 8px;
     text-align:center;
@@ -23,8 +27,8 @@ function data(info){
     return(
         <InnerImgBox style={{cursor:"pointer"}}>
             <ButtonBase onClick={()=>navigate("/search?query="+info.text)}>
-            <img src={info.url} style={{width:"64px" ,height:"64px"}}></img>
-            <StyTypo>{info.text}</StyTypo>
+            <img src={info.url} style={{height:"6vw"}}></img>
+            <StyTypo >{info.text}</StyTypo>
             </ButtonBase>
         </InnerImgBox>
     )

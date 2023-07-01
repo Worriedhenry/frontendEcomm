@@ -4,17 +4,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Logo from "../Flip-Logo.jpg";
 import WhySell from "../WhySell.png"
-
-
-
 import Container from '@mui/material/Container';
 import { Link } from '@mui/material';
 function SellerRegister(){
-
-
-  
-
-
     return (
         <div>
           <div>

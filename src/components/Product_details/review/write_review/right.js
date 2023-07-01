@@ -34,7 +34,7 @@ function Right() {
             });
         setTimeout(() => {
             navigate("/viewproduct/" + ProductId)
-        }, 1000);
+        }, 3000);
     }
 
     return (

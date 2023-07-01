@@ -11,6 +11,7 @@ function Details(){
     const ProductId=useParams().productId
     const [Product,setProduct]=useState(false)
     const [InCart,setInCart]=useState(false)
+    const [Seller,setSeller]=useState("Untitled")
 
     useEffect(()=>{
         axios
@@ -19,6 +20,7 @@ function Details(){
             console.log(res.data)
             setProduct(res.data?.data)
             setInCart(res.data?.InCart)
+            setSeller(res.data?.Seller)
           } )
           .catch(err => console.error(err));
     },[ProductId])
@@ -30,7 +32,7 @@ function Details(){
                 <Left_part product={Product} InCart={InCart} setInCart={setInCart} />
             </Grid>
             <Grid item md={3} lg={7} sm={12} xs={12} style={{marginTop:"15px"}}>
-                <Right_Part product={Product}  />
+                <Right_Part product={Product} Seller={Seller} />
             </Grid>
         </Grid>
         </div>

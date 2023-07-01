@@ -2,9 +2,16 @@
 import React from "react"
 import Carousel from "react-multi-carousel"
 import 'react-multi-carousel/lib/styles.css'
-import { style } from "@mui/system"
 import { useNavigate } from "react-router-dom"
+import { Box , ButtonBase, styled ,Typography } from '@mui/material';
 
+const StyTypo= styled(Typography)(({ theme }) => ({
+    fontSize:"small",
+    fontWeight:"500",
+    [theme.breakpoints.down('sm')]: {
+      fontSize:"0.5em", 
+    },
+  }));
 function Data1(props){
     const navigate=useNavigate()
     return (
@@ -14,9 +21,9 @@ function Data1(props){
                 <img src={props.url} style={{height:"10vw"}} />
             </div>
             <div  style={{textAlign:"center"}}>
-                <p class="truncate" style={{fontWeight:"999" ,color:"black",fontSize:"small"}}>{props.title.shortTitle}</p>
-                <p class="truncate" style={{color:"green",fontSize:"small"}}>{props.price.offer}</p>
-                <p class="truncate" style={{color:"grey",fontSize:"small"}}>{props.title.company}</p>
+                <StyTypo class="truncate" style={{fontWeight:"999" ,color:"black"}}>{props.title.shortTitle}</StyTypo>
+                <StyTypo class="truncate" style={{color:"green"}}>{props.price.offer}</StyTypo>
+                <StyTypo class="truncate" style={{color:"grey"}}>{props.title.company}</StyTypo>
             </div>
         </div>
     )

@@ -6,7 +6,6 @@ import { Box , styled } from '@mui/material';
 
 const Image=styled('img')({
     width:"100%",
-    height:"220px",
     marginTop:"8px",
     marginBottom:"6px"
 })

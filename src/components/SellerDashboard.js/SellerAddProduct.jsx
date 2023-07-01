@@ -10,7 +10,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import {CheckBox, ExpandMoreOutlined} from "@mui/icons-material"
 import { useParams } from "react-router-dom";
 export default function SellerAddProduct() {
-
+  const SellerId=useParams().SellerId
   const [Category, setCategory] = useState('');
   const [Files,setFiles]=useState(Array(5).fill(null))
   const [age, setAge] = useState()
@@ -24,9 +24,6 @@ export default function SellerAddProduct() {
   const [ProductMRP,setProductMRP]=useState(0)
   const [ProductSellingPrice,setProductSellingPrice]=useState(0)
   const [ProductQuantity,setProductQuantity]=useState('')
-  const [ProductWarrantySummary,setProductWarrantySummary]=useState("")
-  const [ProductServiceType,setProductServiceType]=useState("")
-  const [ProductServiceCover,setProductServiceCover]=useState("")
   const [SnackbarControl,setSnackbarControl]=useState(false)
   const [EmptyFeildError,setEmptyFeildError]=useState("")
   const [specifications, setSpecifications] = useState([{ key: "", value: "" }]);
@@ -132,21 +129,20 @@ export default function SellerAddProduct() {
       setSnackbarControl(true)
       return 
     }
-    if (ProductWarrantySummary.length===0 || ProductServiceType.length===0 || ProductServiceCover.length===0){
-      setEmptyFeildError("Fill the warranty details")
-      setSnackbarControl(true)
-      return 
-    }
     const UploadLoad={
       Category:age,
       ProductTitle:ProductName,
       ProductDescription,
-      ProductMRP,ProductSellingPrice,ProductQuantity,ProductBrandName,ProductWarrantySummary,specifications, ProductServiceCover,ProductServiceType,ImagePublicID
-    }
-    let UploadResponse=await axios.post("http://localhost:3001/AddProductToCatlog/"+useParams().SellerId,UploadLoad)
+      ProductMRP,ProductSellingPrice,ProductQuantity,ProductBrandName,specifications,ImagePublicID
+    }    
+    try{
+    let UploadResponse=await axios.post("http://localhost:3001/AddProductToCatlog/"+SellerId,UploadLoad)
     if (UploadResponse.status==200){
       setUploadImageSnackbarControl(true)
     }
+  }catch(error){
+    console.log(error);
+  }
   }
   const RenderBoxes = () => {
     const [UploadingImage,setUploadingImage]=useState(false)
@@ -222,6 +218,7 @@ export default function SellerAddProduct() {
     if(e.target.value.length<=30){
       setDescriptionHelper("Minimum required is 30 words. Please Enter More")
     }
+    setProductDescription(e.target.value)
   }
 
 
@@ -332,33 +329,7 @@ export default function SellerAddProduct() {
         )}
         <IconButton onClick={handleAddSpecification}><AddIcon/></IconButton>
       </AccordionDetails>
-    </Accordion>
-    <Accordion>
-      <AccordionSummary
-      expandIcon={<ExpandMoreOutlined />}
-      >
-        <Typography required >Add Service details</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-      <h5>* fields are required</h5>
-        <div style={InputFeildsStyle}>
-          <label>Warranty Summary *</label>
-          <br></br>
-          <TextField onChange={(e)=>setProductWarrantySummary(e.target.value)} value={ProductWarrantySummary} size="small" />
-        </div>
-        <div style={InputFeildsStyle}>
-          <label>Service Type *</label>
-          <br/>
-          <TextField onChange={(e)=>setProductServiceType(e.target.value)} required value={ProductServiceType} size="small" />
-        </div>
-        <div style={InputFeildsStyle}>
-          <label>Covered in Warranty*</label>
-          <br />
-          <TextField required onChange={(e)=>setProductServiceCover(e.target.value)} value={ProductServiceCover} size="small" helperText="What parts are covered in Warranty" />
-        </div>
-      </AccordionDetails>
-    </Accordion>
-  
+    </Accordion>  
     <Button color="success" onClick={AddProduct} variant="contained">Add to Catalog</Button>
     <Snackbar
     open={SnackbarControl}

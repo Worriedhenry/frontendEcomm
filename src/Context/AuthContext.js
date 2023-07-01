@@ -42,7 +42,7 @@ const AuthState= ({children})=>{
         }
     },[])
     return (
-        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext,Loading,setLoading,SellerValid}}>
+        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext,Loading,setLoading,SellerValid,setSellerValid}}>
             {children}
         </AuthContext.Provider>
     )

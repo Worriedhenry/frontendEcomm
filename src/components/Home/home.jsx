@@ -13,6 +13,7 @@ function home(){
         <Nav />
         <Mycarousel />
         <FullProductWindow />
+        <FullProductWindow />
         </>
     )
 }

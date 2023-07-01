@@ -43,7 +43,7 @@ export default function SellerInfo() {
         if (LastName.length === 0) {
             return setErrorSnackbarControl(true)
         }
-        let result = await axios.put("http://localhost:3001/admin/updateSellerName/" + params.UserId, { FirstName, LastName })
+        let result = await axios.put("http://localhost:3001/admin/updateSellerName/" + params.SellerId, { FirstName, LastName })
         if (result.status === 200) {
             setSuccessSnackbarControl(true)
         }
@@ -103,8 +103,8 @@ export default function SellerInfo() {
             <h3 style={{ paddingTop: "2vw" }}><b>Seller Information</b>
                 <Button onClick={() => setPersonalData(!PersonalData)}>{PersonalData ? "cancle" : "edit"}</Button>
             </h3>
-            <TextField variant="filled" size="small" sx={{ mr: 7 }} label={PersonalData && "First name"} disabled={PersonalData ? false : true} value={FirstName} />
-            <TextField variant="filled" size="small" sx={{ mr: 7}} label={PersonalData && "Last name"} disabled={PersonalData ? false : true} value={LastName} />
+            <TextField variant="filled" size="small" sx={{ mr: 7 }} onChange={(e)=>setFirstName(e.target.value)} label={PersonalData && "First name"} disabled={PersonalData ? false : true} value={FirstName} />
+            <TextField variant="filled" size="small" onChange={(e)=>setLastName(e.target.value)} sx={{ mr: 7}} label={PersonalData && "Last name"} disabled={PersonalData ? false : true} value={LastName} />
             {PersonalData && <Button variant="contained" onClick={UpdateSellerName}>Save</Button>}
             <p></p>
             <h3 style={{ fontSize: "18px", paddingTop: "15px" }}>Buisness Information

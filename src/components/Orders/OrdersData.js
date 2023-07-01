@@ -1,8 +1,7 @@
-import {Button, Rating,Skeleton, Stack} from "@mui/material"
+import {Button, Rating,Skeleton, Stack,styled} from "@mui/material"
 import Data from "../../data_resourses/nav_data"
 import { AuthContext } from "../../Context/AuthContext";
 import React, { useEffect, useState } from 'react'
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -10,7 +9,14 @@ import axios from "axios"
 import { Img } from "../UtlityComponents/StyledImage";
 import EmptyCart from "./empty cart.png"
 import { useNavigate } from "react-router-dom";
-
+const StyTypo= styled(Typography)(({ theme }) => ({
+  fontSize:"medium",
+  fontWeight:"500",
+  fontWeight: "bold",
+  [theme.breakpoints.down('sm')]: {
+    fontSize:"0.5em", 
+  },
+}));
 const Arr=Array(2).fill(2)
 
 function CatlogCard({Order}) {
@@ -33,25 +39,25 @@ function CatlogCard({Order}) {
       >
         <Grid container mt={1}>
             <Grid  md={10}  container>
-              <Grid md={3} item>
+              <Grid md={3} xs={3} item>
                 <Img loading="lazy" src={Order.OrderedItemImage}></Img>
               </Grid>
-              <Grid md={5} ml={2} item>
-              <Typography gutterBottom style={{ fontWeight: "bold" }} variant="h1.heading" component="div">
+              <Grid md={5} ml={2} xs={5} item>
+              <StyTypo className="truncate" gutterBottom style={{ fontWeight: "bold"}} variant="h1.heading" component="div">
                 {Order.OrderedItemName}
-              </Typography>
+              </StyTypo>
               </Grid>
-              <Grid item md={2}>
-              <Typography style={{ fontWeight: "bold" }} variant="h3.heading">
+              <Grid item md={2} xs={2}>
+              <StyTypo style={{ fontWeight: "bold" }} variant="h3.heading">
                 &#8377;{Order.OrderValue.$numberDecimal}
-              </Typography>
+              </StyTypo>
               </Grid>
             </Grid>
-            <Grid md={2} item container>
-              {new Date()-new Date(Order.createdAt)<24*60*60*1000 && "Ordered"}
-              {new Date()-new Date(Order.createdAt)<48*60*60*1000  && new Date()-new Date(Order.createdAt)>24*60*60*1000  && "Shipped"}
-              {new Date()-new Date(Order.createdAt)<72*60*60*1000  && new Date()-new Date(Order.createdAt)>48*60*60*1000 && "On the Way"}
-              {new Date()-new Date(Order.createdAt)>72*60*60*1000 && "Ordered"}
+            <Grid md={2} item container sx={{fontSize:"small" }}>
+              {new Date()-new Date(Order.createdAt)<24*60*60*1000 && <StyTypo>Ordered</StyTypo>}
+              {new Date()-new Date(Order.createdAt)<48*60*60*1000  && new Date()-new Date(Order.createdAt)>24*60*60*1000  && <StyTypo>"Shipped"</StyTypo>}
+              {new Date()-new Date(Order.createdAt)<72*60*60*1000  && new Date()-new Date(Order.createdAt)>48*60*60*1000 && <StyTypo>On the Way"</StyTypo>}
+              {new Date()-new Date(Order.createdAt)>72*60*60*1000 && <StyTypo>"Ordered"</StyTypo>}
             </Grid>
         </Grid>
       </Paper>

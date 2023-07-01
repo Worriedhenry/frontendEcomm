@@ -38,12 +38,12 @@ export default function ProFileLeft(props) {
             <Button
                 onClick={()=> navigate("/account/orders/"+Valid)}
                 
-                style={{ width: "100%", height: "6vh", paddingRight: "30%" ,textTransform:"none"}}>
+                style={{ width: "100%", paddingRight: "30%" ,textTransform:"none"}}>
                 <StyledTypography>My Orders</StyledTypography>
             </Button>
             <Button
                 onClick={()=> navigate("/viewcart/"+Valid)}
-                style={{ width: "100%", height: "6vh", paddingRight: "30%" ,textTransform:"none"}}>
+                style={{ width: "100%", paddingRight: "30%" ,textTransform:"none"}}>
                 <StyledTypography>My Cart</StyledTypography>
             </Button>
 
