@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Divider, TextField, Snackbar, Alert } from "@mui/material"
-import { useParams } from "react-router-dom"
+import { useParams,useNavigate } from "react-router-dom"
 import axios from "axios";
 export default function SellerInfo() {
     const [PersonalData, setPersonalData] = useState(false)
@@ -18,7 +18,7 @@ export default function SellerInfo() {
     const [GSTINValue, setGSTINValue] = useState("")
     const [SuccessSnackbarControl, setSuccessSnackbarControl] = useState(false)
     const [ErrorSnackbarControl, setErrorSnackbarControl] = useState(false)
-
+    const navigate=useNavigate()
     const params = useParams()
     useEffect(() => {
         console.log(params.SellerId)
@@ -94,7 +94,10 @@ export default function SellerInfo() {
             setSuccessSnackbarControl(true)
         }
     }
-
+    const HnadleSellerLogOut=()=>{
+        localStorage.removeItem("SellerToken")
+        navigate("/seller/login")
+    }
     return <div style={{ width: "100%", background: "white", padding: "2vw" }}>
         <div className="Profile-TopRight">
             <h3 style={{ paddingTop: "2vw" }}><b>Seller Information</b>
@@ -131,15 +134,15 @@ export default function SellerInfo() {
         </div>
         <div className="Profile-TopBottom">
             <h3>FAQ</h3>
-            <h5>What happens when I update my email address (or mobile number)?</h5>
-            <p>Your login email id (or mobile number) changes, likewise. You'll receive all your account related communication on your updated email address (or mobile number).</p>
+            <h5 style={{fontSize:"small"}}>What happens when I update my email address (or mobile number)?</h5>
+            <p style={{fontSize:"small"}}>Your login email id (or mobile number) changes, likewise. You'll receive all your account related communication on your updated email address (or mobile number).</p>
             <h5>When will my Flipkart account be updated with the new email address (or mobile number)?</h5>
-            <p>It happens as soon as you confirm the verification code sent to your email (or mobile) and save the changes.</p>
+            <p style={{fontSize:"small"}}>It happens as soon as you confirm the verification code sent to your email (or mobile) and save the changes.</p>
             <h5>What happens to my existing Flipkart account when I update my email address (or mobile number)?</h5>
-            <p>Updating your email address (or mobile number) doesn't invalidate your account. Your account remains fully functional. You'll continue seeing your Order history, saved information and personal details.</p>
-            <h5>Does my Seller account get affected when I update my email address?</h5>
-            <p>Flipkart has a 'single sign-on' policy. Any changes will reflect in your Seller account also. </p>
-            <Button>Deactivate Account</Button>
+            <p style={{fontSize:"small"}}>Updating your email address (or mobile number) doesn't invalidate your account. Your account remains fully functional. You'll continue seeing your Order history, saved information and personal details.</p>
+            <h5 >Does my Seller account get affected when I update my email address?</h5>
+            <p style={{fontSize:"small"}}>Flipkart has a 'single sign-on' policy. Any changes will reflect in your Seller account also. </p>
+            <Button onClick={HnadleSellerLogOut}>Logout</Button>
         </div>
         <Snackbar
             open={ErrorSnackbarControl}

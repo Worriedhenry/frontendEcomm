@@ -3,11 +3,40 @@ import { TextField, Button, Grid, Container, Typography, useMediaQuery } from '@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup'
+import { yupResolver } from "@hookform/resolvers/yup"
 const SellerLogin = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const isMediumOrLargeScreen = useMediaQuery('(min-width: 960px)');
   const navigate=useNavigate()
+
+  const schema = yup.object().shape({
+    phoneNumber: yup.number().test(val => val.toString().length === 10),
+    Password: yup.string().required()
+  })
+
+  const handleLogin = (event) => {
+    console.log("hi")
+    console.log(event.phoneNumber)
+    axios
+      .post("http://localhost:3001/seller/login", { PhoneNumber: event.phoneNumber, Password: password })
+      .then(res => {
+        if (res.status === 200) {
+          localStorage.setItem("SellerToken", res.data.token)
+          navigate("/admin/info/" + res.data.sellerId)
+        }
+      })
+      .catch(err => console.error(err));
+    console.log('Phone Number:', phoneNumber);
+    console.log('Password:', password);
+  };
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+  })
+
+
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
   };
@@ -16,24 +45,9 @@ const SellerLogin = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios
-      .post("http://localhost:3001/seller/login", { PhoneNumber:phoneNumber, Password:password })
-      .then(res => {
-        if (res.status === 200) {
-          localStorage.setItem("SellerToken",res.data.token)
-          navigate("/admin/info/"+res.data.sellerId)
-        }
-      })
-      .catch(err => console.error(err));
-    console.log('Phone Number:', phoneNumber);
-    console.log('Password:', password);
-  };
-
   return (
     <Container maxWidth="sm" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <Grid container spacing={2} direction="column" alignItems="center">
           <Grid item xs={12}>
             <Typography variant="h5">Login</Typography>
@@ -43,8 +57,9 @@ const SellerLogin = () => {
               label="Phone Number"
               variant="outlined"
               fullWidth
-              value={phoneNumber}
               onChange={handlePhoneNumberChange}
+              {...register("phoneNumber")}
+              helperText={errors.phoneNumber && <Typography style={{ fontSize: "1em", color: "red" }}>*Please enter valid 10 digit phone no. *</Typography>}
             />
           </Grid>
           <Grid item xs={12} style={{ width: "100%" }}>
@@ -53,7 +68,7 @@ const SellerLogin = () => {
               type="password"
               variant="outlined"
               fullWidth
-              value={password}
+              {...register("Password")}
               onChange={handlePasswordChange}
             />
           </Grid>
@@ -68,6 +83,7 @@ const SellerLogin = () => {
                 type="submit"
                 variant="contained"
                 color="primary"
+                onClick={handleSubmit(handleLogin)}
               >
                 Login
               </Button>

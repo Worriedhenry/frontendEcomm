@@ -38,8 +38,8 @@ function App() {
                   <Route path='/account/:UserId' element={<ProtectedRoutes Component={<Profile page={0} />} />} />
                   <Route path='/account/orders/:UserId' element={<ProtectedRoutes Component={<Orders />} />} />
                   <Route path='/viewcart/:UserId' element={<ProtectedRoutes Component={<Cart />} />} />
-                  <Route path='/viewproduct/:productId' element={<ProtectedRoutes Component={<Details />} />} />
-                  <Route path='/search' element={<ProtectedRoutes Component={<SearchProduct />} />} />
+                  <Route path='/viewproduct/:productId' element={<><NavBar/><Details /><Footer/></>} />
+                  <Route path='/search' element={<><NavBar/><SearchProduct /><Footer/></>} />
                   <Route path='/writereview/:ProductId' element={<ProtectedRoutes Component={<Write_review />} />} />
                   <Route path="/seller/register" element={<SellerRegister />} />
                   <Route path='/payment' element={<ProtectedRoutes Component={<Payment />} />} />

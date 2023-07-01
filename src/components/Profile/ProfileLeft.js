@@ -34,26 +34,17 @@ export default function ProFileLeft(props) {
     },[]);
 
     return <div className="Profile-left">
-        <div className="profile-Greeting" >
-            <div
-                style={{ display: "flex" }}
-            >
-                <img style={{ width: "50px", borderRadius: "50%",height:"50px", marginRight: "1.5vw" }} src={Logo} />
-                <div>
-                    <p
-                        style={{ margin: "0px" }}
-                    ><b >Hello,</b></p>
-                    <p style={{ margin: "0px" }}><b>{Name}</b></p>
-                </div>
-            </div>
-
-        </div>
         <div className="Profile-Offers">
             <Button
                 onClick={()=> navigate("/account/orders/"+Valid)}
                 
-                style={{ width: "100%", height: "4vw", paddingRight: "30%" ,textTransform:"none"}}>
+                style={{ width: "100%", height: "6vh", paddingRight: "30%" ,textTransform:"none"}}>
                 <StyledTypography>My Orders</StyledTypography>
+            </Button>
+            <Button
+                onClick={()=> navigate("/viewcart/"+Valid)}
+                style={{ width: "100%", height: "6vh", paddingRight: "30%" ,textTransform:"none"}}>
+                <StyledTypography>My Cart</StyledTypography>
             </Button>
 
             <Divider />

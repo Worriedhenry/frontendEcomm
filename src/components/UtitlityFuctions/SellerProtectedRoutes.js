@@ -7,7 +7,7 @@ import Home from "../Home/home"
 import { Backdrop, CircularProgress } from "@mui/material"
 export default function SellerProtectedRoutes({ Component }) {
     const navigate = useNavigate()
-    const { Valid, Loading, SellerValid } = React.useContext(AuthContext)
+    const { Loading, SellerValid } = React.useContext(AuthContext)
     if (Loading) {
         return (
             <Backdrop
@@ -19,6 +19,7 @@ export default function SellerProtectedRoutes({ Component }) {
     )
     }
     if(!SellerValid){
+        navigate("/")
         return (
             <><NavBar /><Home/><Footer /></>
         )

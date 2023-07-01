@@ -1,21 +1,15 @@
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import StarsIcon from '@mui/icons-material/Stars';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import CopyrightIcon from '@mui/icons-material/Copyright';
 import React from 'react';
 import { Button } from '@mui/material';
-
+import { useNavigate } from 'react-router-dom';
 export default function(){
 
 
 
     return <div className='Footer'>
-        <Button startIcon={<ShoppingBagIcon/>}>Become a seller</Button>
-        <Button startIcon={<StarsIcon/>}>Advertise</Button>
-        <Button startIcon={<CardGiftcardIcon/>}>Gift</Button>
-        <Button startIcon={<HelpOutlineIcon/>}>Help Center</Button>
+        <Button onClick={()=>navigate("/seller/register")} startIcon={<ShoppingBagIcon/>}>Become a seller</Button>
         <Button startIcon={<ShoppingBagIcon/>}>2013-2023 CumKart</Button>
+        <Button onClick={()=>window.open('https://github.com/Worriedhenry/frontendEcomm', '_blank')} >Contribute Code</Button>
 
     </div>
 }

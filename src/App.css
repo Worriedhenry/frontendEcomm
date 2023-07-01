@@ -142,6 +142,7 @@ paper-button {
   height: 7vh;
   background-color: #172337;
   width: 100%;
+  z-index: -1;
   display: flex;
   justify-content: space-around;
 }

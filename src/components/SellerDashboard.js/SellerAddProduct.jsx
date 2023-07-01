@@ -30,7 +30,7 @@ export default function SellerAddProduct() {
   const [SnackbarControl,setSnackbarControl]=useState(false)
   const [EmptyFeildError,setEmptyFeildError]=useState("")
   const [specifications, setSpecifications] = useState([{ key: "", value: "" }]);
-  
+  const [DescriptionHelper,setDescriptionHelper]=useState("Add a detailed explanation of your product at least of 30 words")
 
   const handleAddSpecification = () => {
     if (specifications.length < 12) {
@@ -218,6 +218,12 @@ export default function SellerAddProduct() {
 
 
 
+  const HandleDescriptionChange=(e)=>{
+    if(e.target.value.length<=30){
+      setDescriptionHelper("Minimum required is 30 words. Please Enter More")
+    }
+  }
+
 
   return <div style={{ width: "100%", background: "white", padding: "2vw" }}>
     <h2>Add Product</h2>
@@ -247,11 +253,11 @@ export default function SellerAddProduct() {
     <div style={InputFeildsStyle}>
     <label>Product Name *</label>
     <br></br>
-    <TextField required value={ProductName} onChange={(e)=>setProductName(e.target.value)} size="small" m={3} helperText="Product name must not excced 30 words" />
+    <TextField required value={ProductName} onChange={(e)=>setProductName(e.target.value.slice(0,30))} size="small" m={3} helperText="Product name must not excced 30 words" />
     </div>
     <div style={InputFeildsStyle}>
     <label>Product Description *</label>
-    <TextField required value={ProductDescription} onChange={(e)=>setProductDescription(e.target.value)} size="small"  helperText={"Add a detailed explanation of your product at least of 30 words"} multiline fullWidth />
+    <TextField required value={ProductDescription} onChange={(e)=>HandleDescriptionChange(e)} size="small"  helperText={DescriptionHelper} multiline fullWidth />
     </div>
     <div style={InputFeildsStyle}>
     <label>Brand Name *</label>
@@ -352,8 +358,7 @@ export default function SellerAddProduct() {
         </div>
       </AccordionDetails>
     </Accordion>
-    
-    <FormControlLabel  control={<CheckBox />} label="I hearby agree to flipkart Term and conditions and confirm the above information is true as of my knowledge"></FormControlLabel>
+  
     <Button color="success" onClick={AddProduct} variant="contained">Add to Catalog</Button>
     <Snackbar
     open={SnackbarControl}

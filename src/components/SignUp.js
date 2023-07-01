@@ -1,4 +1,4 @@
-import { Button, Grid, IconButton, TextField } from '@mui/material';
+import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import React from 'react'
 import { useState } from 'react';
 import { AuthContext } from "../Context/AuthContext";
@@ -7,6 +7,11 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Logo from "./Flip-Logo.jpg"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form'; 
+import * as yup from 'yup'
+import {yupResolver} from "@hookform/resolvers/yup"
+
+
 export default function SignUp() {
 
   const Context=React.useContext(AuthContext)
@@ -24,18 +29,15 @@ export default function SignUp() {
     setLoginOpen(true)
   }
 
+  const schema=yup.object().shape({
+    PhoneEmail:yup.string().min(10).max(10).required(),
+    Password :yup.string().min(3).required()
+  })
+  const {register ,handleSubmit ,formState:{errors}}=useForm({
+    resolver:yupResolver(schema)
+  })
+
   const HandleSign=async ()=>{
-    if (PhoneEmail==""){
-      setPhoneEmailHelperText("Field cannot be empty")
-      return
-  }
-  if (Password==""){
-      setPasswordHelperText("Field cannot be empty")
-      setPhoneEmailHelperText("")
-      return
-  }
-  setPasswordHelperText("")
-  setPhoneEmailHelperText("")
     const Payload={
       Phone:PhoneEmail,Password
     }
@@ -69,16 +71,21 @@ export default function SignUp() {
       variant='filled'
       style={{width:"80%"}}
       label="Phone Number"
+      {...register("PhoneEmail")}
+
       onChange={(e)=>setPhoneEmail(e.target.value)}
-      helperText={PhoneEmailHelperText}
+      helperText={errors.PhoneEmail && <Typography style={{color:"red" ,fontSize:"1em"}}>Please enter a valid 10 digit Phone no.</Typography>}
       />
       <TextField 
       variant='filled'
       label="Enter Password"
-      helperText={PasswordHelperText}
+      helperText={errors.Password && <Typography style={{color:"red" ,fontSize:"1em"}}> Password must be of more than 3 length</Typography> }
       onChange={(e)=>setPassword(e.target.value)}
       style={{width:"80%"}}
       type={showPass ? "password" : "text"}
+
+      {...register("Password")}
+
       InputProps={{
       endAdornment:
           <IconButton onClick={()=>{setShowPass(!showPass)}} >
@@ -88,7 +95,7 @@ export default function SignUp() {
       }}
             />
             </div>
-      <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} onClick={HandleSign} variant="filled">SignUp</Button>
+      <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} onClick={handleSubmit(HandleSign)} variant="filled">SignUp</Button>
 
       <p style={{color:"#047BD5",cursor:"pointer"}} onClick={HandleDialogChange}><b>Already an customer ? Login</b></p>
     </Grid></Grid>

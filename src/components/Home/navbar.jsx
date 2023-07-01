@@ -1,6 +1,6 @@
 import { Box , ButtonBase, styled ,Typography } from '@mui/material';
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 import Data from "../../data_resourses/nav_data"
 const StyBox =styled(Box)`
     display:flex;
@@ -19,14 +19,14 @@ const InnerImgBox=styled(Box)`
 
 `
 function data(info){
+    const navigate=useNavigate()
     return(
         <InnerImgBox style={{cursor:"pointer"}}>
-            <ButtonBase>
+            <ButtonBase onClick={()=>navigate("/search?query="+info.text)}>
             <img src={info.url} style={{width:"64px" ,height:"64px"}}></img>
             <StyTypo>{info.text}</StyTypo>
             </ButtonBase>
         </InnerImgBox>
-
     )
 }
 function nav(){

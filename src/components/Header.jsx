@@ -29,7 +29,7 @@ export default function NavBar() {
     };
     const LogOut = () => {
         console.log("hi")
-        localStorage.clear()
+        localStorage.removeItem("token")
         location.reload()
         navigate("/")
     };
@@ -127,10 +127,8 @@ export default function NavBar() {
                     <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={HandleProfile} >Profile</MenuItem>
                     <Divider />
                     <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={HandleOrders} >Orders</MenuItem>
-                    <Divider />
-                    <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} >Whislist</MenuItem>
-                    <Divider />
-                    <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={LogOut}>Logout</MenuItem>
+                    {Valid &&<><Divider />
+                     <MenuItem className="Headers-MenuItem" style={{ color: "#047BD5", width: '15vw' }} onClick={LogOut}>Logout</MenuItem></>}
                 </Menu>
             </div>
             <Button style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} className="Header-Cart" onClick={HandleCart} startIcon={<ShoppingCartIcon />} >Cart</Button>

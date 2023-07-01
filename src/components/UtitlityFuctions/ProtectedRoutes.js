@@ -20,6 +20,7 @@ export default function ProtectedRoutes({ Component }) {
     )
     }
     if(!Valid){
+        navigate("/")
         return (
             <><NavBar /><Home/><Footer /></>
         )

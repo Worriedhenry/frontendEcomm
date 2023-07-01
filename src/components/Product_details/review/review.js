@@ -1,12 +1,28 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Box, IconButton, InputAdornment, TextField ,Typography ,Grid, Table ,styled, Button ,} from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import Answer from "./Answer";
 import Write_review from "./write_review/write_review";
 import { useNavigate } from "react-router-dom"
-
+import { useState } from "react";
+import axios from "axios"
+import { PropaneSharp } from "@mui/icons-material";
 function Reviews({ProductId}){
-    
+    const [showmoreReviews, setshowmoreReviews] = useState(3);
+    const [Reviews,setReviews]=useState(false)
+    const handleLoadMore = () => {
+        setVisibleComments(Reviews.length);
+      };
+    useEffect(()=>{
+        axios
+          .get("http://localhost:3001/review/getreview/"+ProductId)
+          .then(res => {
+            if(res.status==200){
+                setReviews(res.data)
+            }
+          })
+          .catch(err => console.error(err));
+    },[ProductId])
     const navigate=useNavigate()
     return(
         
@@ -34,7 +50,13 @@ function Reviews({ProductId}){
                     </div>
 
                 </div>
-                <Answer/>
+                {Reviews && Reviews.length<=3 && Reviews.map((review)=>
+                    <Answer props={review} />
+                )}
+                {Reviews && Reviews.length>3 && Reviews.slice(0,3).map((review)=>
+                <Answer props={review} />
+                )}
+                {Reviews.length>3 && <p style={{fontSize:"small"}}>and {Reviews.length-3} more ...</p>}
                 
             </div>
         </div>

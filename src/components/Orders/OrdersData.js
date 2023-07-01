@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import axios from "axios"
 import { Img } from "../UtlityComponents/StyledImage";
 import EmptyCart from "./empty cart.png"
-
 import { useNavigate } from "react-router-dom";
 
 const Arr=Array(2).fill(2)
@@ -103,6 +102,7 @@ export default function OrdersRight(props){
         <CatlogCard Order={order} />
       </React.Fragment>
         )}
+        { Orders && Orders.length==0&&  <Img  src={EmptyCart} /> }
 
 
     </div>

@@ -43,8 +43,8 @@ function CatlogCard({ product }) {
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm={9} container>
-          <Grid item xs sm={8} sx={{maxHeight:"45vh"}} container direction="column" spacing={2}>
-              <Typography gutterBottom sx={{fontSize:"large"}} variant="h3.heading" component="h2">
+          <Grid item xs sm={8} sx={{maxHeight:"45vh"}} direction="column" container>
+              <Typography className='truncate' gutterBottom sx={{fontSize:"large"}} variant="h3.heading" component="h2">
                 {product.ProductTitle}
               </Typography>
               <Typography className='TypoGraphy-Truncate' sx={{fontSize:"larger"}} variant="subtitle2" gutterBottom>
@@ -61,7 +61,7 @@ function CatlogCard({ product }) {
                   &nbsp; {product.ProductNumericalRating} rating & {product.reviews.length} reviews
                 </div>
               </Typography>
-              <Typography className='TypoGraphy-Truncate' sx={{height:"45%"}} variant='subtitle2' component="h5">
+              <Typography className='truncate' variant='subtitle2' component="h5">
                 {product.ProductDescription}
               </Typography>
           </Grid>

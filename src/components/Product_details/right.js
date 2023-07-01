@@ -39,7 +39,7 @@ function Right_Part({ product }) {
                         <div style={{ width: "28px", height: "15px", borderRadius: "0.2rem", color: "white", display: "inline" }}>
                             <Rating value={product.ProductNumericalRating} readOnly size="small"></Rating>
                         </div>
-                        &nbsp; 52 Rating&nbsp; & {product.reviews} Reviews &nbsp;
+                        &nbsp; {product.Rating} Rating&nbsp; & {product.reviews.length} Reviews &nbsp;
                     </span>}
                 </div>
                 {!product && <>
@@ -90,9 +90,6 @@ function Right_Part({ product }) {
                     <td style={{ color: "#878787", fontWeight: "600" }}>Delivery</td>
                     <td style={{ fontWeight: "600" }}>
                         <ul>
-                            <TextField label="Enter Delivery Pincode" variant="standard" style={{ fontWeight: "600", fontSize: "0.8rem", color: "blue", verticalAlign: "baseline" }} /><a href="#" style={{ textDecoration: "none", color: "#486EEF", marginLeft: "10px", verticalAlign: "baseline" }}>Check</a>
-                        </ul>
-                        <ul style={{ marginTop: "-10px" }}>
                             <p style={{ fontWeight: "600", fontSize: "0.8rem" }} > Delivery by {date.toDateString()} | {product.ProductSellingPrice > 499 ? "Free" : "₹40"} </p>
                         </ul>
                     </td>
@@ -128,8 +125,8 @@ function Right_Part({ product }) {
                     <td style={{ fontSize: "14px", marginTop: "-15px", verticalAlign: "baseline" }}> &nbsp;{product.ProductDescription}</td>
                 </tr>
             </Table>}
-            <Specs />
-            <Reviews ProductId={product._id} />
+            <Specs product={product} />
+            {product._id && <Reviews ProductId={product._id} />}
             <Ques />
 
         </>
