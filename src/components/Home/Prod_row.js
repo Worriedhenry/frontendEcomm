@@ -16,7 +16,7 @@ function Data1(props){
     const navigate=useNavigate()
     return (
 
-        <div onClick={()=> navigate("/viewproduct")} style={{ minWidth:"20vw" }}>
+        <div onClick={()=> navigate("/viewproduct/"+props.id)} style={{ minWidth:"20vw" }}>
             <div style={{alignContent:"center"}}>
                 <img src={props.url} style={{height:"10vw"}} />
             </div>

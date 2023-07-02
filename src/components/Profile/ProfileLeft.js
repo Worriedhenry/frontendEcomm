@@ -35,26 +35,23 @@ export default function ProFileLeft(props) {
 
     return <div className="Profile-left">
         <div className="Profile-Offers">
-            <Button
-                onClick={()=> navigate("/account/orders/"+Valid)}
-                
-                style={{ width: "100%", paddingRight: "30%" ,textTransform:"none"}}>
-                <StyledTypography>My Orders</StyledTypography>
-            </Button>
-            <Button
-                onClick={()=> navigate("/viewcart/"+Valid)}
-                style={{ width: "100%", paddingRight: "30%" ,textTransform:"none"}}>
-                <StyledTypography>My Cart</StyledTypography>
-            </Button>
 
             <Divider />
             <Button onClick={(e)=>UpdateP(e.target.value)} value={0} style={{ width: "100%", paddingRight: "30%",backgroundColor:Page==0? "#29a0ed":"white",textTransform:"none",color:Page==0 ?"white" : "black",textAlign:"left" }}>
                 <StyledTypography>My Profile</StyledTypography>    
             </Button>
-            <Button value={1} onClick={(e)=>UpdateP(e.target.value)} style={{ width: "100%", paddingRight: "30%",backgroundColor:Page==1? "#29a0ed":"white" ,textTransform:"none",color:Page==1 ?"white" : "black" }}>
-            <StyledTypography>ManageAddress</StyledTypography> 
-            </Button>
 
+            <Button
+                onClick={()=> navigate("/account/orders/"+Valid)}
+                style={{ width: "100%", paddingRight: "30%" ,textTransform:"none",color:"black"}}>
+                <StyledTypography>My Orders</StyledTypography>
+            </Button>
+            <Button
+                onClick={()=> navigate("/viewcart/"+Valid)}
+                style={{ width: "100%", paddingRight: "30%" ,textTransform:"none",
+                color:"black"}}>
+                <StyledTypography>My Cart</StyledTypography>
+            </Button>
 
 
         </div>

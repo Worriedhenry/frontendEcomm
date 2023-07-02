@@ -13,7 +13,8 @@ const Toydata = [
             cost: 625,
             discount: '47%',
             offer:"Upto 70% off"
-        }
+        },
+        id:"64a111064c81d287f23840be"
     },
     { 
         key: 'product2',
@@ -28,7 +29,8 @@ const Toydata = [
             cost: 899,
             discount: '40%',
             offer:"Upto 80% off"
-        }
+        },
+        id:"64a111064c81d287f23840be"
 
  
     },
@@ -46,7 +48,8 @@ const Toydata = [
             discount: '66%',
             offer:"Upto 60% off"
 
-        }
+        },
+        id:"64a111064c81d287f23840be"
  
     },
     { 
@@ -60,7 +63,8 @@ const Toydata = [
         price: {
             offer:"Upto 75% off"
 
-        }
+        },
+        id:"64a111064c81d287f23840be"
     },
     { 
         key: 'product5',
@@ -73,7 +77,8 @@ const Toydata = [
         price: {
             offer:"Upto 80% off"
 
-        }
+        },
+        id:"64a111064c81d287f23840be"
     },
     { 
         key: 'product6',
@@ -86,7 +91,8 @@ const Toydata = [
         price: {
             offer:"Upto 60% off"
 
-        }
+        },
+        id:"64a111064c81d287f23840be"
     },
     { 
         key: 'product7',
@@ -101,7 +107,8 @@ const Toydata = [
             offer:"Upto 70% off"
 
 
-        }
+        },
+        id:"64a111064c81d287f23840be"
 
     }
 ];

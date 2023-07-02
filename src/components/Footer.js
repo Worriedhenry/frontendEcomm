@@ -2,14 +2,15 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import React from 'react';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { StyledTypography, InputPaper, StyledButton, GridItem } from "./UtlityComponents/HeaderStyledElement";
 export default function(){
 
 
 
     return <div className='Footer'>
-        <Button onClick={()=>navigate("/seller/register")} startIcon={<ShoppingBagIcon/>}>Become a seller</Button>
-        <Button startIcon={<ShoppingBagIcon/>}>2013-2023 CumKart</Button>
-        <Button onClick={()=>window.open('https://github.com/Worriedhenry/frontendEcomm', '_blank')} >Contribute Code</Button>
+        <StyledButton onClick={()=>navigate("/seller/register")} startIcon={<ShoppingBagIcon/>}>< StyledTypography>Become a selle</StyledTypography></StyledButton>
+        <StyledButton startIcon={<ShoppingBagIcon/>}>< StyledTypography>2022-2023 Flipkart</StyledTypography></StyledButton>
+        <StyledButton onClick={()=>window.open('https://github.com/Worriedhenry/frontendEcomm', '_blank')} >< StyledTypography>Contribute</StyledTypography></StyledButton>
 
     </div>
 }

@@ -1,52 +1,55 @@
 const ElectronicData = [
     
     { 
-        key: 'product1',
-        url: 'https://rukminim1.flixcart.com/image/200/200/xif0q/cases-covers/back-cover/j/i/6/mycas-black-vv-y35-qcase-original-imagj87uwxzarrzk.jpeg?q=70', 
+        key: 'Back Cover for realme C33 ',
+        url: 'http://res.cloudinary.com/drmxw2cme/image/upload/v1688273972/fftqktyvwrafraujkqbc.jpg', 
         title: {
-            shortTitle: 'Plain cases and covers',
-            company:""
+            shortTitle: 'Back Cover',
+            company:"Realme"
 
         }, 
         price: {
-            mrp: 1195,
-            cost: 625,
-            discount: '47%',
-            offer:"Just ₹99"
-        }
+            mrp: 259,
+            cost: 191,
+            discount: '25%',
+            offer:"Just ₹191"
+        },
+        id:"64a1045e4c81d287f2384049"
     },
     { 
-        key: 'product2',
-        url: 'https://rukminim1.flixcart.com/image/200/200/kx50gi80/projector/r/9/p/zeb-pixa-play-12-5-6-dobly-audio-led-projector-zebronics-original-imag9z3yujqmzqt4.jpeg?q=70', 
+        key: 'SONY Bravia Smart Google LED',
+        url: 'http://res.cloudinary.com/drmxw2cme/image/upload/v1688281930/hfezoboslr90dztg5vkq.jpg', 
         title: {
-            shortTitle: 'Projectors',
+            shortTitle: 'LED',
             company:"zebronics"
    
         },
         price: {
-            mrp: 1499,
-            cost: 899,
+            mrp: 99900,
+            cost: 59699,
             discount: '40%',
-            offer:"From ₹6999"
-        }
+            offer:"From ₹59699"
+        },
+        id:"64a124de4c81d287f238412b"
 
  
     },
     { 
-        key: 'product3',
-        url: 'https://rukminim1.flixcart.com/image/200/200/kql8sy80/monitor/o/u/h/l27e-30-27-66bekac2in-lenovo-original-imag4kkqzmu4pkan.jpeg?q=70', 
+        key: 'Hp smart Printer',
+        url: 'http://res.cloudinary.com/drmxw2cme/image/upload/v1688276407/qnkewtef3zpsxhjdii9u.jpg', 
         title: {
-            shortTitle: 'Moniters',
-            company:"Samsung "
+            shortTitle: 'Hp smart Printer',
+            company:"Hp "
 
         }, 
         price: {
-            mrp: 499,
-            cost: 166,
-            discount: '66%',
-            offer:"From ₹8279"
+            mrp: 17599,
+            cost: 16799,
+            discount: '16%',
+            offer:"From ₹16799"
 
         }
+        ,id:"64a10dcb4c81d287f2384092"
  
     },
     { 
@@ -60,7 +63,8 @@ const ElectronicData = [
         price: {
             offer:"From ₹49999"
 
-        }
+        },
+        id:"64a1045e4c81d287f2384049"
     },
     { 
         key: 'product5',
@@ -73,7 +77,8 @@ const ElectronicData = [
         price: {
             offer:"From ₹899"
 
-        }
+        },
+        id:"64a1045e4c81d287f2384049"
     },
     { 
         key: 'product6',
@@ -86,7 +91,8 @@ const ElectronicData = [
         price: {
             offer:"From ₹1249"
 
-        }
+        },
+        id:"64a1045e4c81d287f2384049"
     },
     { 
         key: 'product7',
@@ -102,6 +108,7 @@ const ElectronicData = [
 
 
         }
+        ,id:"64a1045e4c81d287f2384049"
 
     }
 ];
