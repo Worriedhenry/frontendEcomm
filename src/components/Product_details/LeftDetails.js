@@ -7,6 +7,7 @@ import { CartContext } from "../../Context/CartContext";
 import { useParams,useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Img } from "../UtlityComponents/StyledImage";
+import BackendLink from "../../data_resourses/BackendLink";
 const LittleImagesStyle = {
     padding: "0px", width: "49px", border: " 1px solid #f0f0f0",
     marginBottom: "17px"
@@ -27,7 +28,7 @@ function Left_part({ product,InCart,setInCart }) {
         }
         else{
         if(Valid){
-        axios.put("http://localhost:3001/AddProductToCart/" + ProductId.productId+"/"+Valid, { user: localStorage.getItem("user") }).then((res) => {
+        axios.put(BackendLink+"/AddProductToCart/" + ProductId.productId+"/"+Valid, { user: localStorage.getItem("user") }).then((res) => {
             setInCart(true)
         })}
         else{

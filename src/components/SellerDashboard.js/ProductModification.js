@@ -9,6 +9,7 @@ import {useParams,useNavigate} from "react-router-dom"
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { CheckBox, ExpandMoreOutlined } from "@mui/icons-material"
+import BackendLink from "../../data_resourses/BackendLink";
 
 
 
@@ -34,7 +35,7 @@ export default function SellerEditProduct() {
   const navigate=useNavigate()
   React.useEffect(()=>{
     axios
-      .get("http://localhost:3001/seller/getproduct/"+ProductId)
+      .get(BackendLink+"/seller/getproduct/"+ProductId)
       .then(res =>{
         if(res.status!==200){
           setEmptyFeildError("En error Occured")
@@ -105,7 +106,7 @@ export default function SellerEditProduct() {
       ProductDescription,
       ProductMRP, ProductSellingPrice, ProductQuantity, ProductBrandName, specifications
     }
-    let UploadResponse = await axios.put("http://localhost:3001/product/updateProduct/"+ProductId, UpdateLoad)
+    let UploadResponse = await axios.put(BackendLink+"/product/updateProduct/"+ProductId, UpdateLoad)
     if (UploadResponse.status == 200) {
       setUploadImageSnackbarControl(true)
     }

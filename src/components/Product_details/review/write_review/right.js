@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Rating, Snackbar, Button, Alert } from "@mui/material"
 import { useParams, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../../../Context/AuthContext"
+import BackendLink from "../../../../data_resourses/BackendLink"
 import axios from "axios"
 function Right() {
     const [RatingValue, setRatingValue] = useState(null);
@@ -16,7 +17,7 @@ function Right() {
     const handleSubmit = () => {
         console.log(ProductId)
         axios
-            .post("http://localhost:3001/review/addNew/" + ProductId, { Rating: RatingValue, Description, Title, ProductId, CustomerId: Valid })
+            .post(BackendLink+"/review/addNew/" + ProductId, { Rating: RatingValue, Description, Title, ProductId, CustomerId: Valid })
             .then(res => {
                 if (res.status === 200) {
                     setSuccessSnackbarControl(true)

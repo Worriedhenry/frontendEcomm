@@ -12,12 +12,12 @@ import axios from "axios";
 import { CartContext } from "../../Context/CartContext";
 import { Img } from "../UtlityComponents/StyledImage";
 import emptycart from "./emptycart.png"
+import BackendLink from "../../data_resourses/BackendLink";
 // import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-
 function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }){
   const {UserId}=useParams()
   const RemoveProductFromCart = async () => {
-    let res = await axios.put("http://backendecommerce-production-6417.up.railway.app/RemoveProductFromCart/"+ UserId+"/"+ product._id, { user: localStorage.getItem("user") })
+    let res = await axios.put(BackendLink+"/RemoveProductFromCart/"+ UserId+"/"+ product._id, { user: localStorage.getItem("user") })
     setAllProductSellingPrice(AllSellingPrice - product.ProductSellingPrice)
     setAllProductMRP(AllProductMRP - product.ProductMRP)
     setCart(res.data)
@@ -56,7 +56,7 @@ function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSell
               </div>
             </Grid>
             <Grid item spacing={2}>
-              <Button variant='contained' size='small'>Save For Later</Button>
+              {/* <Button variant='contained' size='small'>Save For Later</Button> */}
               {/* <Button variant='contained' size='small' color="error">Remove</Button> */}
               <Button style={{ margin: "5px" }} onClick={RemoveProductFromCart} size="small" variant='contained' color="error">  Remove</Button>
             </Grid>
@@ -87,7 +87,7 @@ export default function Cart() {
     var CountMRPPrice = 0
     var ProductIds=[]
     axios
-      .get("http://localhost:3001/getcart/"+params.UserId)
+      .get(BackendLink+"/getcart/"+params.UserId)
       .then(res => {
         setCart(res.data)
 

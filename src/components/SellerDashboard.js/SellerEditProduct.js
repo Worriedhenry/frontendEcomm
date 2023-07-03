@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import axios from "axios";
 import {CheckBox, ExpandMoreOutlined} from "@mui/icons-material"
+import BackendLink from "../../data_resourses/BackendLink";
 
 export default function AddProduct() {
 
@@ -77,7 +78,7 @@ export default function AddProduct() {
       try {        
         const formData = new FormData();
         formData.append('file', imageFile);
-        const response = await axios.post('http://localhost:3001/upload', formData);
+        const response = await axios.post(BackendLink+'/upload', formData);
         const UpdatedImageId=[...ImagePublicID]
         UpdatedImageId[index]=response.data.result
         setImagePublicId(UpdatedImageId)
@@ -94,7 +95,7 @@ export default function AddProduct() {
     const updatedFiles=[...Files]
     const updatePublicImage=[...ImagePublicID]
     try{
-    let result = await axios.post("http://localhost:3001/deleteimage",ImagePublicID[index])
+    let result = await axios.post(BackendLink+"/deleteimage",ImagePublicID[index])
   } catch(e){
     console.log(e)
   }
@@ -137,7 +138,7 @@ export default function AddProduct() {
       ProductDescription,
       ProductMRP,ProductSellingPrice,ProductQuantity,ProductBrandName,ProductColor,ProductHeight,ProductLength,ProductModelName,ProductModelNumber,ProductWidth,ProductWarrantySummary,ProductWeight,ProductServiceCover,ProductServiceType,ImagePublicID
     }
-    let UploadResponse=await axios.post("http://localhost:3001/AddProductToCatlog",UploadLoad)
+    let UploadResponse=await axios.post(BackendLink+"/AddProductToCatlog",UploadLoad)
   }
   const renderBoxes = () => {
     return boxes.map((box, index) => (

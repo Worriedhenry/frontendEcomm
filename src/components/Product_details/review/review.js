@@ -5,8 +5,8 @@ import Answer from "./Answer";
 import Write_review from "./write_review/write_review";
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
+import BackendLink from "../../../data_resourses/BackendLink";
 import axios from "axios"
-import { PropaneSharp } from "@mui/icons-material";
 function Reviews({ProductId}){
     const [showmoreReviews, setshowmoreReviews] = useState(3);
     const [Reviews,setReviews]=useState(false)
@@ -15,7 +15,7 @@ function Reviews({ProductId}){
       };
     useEffect(()=>{
         axios
-          .get("http://localhost:3001/review/getreview/"+ProductId)
+          .get(BackendLink+"/review/getreview/"+ProductId)
           .then(res => {
             if(res.status==200){
                 setReviews(res.data)

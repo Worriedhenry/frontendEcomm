@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react"
 import { Grid ,Skeleton,Stack} from "@mui/material";
 import { Img } from "../UtlityComponents/StyledImage";
-
+import BackendLink from "../../data_resourses/BackendLink";
 import OrderProgresSteeper from "./ProgressSteeper";
 import axios from "axios"
 import { useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ export default function OrderDetails(){
     const OrderId=useParams().OrderId
     useEffect(()=>{
       axios
-        .get("http://localhost:3001/orders/getone/"+OrderId)
+        .get(BackendLink+"/orders/getone/"+OrderId)
         .then(res =>{
             setOrders(res.data)
             var currDate=new Date()

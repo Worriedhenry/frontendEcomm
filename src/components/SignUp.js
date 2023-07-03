@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'; 
 import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup"
+import BackendLink from '../data_resourses/BackendLink';
 
 
 export default function SignUp() {
@@ -41,7 +42,7 @@ export default function SignUp() {
     const Payload={
       Phone:PhoneEmail,Password
     }
-    let result=await axios.post("http://localhost:3001/register",Payload)
+    let result=await axios.post(BackendLink+"/register",Payload)
       if(result.status===200){
           localStorage.setItem("token",result.data.token)
           navigate("/account/"+result.data.id)

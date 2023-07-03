@@ -9,6 +9,7 @@ import Favorite from '@mui/icons-material/Favorite';
 import ButtonBase from '@mui/material/ButtonBase';
 import axios from 'axios';
 import { useSearchParams ,useNavigate} from "react-router-dom"
+import BackendLink from '../../data_resourses/BackendLink';
 
 const StyTypo= styled(Typography)(({ theme }) => ({
     fontSize:"small",
@@ -115,7 +116,7 @@ export default function SearchProduct() {
   
   useEffect(() => {
     axios
-      .get("http://localhost:3001/search?query=" + searchParams.get("query"))
+      .get(BackendLink+"/search?query=" + searchParams.get("query"))
       .then(res => {
         setSearchResult(res.data.SearchResult)
           
