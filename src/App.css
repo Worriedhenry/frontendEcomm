@@ -235,6 +235,9 @@ input {
   .SellermanageproductDiv{
     min-height:89vh
   }
+  .navbardiv{
+    min-width: 89vh;
+  }
 }
 
 
@@ -261,6 +264,9 @@ input {
   .SellermanageproductDiv{
     min-height:88vh
   }
+  .navbardiv{
+    min-width: 88vh;
+  }
 }
 
 
@@ -286,6 +292,9 @@ input {
   }
   .SellermanageproductDiv{
     min-height:87vh
+  }
+  .navbardiv{
+    min-width: 87vh;
   }
   
 }

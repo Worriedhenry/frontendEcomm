@@ -36,7 +36,7 @@ function data(info){
 function nav(){
 
     return(
-        <StyBox>
+        <StyBox className='navbardiv'>
             {
                 Data.map(data)
             }
