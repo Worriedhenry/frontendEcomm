@@ -238,6 +238,9 @@ input {
   .navbardiv{
     min-width: 89vh;
   }
+  .taglineContent{
+    font-size: 0.8rem;
+  }
 }
 
 

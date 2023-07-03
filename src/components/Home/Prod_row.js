@@ -36,7 +36,7 @@ function ProductWindow(info){
             <div style={{display:"flex" ,backgroundColor:"white",alignItems:"center"}}>
                 <div style={{minWidth:"25vw",position:"sticky",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
                     <div style={{height:"40px",marginBottom:"40px"}}>
-                        <h3 style={{fontFamily:"poppins", textAlign:"center"}}>{info.tagline}</h3>
+                        <h3 className="taglineContent" style={{fontFamily:"poppins", textAlign:"center" ,}}>{info.tagline}</h3>
                     </div>
                     <img src={info.url} style={{width:"100%"}} />
                 </div >
