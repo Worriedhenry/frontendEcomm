@@ -226,6 +226,10 @@ input {
   .manageaddressDiv{
     height: 89vh;
   }
+  .selleraddproductDiv{
+    height: 89vh;
+
+  }
 }
 
 
@@ -245,6 +249,10 @@ input {
   .manageaddressDiv{
     height: 88vh;
   }
+  .selleraddproductDiv{
+    height: 88vh;
+
+  }
 }
 
 
@@ -263,6 +271,10 @@ input {
   }
   .manageaddressDiv{
     height: 87vh;
+  }
+  .selleraddproductDiv{
+    height: 87vh;
+
   }
   
 }
