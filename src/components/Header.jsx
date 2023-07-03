@@ -29,7 +29,6 @@ export default function NavBar() {
         }
     };
     const LogOut = () => {
-        console.log("hi")
         localStorage.removeItem("token")
         location.reload()
         navigate("/")
@@ -46,7 +45,6 @@ export default function NavBar() {
         }
     }
     const handleSellerClick=()=>{
-        console.log(SellerValid)
         if(SellerValid){
             navigate("/admin/info/"+SellerValid)
         }
