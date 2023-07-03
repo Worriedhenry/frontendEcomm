@@ -114,7 +114,7 @@ export default function SellerCatlog() {
       })
       .catch(err => console.error(err));
   }, [])
-  return <div style={{ width: "100%", background: "white", padding: "2vw" }}>
+  return <div className='SellermanageproductDiv' style={{ width: "100%", background: "white", padding: "2vw" }}>
     <div style={{ display: "flex", justifyContent: "space-between" }}><h3>My Catlog</h3><Tooltip title="Refresh"><IconButton ><RefreshIcon /></IconButton></Tooltip></div>
     <Divider />
     {LoaderControl && <div style={{ width: "100%", height: "60%", display: "flex", justifyContent: "center", alignItems: "center" }}><CircularProgress /></div>}

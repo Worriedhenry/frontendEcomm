@@ -16,7 +16,7 @@ import BackendLink from '../data_resourses/BackendLink';
 export default function SignUp() {
 
   const Context=React.useContext(AuthContext)
-  const {LoginOpen,setLoginOpen,SignOpen,setSignOpen}=Context
+  const {LoginOpen,setLoginOpen,SignOpen,setSignOpen,Valid ,setValid}=Context
   let [showPass, setShowPass] = useState(true);
   const [PhoneEmail,setPhoneEmail]=useState("")
   const [Password,setPassword]=useState("")
@@ -45,10 +45,14 @@ export default function SignUp() {
     let result=await axios.post(BackendLink+"/register",Payload)
       if(result.status===200){
           localStorage.setItem("token",result.data.token)
+          setValid(result.data.id)
           navigate("/account/"+result.data.id)
       }
       else if(result.status==302){
         setError("Phone/Email/Password is incorrect! Please try again")
+      }
+      else if(result.status===202){
+        setError("User is Already registered")
       }
       else{
         setError("An unknown error occured on our side , please try again")

@@ -186,6 +186,9 @@ input {
     display: none;
   }
 }
+
+
+
 @media (max-width: 600px) {
   .Header-Cart{
     display: none !important;
@@ -212,7 +215,7 @@ input {
 
 @media (max-width :600px ) {
   .sellerloginDiv{
-    height: 89vh;
+    min-height: 89vh;
   }
   .sellerRegisterHeader{
     height: 8vw;
@@ -221,21 +224,23 @@ input {
     height: 6vw;
   }
   .Orders-Right{
-    height: 89vh;
+    min-height: 89vh;
   }
   .manageaddressDiv{
-    height: 89vh;
+    min-height: 89vh;
   }
   .selleraddproductDiv{
-    height: 89vh;
-
+    min-height: 89vh;
+  }
+  .SellermanageproductDiv{
+    min-height:89vh
   }
 }
 
 
 @media only screen and (min-width: 600px ) and (max-width :768px )  {
   .sellerloginDiv{
-    height: 88vh;
+    min-height: 88vh;
   }
   .sellerRegisterHeader{
     height: 6vw;
@@ -244,21 +249,24 @@ input {
     height: 5vw;
   }
   .Orders-Right{
-    height: 88vh;
+    min-height: 88vh;
   }
   .manageaddressDiv{
-    height: 88vh;
+    min-height: 88vh;
   }
   .selleraddproductDiv{
-    height: 88vh;
+    min-height: 88vh;
 
+  }
+  .SellermanageproductDiv{
+    min-height:88vh
   }
 }
 
 
 @media (min-width :768px ) {
   .sellerloginDiv{
-    height: 87vh;
+    min-height: 87vh;
   }
   .sellerRegisterHeader{
     height: 4vw;
@@ -267,14 +275,17 @@ input {
     height: 4vw;
   }
   .Orders-Right{
-    height: 87vh;
+    min-height: 87vh;
   }
   .manageaddressDiv{
-    height: 87vh;
+    min-height: 87vh;
   }
   .selleraddproductDiv{
-    height: 87vh;
+    min-height: 87vh;
 
+  }
+  .SellermanageproductDiv{
+    min-height:87vh
   }
   
 }

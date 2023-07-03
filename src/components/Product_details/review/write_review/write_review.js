@@ -1,5 +1,5 @@
 import React from "react"
-import Left from "./Left"
+import Left from "./left"
 import Right from "./right"
 import { Grid } from "@mui/material";
 function Write_review(){
