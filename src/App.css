@@ -264,8 +264,11 @@ input {
   .manageaddressDiv{
     height: 87vh;
   }
+  
 }
-
+.OrdersFilter{
+  display: none;
+}
 .sellerRegisterHeader img:hover {
   cursor: pointer;
 }

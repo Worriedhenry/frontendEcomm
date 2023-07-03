@@ -9,6 +9,7 @@ import LoginDialog from "./UtlityComponents/LoginDialog";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import SignDialog from "./UtlityComponents/SignDialog";
+import { SnackbarContext } from "../Context/SnackbarContext";
 import { StyledTypography, InputPaper, StyledButton, GridItem } from "./UtlityComponents/HeaderStyledElement";
 
 export default function NavBar() {
@@ -72,6 +73,7 @@ export default function NavBar() {
         }
     }
 
+
     return <GridItem justifyContent="center" container style={{ display: "flex", background: "#047BD5", alignItems: "center", width: "100%", position: "sticky", zIndex: "100", top: "0px" }}>
         <Grid item container justifyContent="space-around" spacing={1} alignItems="center" xs={8} sm={6} md={6} direction="row">
             <Grid item sm={3} xs={3} md={2}>
@@ -107,7 +109,7 @@ export default function NavBar() {
             </Grid>
         </Grid>
         <Grid item md={4} xs={4} sm={4} style={{ width: "fitContent", display: "flex", justifyContent: "space-around" }}>
-            <Button sx={{ fontSize: 10 }} size="small" style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} onClick={handleSellerClick} ><StyledTypography>Become a Seller</StyledTypography></Button>
+            <Button sx={{ fontSize: 10 }} size="small" style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} onClick={handleSellerClick} ><StyledTypography>{SellerValid?"Seller DashBoard":"Become a Seller"}</StyledTypography></Button>
             <div>
                 <Button style={{ color: "white", textTransform: 'none', fontWeight: "bold" }} endIcon={!Open ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
                     onClick={handleClick}

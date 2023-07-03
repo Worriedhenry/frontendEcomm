@@ -50,6 +50,7 @@ const ElectronicData = [
             offer:"Upto 40% off"
 
         }
+        ,id:"64a10dcb4c81d287f2384092"
  
     },
     { 
@@ -64,7 +65,8 @@ const ElectronicData = [
         price: {
             offer:"From ₹49999"
 
-        }
+        },
+        id:"64a1045e4c81d287f2384049"
     },
     { 
         key: 'product5',
@@ -78,7 +80,8 @@ const ElectronicData = [
         price: {
             offer:"From ₹899"
 
-        }
+        },
+        id:"64a1045e4c81d287f2384049"
     },
     // { 
     //     key: 'product6',
@@ -108,6 +111,7 @@ const ElectronicData = [
 
 
         }
+        ,id:"64a1045e4c81d287f2384049"
 
     }
 ];
