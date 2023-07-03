@@ -23,16 +23,6 @@ export default function OrdersFilter(props) {
         setFilterParams({ query: updatedCheckboxes.join(',') });
       };
 
-    // useEffect(() => {
-    //     axios
-    //       .get("http://localhost:3001/search?query=" + FilterParams.get("query"))
-    //       .then(res => {
-    //         setFilterResult(res.data.FilterResult)
-              
-    //       })
-    //       .catch(err => console.error(err));
-    //   }, [FilterParams, setFilterParams])   
-
 
 
     return <div className="OrdersFilter">

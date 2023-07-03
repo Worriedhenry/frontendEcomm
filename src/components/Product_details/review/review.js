@@ -7,12 +7,22 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import BackendLink from "../../../data_resourses/BackendLink";
 import axios from "axios"
+import { AuthContext } from "../../../Context/AuthContext";
 function Reviews({ProductId}){
     const [showmoreReviews, setshowmoreReviews] = useState(3);
+    const {Valid,setLoginOpen}=React.useContext(AuthContext)
     const [Reviews,setReviews]=useState(false)
     const handleLoadMore = () => {
         setVisibleComments(Reviews.length);
       };
+    const HandleRateProduct=()=>{
+        if(Valid){
+            navigate("/writereview/"+ProductId)
+        }
+        else{
+            setLoginOpen(true)
+        }
+    }
     useEffect(()=>{
         axios
           .get(BackendLink+"/review/getreview/"+ProductId)
@@ -33,7 +43,7 @@ function Reviews({ProductId}){
                         
                         <div style={{fontSize:"24px" ,fontWeight:"550" ,padding:"24px 0 0 24px"}}> Review & Ratings</div>
                         
-                        <div onClick={()=> navigate("/writereview/"+ProductId)} style={{textAlign:"right" ,boxSizing:"border-box"}}>
+                        <div onClick={HandleRateProduct} style={{textAlign:"right" ,boxSizing:"border-box"}}>
                             <button type="submit" style={{boxShadow:"0 1px 2px 0 rgba(0,0,0,.26)" ,border:"none",cursor:"pointer" ,color:"#212121",fontSize:"14px" ,padding:"16px 36px" ,margin:"18px 18px 0 0"}}><span >Rate Product</span></button>
                         </div>
                     </div>
