@@ -6,9 +6,12 @@ import axios from "axios";
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup'
 import { yupResolver } from "@hookform/resolvers/yup"
+import { AuthContext } from '../../Context/AuthContext';
 const SellerLogin = () => {
+  const {sellerValid,setSellerValid}=React.useContext(AuthContext)
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+  const [error ,seterror]=useState("")
   const isMediumOrLargeScreen = useMediaQuery('(min-width: 960px)');
   const navigate=useNavigate()
 
@@ -24,7 +27,14 @@ const SellerLogin = () => {
       .then(res => {
         if (res.status === 200) {
           localStorage.setItem("SellerToken", res.data.token)
+          setSellerValid(res.data.sellerId)
           navigate("/admin/info/" + res.data.sellerId)
+        }
+        else{
+          seterror(res.data.message)
+          setTimeout(() => {
+            seterror("")
+          }, 3000);
         }
       })
       .catch(err => console.error(err));
@@ -85,6 +95,7 @@ const SellerLogin = () => {
               >
                 Login
               </Button>
+              <Typography color="error" style={{marginTop:"2vh"}} >{error}</Typography>
             </Grid>
           </Grid>
         </Grid>

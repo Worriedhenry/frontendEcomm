@@ -1,4 +1,3 @@
-
 import React from "react"
 import Carousel from "react-multi-carousel"
 import 'react-multi-carousel/lib/styles.css'
@@ -16,14 +15,14 @@ function Data1(props){
     const navigate=useNavigate()
     return (
 
-        <div onClick={()=> navigate("/viewproduct" +"/"+props._id)} style={{ minWidth:"20vw" }}>
+        <div onClick={()=> navigate("/viewproduct/"+props._id)} style={{ minWidth:"20vw" }}>
             <div style={{alignContent:"center"}}>
                 <img src={props.url} style={{height:"10vw"}} />
             </div>
             <div  style={{textAlign:"center"}}>
-                <StyTypo class="truncate" style={{fontWeight:"999" ,color:"black"}}>{props.title.shortTitle}</StyTypo>
-                <StyTypo class="truncate" style={{color:"green"}}>{props.price.offer}</StyTypo>
-                <StyTypo class="truncate" style={{color:"grey"}}>{props.title.company}</StyTypo>
+                <StyTypo className="truncate" style={{fontWeight:"999" ,color:"black"}}>{props.title.shortTitle}</StyTypo>
+                <StyTypo className="truncate" style={{color:"green"}}>{props.price.offer}</StyTypo>
+                <StyTypo className="truncate" style={{color:"grey"}}>{props.title.company}</StyTypo>
             </div>
         </div>
     )

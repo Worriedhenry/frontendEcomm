@@ -17,7 +17,7 @@ import emptycart from "./emptycart.png"
 function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }){
   const {UserId}=useParams()
   const RemoveProductFromCart = async () => {
-    let res = await axios.put("http://localhost:3001/RemoveProductFromCart/"+ UserId+"/"+ product._id, { user: localStorage.getItem("user") })
+    let res = await axios.put("http://backendecommerce-production-6417.up.railway.app/RemoveProductFromCart/"+ UserId+"/"+ product._id, { user: localStorage.getItem("user") })
     setAllProductSellingPrice(AllSellingPrice - product.ProductSellingPrice)
     setAllProductMRP(AllProductMRP - product.ProductMRP)
     setCart(res.data)

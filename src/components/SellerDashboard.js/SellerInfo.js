@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Divider, TextField, Snackbar, Alert } from "@mui/material"
 import { useParams,useNavigate } from "react-router-dom"
+import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
 export default function SellerInfo() {
     const [PersonalData, setPersonalData] = useState(false)
     const [BuisnessData, setBuisnessData] = useState(false)
     const [EmailData, setEmailData] = useState(false)
     const [GSTIN, setGSTIN] = useState(false)
+    const {setSellerValid}=React.useContext(AuthContext)
     const [PhoneData, setPhoneData] = useState(false)
     const [BuisnessLocation, setBuisnessLocation] = useState(false)
     const [FirstName, setFirstName] = useState("")
@@ -96,6 +98,7 @@ export default function SellerInfo() {
     }
     const HnadleSellerLogOut=()=>{
         localStorage.removeItem("SellerToken")
+        setSellerValid(false)
         navigate("/seller/login")
     }
     return <div style={{ width: "100%", background: "white", padding: "2vw" }}>
