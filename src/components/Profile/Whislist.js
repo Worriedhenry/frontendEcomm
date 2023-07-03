@@ -1,8 +1,6 @@
 import { Divider,Button } from '@mui/material'
 import React,{useEffect, useState} from 'react'
-import Data from '../../data_resourses/nav_data'
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
-import axios from 'axios';
 const WishStyle={
     width:"860px",
     height:"127px",

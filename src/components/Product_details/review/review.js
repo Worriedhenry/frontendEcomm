@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import BackendLink from "../../../data_resourses/BackendLink";
 import axios from "axios"
-import { PropaneSharp } from "@mui/icons-material";
 function Reviews({ProductId}){
     const [showmoreReviews, setshowmoreReviews] = useState(3);
     const [Reviews,setReviews]=useState(false)
