@@ -19,19 +19,15 @@ export default function OrderDetails(){
             var OrderDate=new Date(order.createdAt)
             if(currDate-OrderDate<day){
                 setStep(1)
-                console.log("1")
             }
             else if( currDate-OrderDate>day &&currDate-OrderDate<2*day ){
                 setStep(2)
-                console.log("2")
             }
             else if( currDate-OrderDate>2*day &&currDate-OrderDate<3*day ){
                 setStep(3)
-                console.log("3")
             }
             else{
                 setStep(4)
-                console.log("4")
             }
         } )
         .catch(err => console.error(err));

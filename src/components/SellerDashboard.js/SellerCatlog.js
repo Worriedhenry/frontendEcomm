@@ -103,7 +103,6 @@ export default function SellerCatlog() {
   const [EmptyFeildError,setEmptyFeildError]=useState("")
   const SellerId=useParams().SellerId
   useEffect(() => {
-    console.log(SellerId)
     axios
       .post(BackendLink+"/ProvideCatlog/"+SellerId)
       .then(res => {

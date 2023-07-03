@@ -69,7 +69,6 @@ export default function AddProduct() {
       setFiles(UpdatedFiles)
       updatedBoxes[index] = URL.createObjectURL(file);
       setBoxes(updatedBoxes);
-      console.log(updatedBoxes,UpdatedFiles)
     }
   };
   const handleUpload = async (index) => {

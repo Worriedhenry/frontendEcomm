@@ -34,7 +34,6 @@ export default function PersonalInfo(){
         axios
           .get(BackendLink+"/account/getuserInfo/"+params.UserId)
           .then(res => {
-            console.log(res.data)
             setFirstName(res?.data.FirstName)
             setLastName(res?.data.LastName)
             setEmail(res?.data.Email)

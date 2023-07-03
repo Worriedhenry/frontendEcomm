@@ -8,7 +8,6 @@ import { Backdrop, CircularProgress } from "@mui/material"
 export default function ProtectedRoutes({ Component }) {
     const navigate = useNavigate()
     const { Valid, Loading, setLoading,setLoginOpen } = React.useContext(AuthContext)
-    console.log(Valid)
     if (Loading) {
         return (
             <Backdrop

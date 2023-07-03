@@ -84,7 +84,6 @@ export default function SellerAddProduct() {
       setFiles(UpdatedFiles)
       updatedBoxes[index] = URL.createObjectURL(file);
       setBoxes(updatedBoxes);
-      console.log(updatedBoxes,UpdatedFiles)
     }
   };
   
@@ -160,7 +159,6 @@ export default function SellerAddProduct() {
           const UpdatedImageId=[...ImagePublicID]
           UpdatedImageId[index]=response.data.result
           setImagePublicId(UpdatedImageId)
-          console.log('Image uploaded successfully',UpdatedImageId);
           // Handle success response from the backend
         } catch (error) {
           console.error('Error uploading image', error);

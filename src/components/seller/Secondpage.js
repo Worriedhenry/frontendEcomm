@@ -27,12 +27,10 @@ export default function SecondPageSeller() {
   const {setSellerValid}=React.useContext(AuthContext)
   const navigate=useNavigate()
   const RegisterSeller=async ()=>{
-    console.log(Phone)
     const payload={
       Password,PhoneNumber:Phone,FirstName:Fname,LastName:Lname,Email:EmailId,StoreName,GSTIN,StoreLocation:Location
     }
     let response=await axios.post(BackendLink+"/seller/new",payload)
-    console.log(response)
     if(response.status===200){
       localStorage.setItem("SellerToken",response.data.token)
       setSellerValid(response.data.id)

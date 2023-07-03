@@ -24,7 +24,6 @@ export default function SellerInfo() {
     const navigate=useNavigate()
     const params = useParams()
     useEffect(() => {
-        console.log(params.SellerId)
         axios
             .get(BackendLink+"/admin/info/" + params.SellerId)
             .then(res => {
@@ -92,7 +91,6 @@ export default function SellerInfo() {
             return setErrorSnackbarControl(true)
         }
         let result = await axios.put(BackendLink+"/admin/updateStoreName/" + params.SellerId, { StoreName })
-        console.log(result)
         if (result.status === 200) {
             setSuccessSnackbarControl(true)
         }
