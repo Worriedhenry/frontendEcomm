@@ -9,6 +9,7 @@ import Logo from "./Flip-Logo.jpg"
 import axios from 'axios';
 import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup"
+import BackendLink from '../data_resourses/BackendLink';
 
 function Login() {
   let [showPass, setShowPass] = useState(true);
@@ -37,7 +38,7 @@ function Login() {
       Phone: PhoneEmail, Password
     }
     setError("Please Wait....")
-    let result = await axios.post("http://localhost:3001/login", PayLoad)
+    let result = await axios.post(BackendLink+"/login", PayLoad)
     if (result?.status === 200) {
       localStorage.setItem("token", result.data.token)
       setError("")

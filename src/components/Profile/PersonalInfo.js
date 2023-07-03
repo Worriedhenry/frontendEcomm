@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, styled, TextField ,Radio,FormControlLabel,RadioGroup,Snackbar,Alert} from "@mui/material"
 import axios from "axios";
 import {useParams} from "react-router-dom"
+import BackendLink from "../../data_resourses/BackendLink";
 const FlexDisplayStyle={
     display:"flex",
     flexWrap:"wrap"
@@ -31,7 +32,7 @@ export default function PersonalInfo(){
     const params=useParams()
     useEffect(()=>{
         axios
-          .get("http://localhost:3001/account/getuserInfo/"+params.UserId)
+          .get(BackendLink+"/account/getuserInfo/"+params.UserId)
           .then(res => {
             console.log(res.data)
             setFirstName(res?.data.FirstName)
@@ -49,7 +50,7 @@ export default function PersonalInfo(){
         if (LastName.length===0){
             return setErrorSnackbarControl(true)
         }
-        let result=await axios.put("http://localhost:3001/account/updateName/"+params.UserId,{FirstName,LastName})
+        let result=await axios.put(BackendLink+"/account/updateName/"+params.UserId,{FirstName,LastName})
         if (result.status===200){
             setSuccessSnackbarControl(true)
         }
@@ -58,7 +59,7 @@ export default function PersonalInfo(){
         if(Email.length===0){
             return setErrorSnackbarControl(true)
         }
-        let result=await axios.put("http://localhost:3001/account/updateEmail/"+params.UserId,{Email})
+        let result=await axios.put(BackendLink+"/account/updateEmail/"+params.UserId,{Email})
         if (result.status===200){
             setSuccessSnackbarControl(true)
         }
@@ -68,7 +69,7 @@ export default function PersonalInfo(){
         if(Phone.length===0){
             return setErrorSnackbarControl(true)
         }
-        let result=await axios.put("http://localhost:3001/account/updatePhone/"+params.UserId,{Phone})
+        let result=await axios.put(BackendLink+"/account/updatePhone/"+params.UserId,{Phone})
         if (result.status===200){
             setSuccessSnackbarControl(true)
         }

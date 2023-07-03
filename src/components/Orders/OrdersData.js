@@ -9,6 +9,7 @@ import axios from "axios"
 import { Img } from "../UtlityComponents/StyledImage";
 import EmptyCart from "./empty cart.png"
 import { useNavigate } from "react-router-dom";
+import BackendLink from "../../data_resourses/BackendLink";
 const StyTypo= styled(Typography)(({ theme }) => ({
   fontSize:"medium",
   fontWeight:"500",
@@ -82,7 +83,7 @@ export default function OrdersRight(props){
     // console.log(newQuery)
     useEffect(()=>{
       axios
-        .get("http://localhost:3001/orders/get/"+Valid)
+        .get(BackendLink+"/orders/get/"+Valid)
         .then(res =>{
           // const newdata=res.data.filter((element)=>{
           //   return newQuery.includes(element.OrderStatus)

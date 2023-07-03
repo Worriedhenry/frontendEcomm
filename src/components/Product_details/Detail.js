@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom"
 import Left_part from "./LeftDetails"
 import Right_Part from "./right"
 import axios from "axios";
+import BackendLink from "../../data_resourses/BackendLink";
 function Details(){
     const Context=React.useContext(AuthContext)
     const {Valid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext}=Context
@@ -14,8 +15,9 @@ function Details(){
     const [Seller,setSeller]=useState("Untitled")
 
     useEffect(()=>{
+        console.log(process.env,"hi")
         axios
-          .get("http://localhost:3001/getproduct/"+ProductId+"/"+Valid)
+          .get(BackendLink+"/getproduct/"+ProductId+"/"+Valid)
           .then(res =>{
             console.log(res.data)
             setProduct(res.data?.data)

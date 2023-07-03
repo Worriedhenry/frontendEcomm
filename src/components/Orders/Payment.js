@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackendLink from '../../data_resourses/BackendLink';
 import {
   FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Button, Typography, Box, Paper, MenuItem, Divider, Skeleton, Stack
 } from '@mui/material';
@@ -88,7 +89,7 @@ const Payment = () => {
       OrderImages.push(ele.ProductImages[0])
       OrderName.push(ele.ProductTitle)
     })
-    let res = await axios.post("http://localhost:3001/orders/new", { Name, Phone, CustomerId: Valid, OrderDestination: Address + ", " + Locality + ", " + City + ", " + " , Near " + Landmark + ", " + State + ", " + Pincode, AlternatePhone: Alternate, Ordereditem: OrderedId, OrderValue, OrderMRPvalue, OrderImages, OrderName })
+    let res = await axios.post(BackendLink+"/orders/new", { Name, Phone, CustomerId: Valid, OrderDestination: Address + ", " + Locality + ", " + City + ", " + " , Near " + Landmark + ", " + State + ", " + Pincode, AlternatePhone: Alternate, Ordereditem: OrderedId, OrderValue, OrderMRPvalue, OrderImages, OrderName })
     console.log(res)
     if (res.status == 200) {
       navigate("/ordersuccess")

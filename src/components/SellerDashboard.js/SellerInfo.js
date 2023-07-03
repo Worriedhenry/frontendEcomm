@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Button, Divider, TextField, Snackbar, Alert } from "@mui/material"
 import { useParams,useNavigate } from "react-router-dom"
+import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
+import BackendLink from "../../data_resourses/BackendLink";
 export default function SellerInfo() {
     const [PersonalData, setPersonalData] = useState(false)
     const [BuisnessData, setBuisnessData] = useState(false)
     const [EmailData, setEmailData] = useState(false)
     const [GSTIN, setGSTIN] = useState(false)
+    const {setSellerValid}=React.useContext(AuthContext)
     const [PhoneData, setPhoneData] = useState(false)
     const [BuisnessLocation, setBuisnessLocation] = useState(false)
     const [FirstName, setFirstName] = useState("")
@@ -23,7 +26,7 @@ export default function SellerInfo() {
     useEffect(() => {
         console.log(params.SellerId)
         axios
-            .get("http://localhost:3001/admin/info/" + params.SellerId)
+            .get(BackendLink+"/admin/info/" + params.SellerId)
             .then(res => {
                 setFirstName(res?.data.FirstName)
                 setLastName(res?.data.LastName)
@@ -43,7 +46,7 @@ export default function SellerInfo() {
         if (LastName.length === 0) {
             return setErrorSnackbarControl(true)
         }
-        let result = await axios.put("http://localhost:3001/admin/updateSellerName/" + params.SellerId, { FirstName, LastName })
+        let result = await axios.put(BackendLink+"/admin/updateSellerName/" + params.SellerId, { FirstName, LastName })
         if (result.status === 200) {
             setSuccessSnackbarControl(true)
         }
@@ -52,7 +55,7 @@ export default function SellerInfo() {
         if (Email.length === 0) {
             return setErrorSnackbarControl(true)
         }
-        let result = await axios.put("http://localhost:3001/admin/updateSellerEmail/" + params.SellerId, { Email })
+        let result = await axios.put(BackendLink+"/admin/updateSellerEmail/" + params.SellerId, { Email })
         if (result.status === 200) {
             setSuccessSnackbarControl(true)
         }
@@ -63,7 +66,7 @@ export default function SellerInfo() {
             return setErrorSnackbarControl(true)
         }
         try {
-            let result = await axios.put("http://localhost:3001/admin/updateSellerPhone/" + params.SellerId, { PhoneNumber: Phone })
+            let result = await axios.put(BackendLink+"/admin/updateSellerPhone/" + params.SellerId, { PhoneNumber: Phone })
             if (result.status === 200) {
                 setSuccessSnackbarControl(true)
             }
@@ -76,7 +79,7 @@ export default function SellerInfo() {
             return setErrorSnackbarControl(true)
         }
         try {
-            let result = await axios.put("http://localhost:3001/admin/updateStoreLocation/" + params.SellerId, { StoreLocation })
+            let result = await axios.put(BackendLink+"/admin/updateStoreLocation/" + params.SellerId, { StoreLocation })
             if (result.status === 200) {
                 setSuccessSnackbarControl(true)
             }
@@ -88,7 +91,7 @@ export default function SellerInfo() {
         if (StoreName.length === 0) {
             return setErrorSnackbarControl(true)
         }
-        let result = await axios.put("http://localhost:3001/admin/updateStoreName/" + params.SellerId, { StoreName })
+        let result = await axios.put(BackendLink+"/admin/updateStoreName/" + params.SellerId, { StoreName })
         console.log(result)
         if (result.status === 200) {
             setSuccessSnackbarControl(true)
@@ -96,6 +99,7 @@ export default function SellerInfo() {
     }
     const HnadleSellerLogOut=()=>{
         localStorage.removeItem("SellerToken")
+        setSellerValid(false)
         navigate("/seller/login")
     }
     return <div style={{ width: "100%", background: "white", padding: "2vw" }}>

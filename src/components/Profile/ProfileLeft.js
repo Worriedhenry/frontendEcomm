@@ -4,6 +4,7 @@ import Logo from "../Flip-Logo.jpg"
 import { AuthContext } from "../../Context/AuthContext"
 import {useNavigate,useParams} from "react-router-dom"
 import axios from "axios"
+import BackendLink from "../../data_resourses/BackendLink"
 
 
   const StyledTypography = styled(Typography)(({ theme }) => ({
@@ -26,7 +27,7 @@ export default function ProFileLeft(props) {
     }
     useEffect(()=>{
         axios
-          .get("http://localhost:3001/account/getuserInfo/"+params.UserId)
+          .get(BackendLink+"/account/getuserInfo/"+params.UserId)
           .then(res => {
             setName(res?.data.FirstName)
           })

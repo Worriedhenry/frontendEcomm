@@ -3,10 +3,13 @@ import { TextField, Button, Grid, Container, Typography, useMediaQuery } from '@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { AuthContext } from '../../Context/AuthContext';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup'
 import { yupResolver } from "@hookform/resolvers/yup"
+import BackendLink from '../../data_resourses/BackendLink';
 const SellerLogin = () => {
+  const {sellerValid,setSellerValid}=React.useContext(AuthContext)
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const isMediumOrLargeScreen = useMediaQuery('(min-width: 960px)');
@@ -20,10 +23,11 @@ const SellerLogin = () => {
 
   const handleLogin = (event) => {
     axios
-      .post("http://localhost:3001/seller/login", { PhoneNumber: event.phoneNumber, Password: password })
+      .post(BackendLink+"/seller/login", { PhoneNumber: event.phoneNumber, Password: password })
       .then(res => {
         if (res.status === 200) {
           localStorage.setItem("SellerToken", res.data.token)
+          setSellerValid(res.data.sellerId)
           navigate("/admin/info/" + res.data.sellerId)
         }
       })

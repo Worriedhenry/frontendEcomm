@@ -12,6 +12,7 @@ import { SnackbarContext } from '../../Context/SnackbarContext';
 import { SuccessSnackBar,WarningSnackBar,ErrorSnackBar } from '../UtlityComponents/Snackbar';
 import axios from 'axios';
 import emptyImg from "./noitem.jpg"
+import BackendLink from '../../data_resourses/BackendLink';
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -23,7 +24,7 @@ function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackb
   const [Listed,setListed]=useState(Detail.Listed)
   const navigate=useNavigate()
   const ListProduct=async ()=>{
-    let res=await axios.put("http://localhost:3001/product/changelisting",{productId:Detail._id,Listed:Listed})
+    let res=await axios.put(BackendLink+"/product/changelisting",{productId:Detail._id,Listed:Listed})
     if(res.status==200){
       setListed(!Listed)
     }
@@ -31,7 +32,7 @@ function CatlogCard({ Detail, index, setCatlogProducts, CatlogProducts,setSnackb
   const RemoveProduct = () => {
     setRemoveLoader(true)
     axios
-      .delete("http://localhost:3001/deleteProduct/" + Detail._id)
+      .delete(BackendLink+"/deleteProduct/" + Detail._id)
       .then(res => {
         const updatedCatlog = [...CatlogProducts]
         updatedCatlog.splice(index, 1)
@@ -104,7 +105,7 @@ export default function SellerCatlog() {
   useEffect(() => {
     console.log(SellerId)
     axios
-      .post("http://localhost:3001/ProvideCatlog/"+SellerId)
+      .post(BackendLink+"/ProvideCatlog/"+SellerId)
       .then(res => {
         if (res.status === 200) {
             setLoaderControl(false)

@@ -21,9 +21,9 @@ function Data1(props){
                 <img src={props.url} style={{height:"10vw"}} />
             </div>
             <div  style={{textAlign:"center"}}>
-                <StyTypo class="truncate" style={{fontWeight:"999" ,color:"black"}}>{props.title.shortTitle}</StyTypo>
-                <StyTypo class="truncate" style={{color:"green"}}>{props.price.offer}</StyTypo>
-                <StyTypo class="truncate" style={{color:"grey"}}>{props.title.company}</StyTypo>
+                <StyTypo className="truncate" style={{fontWeight:"999" ,color:"black"}}>{props.title.shortTitle}</StyTypo>
+                <StyTypo className="truncate" style={{color:"green"}}>{props.price.offer}</StyTypo>
+                <StyTypo className="truncate" style={{color:"grey"}}>{props.title.company}</StyTypo>
             </div>
         </div>
     )

@@ -14,6 +14,7 @@ import { StyledButton, StyledTypography } from '../UtlityComponents/HeaderStyled
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import { Typography } from '@mui/material';
+import BackendLink from '../../data_resourses/BackendLink';
 export default function SecondPageSeller() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [Password, setPassword] = React.useState("")
@@ -30,7 +31,7 @@ export default function SecondPageSeller() {
     const payload={
       Password,PhoneNumber:Phone,FirstName:Fname,LastName:Lname,Email:EmailId,StoreName,GSTIN,StoreLocation:Location
     }
-    let response=await axios.post("http://localhost:3001/seller/new",payload)
+    let response=await axios.post(BackendLink+"/seller/new",payload)
     console.log(response)
     if(response.status===200){
       localStorage.setItem("SellerToken",response.data.token)

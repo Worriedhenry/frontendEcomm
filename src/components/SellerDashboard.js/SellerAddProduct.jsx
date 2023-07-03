@@ -9,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import {CheckBox, ExpandMoreOutlined} from "@mui/icons-material"
 import { useParams } from "react-router-dom";
+import BackendLink from "../../data_resourses/BackendLink";
 export default function SellerAddProduct() {
   const SellerId=useParams().SellerId
   const [Category, setCategory] = useState('');
@@ -93,7 +94,7 @@ export default function SellerAddProduct() {
     const updatePublicImage=[...ImagePublicID]
     
     try{
-    let result = await axios.post("http://localhost:3001/deleteimage",ImagePublicID[index])
+    let result = await axios.post(BackendLink+"/deleteimage",ImagePublicID[index])
   } catch(e){
     console.log(e)
   }
@@ -136,7 +137,7 @@ export default function SellerAddProduct() {
       ProductMRP,ProductSellingPrice,ProductQuantity,ProductBrandName,specifications,ImagePublicID
     }    
     try{
-    let UploadResponse=await axios.post("http://localhost:3001/AddProductToCatlog/"+SellerId,UploadLoad)
+    let UploadResponse=await axios.post(BackendLink+"/AddProductToCatlog/"+SellerId,UploadLoad)
     if (UploadResponse.status==200){
       setUploadImageSnackbarControl(true)
     }
@@ -153,7 +154,7 @@ export default function SellerAddProduct() {
           setUploadingImage(true)
           const formData = new FormData();
           formData.append('file', imageFile);
-          const response = await axios.post('http://localhost:3001/upload', formData);
+          const response = await axios.post(BackendLink+'/upload', formData);
           setUploadingImage(false)
           setUploadImageSnackbarControl(true)
           const UpdatedImageId=[...ImagePublicID]
