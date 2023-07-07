@@ -77,10 +77,13 @@ function Left_part({ product,InCart,setInCart }) {
                     {product && <Img src={PrimaryImage} alt=""  />}
                 </div>
             </div>
-            {product && <>
+            {product && product.Quantity>0 && <>
                 <Button style={{ backgroundColor: "rgb(255, 173, 51)", width: "49%", height: "51px", borderRadius: "2px" }} startIcon={<ShoppingCartIcon />} variant="filled" onClick={AddProductToCart} >{InCart ? "Go To Cart" : "Add to cart"}</Button>
                 <Button style={{ backgroundColor: "#F0721A", width: "49%", height: "51px", marginLeft: "2%", borderRadius: "2px" }} startIcon={<FlashOnIcon />} onClick={BuyProductFunctionality} variant="filled">Buy now</Button>
             </>}
+            {product.Quantity<=0 && 
+                <Button style={{ backgroundColor: "rgb(255, 173, 51)", width: "49%", height: "51px", borderRadius: "2px" }}variant="filled" disabled >Out Of Stock</Button>
+            }
             {!product && <Grid container ml={3} spacing={3}>
                 <Grid item md={5}>
                     <Skeleton height={60} />

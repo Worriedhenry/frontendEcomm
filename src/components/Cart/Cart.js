@@ -223,7 +223,7 @@ export default function Cart() {
             display: "flex",
             justifyContent: "flex-end"
           }}
-        ><StyledButton size="large" onClick={PlaceOrder} variant="contained">Place Orders</StyledButton></div>
+        ><StyledButton disabled={Cart.length==0} size="large" onClick={PlaceOrder} variant="contained">Place Orders</StyledButton></div>
       </Paper>
       </Grid>
       <Grid md={3} sm={3} height={240} item className="Cart-Right">
@@ -237,7 +237,7 @@ export default function Cart() {
           <Skeleton height={30} />
           <Skeleton height={20} />
         </Stack>}
-        <>
+        {AllProductMRP !== 0 && <>
         <Grid item container mt={2} >
           <Grid item sm={6} md={6} xs={6}>
             <StyTypo sx={{fontWeight:"bold"}} textAlign="left">
@@ -293,8 +293,8 @@ export default function Cart() {
         You will save &#8377;{AllProductMRP - AllSellingPrice} in this order
         </StyTypo>
         </Grid>
-        </>
-        {AllProductMRP !== 0 && <>
+          </>}
+        
           {/* <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Prices({Cart.length})</h5><span>&#8377;{AllProductMRP}</span></div>
           <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Discount</h5><span>&#8377;{AllProductMRP - AllSellingPrice}</span></div>
           <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Delivery Charges</h5><span>Free</span></div>
@@ -302,7 +302,6 @@ export default function Cart() {
           <div className="Cart-RightDetails" ><h3 style={{ margin: "0px" }}>Prices({Cart.length})</h3><h3 style={{ margin: "0px" }}>&#8377;{AllSellingPrice}</h3></div>
           <Divider />
           <h4>You will save &#8377;{AllProductMRP - AllSellingPrice} in this order</h4> */}
-        </>}
       </Grid>
     </Grid>
   </>
