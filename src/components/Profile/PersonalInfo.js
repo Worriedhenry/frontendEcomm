@@ -116,12 +116,12 @@ export default function PersonalInfo(){
         <h3>FAQ</h3>
         <h5>What happens when I update my email address (or mobile number)?</h5>
         <p style={{fontSize:"small"}}>Your login email id (or mobile number) changes, likewise. You'll receive all your account related communication on your updated email address (or mobile number).</p>
-        <h5>When will my Flipkart account be updated with the new email address (or mobile number)?</h5>
+        <h5>When will my Fastkart account be updated with the new email address (or mobile number)?</h5>
         <p style={{fontSize:"small"}}>It happens as soon as you confirm the verification code sent to your email (or mobile) and save the changes.</p>
-        <h5>What happens to my existing Flipkart account when I update my email address (or mobile number)?</h5>
+        <h5>What happens to my existing Fastkart account when I update my email address (or mobile number)?</h5>
         <p style={{fontSize:"small"}}>Updating your email address (or mobile number) doesn't invalidate your account. Your account remains fully functional. You'll continue seeing your Order history, saved information and personal details.</p>
         <h5>Does my Seller account get affected when I update my email address?</h5>
-        <p style={{fontSize:"small"}}       >Flipkart has a 'single sign-on' policy. Any changes will reflect in your Seller account also. </p>
+        <p style={{fontSize:"small"}} >Fastkart has a 'dual sign-on' policy. Any changes will not reflect in your Seller account also. </p>
     </div>
     <Snackbar
       open={ErrorSnackbarControl}
