@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { AuthContext } from "../Context/AuthContext";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import Logo from "./Flip-Logo.png"
+import Logo from "./Fastkart.png"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'; 
