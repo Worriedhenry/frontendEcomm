@@ -1,8 +1,5 @@
 import { Grid} from "@mui/material"
 import React, { useEffect, useState } from "react"
-import Logo from "../Fastkart.png"
-import InventoryIcon from '@mui/icons-material/Inventory';
-import PersonIcon from '@mui/icons-material/Person';
 import PersonalInfo from "./PersonalInfo";
 import ProFileLeft from "./ProfileLeft";
 import ManageAddress from "./ManageAddress";

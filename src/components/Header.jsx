@@ -4,7 +4,7 @@ import * as React from 'react';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Logo from "./Fastkart.png"
+import Logo from "./FastKart.png"
 import LoginDialog from "./UtlityComponents/LoginDialog";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';

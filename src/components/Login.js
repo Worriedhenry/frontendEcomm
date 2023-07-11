@@ -5,7 +5,7 @@ import { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useForm } from 'react-hook-form'; 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import Logo from "./Fastkart.png"
+import Logo from "./FastKart.png"
 import axios from 'axios';
 import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup"

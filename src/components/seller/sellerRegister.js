@@ -2,7 +2,7 @@ import  React from 'react';
 import HorizontalNonLinearStepper from './progress_steeper';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Logo from "../Fastkart.png";
+import Logo from "../FastKart.png";
 import WhySell from "../WhySell.png"
 import Container from '@mui/material/Container';
 import { Link } from '@mui/material';
