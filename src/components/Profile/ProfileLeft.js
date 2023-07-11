@@ -1,6 +1,6 @@
 import { Button, Divider, styled,Typography} from "@mui/material"
 import React, { useState,useEffect } from "react"
-import Logo from "../Flip-Logo.jpg"
+import Logo from "../Fastkart.png"
 import { AuthContext } from "../../Context/AuthContext"
 import {useNavigate,useParams} from "react-router-dom"
 import axios from "axios"

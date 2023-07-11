@@ -1,6 +1,6 @@
 import { Button, Divider,styled,Typography} from "@mui/material"
 import React from "react"
-import Logo from "../Flip-Logo.jpg"
+import Logo from "../Fastkart.png"
 import PersonIcon from '@mui/icons-material/Person';
 import {useNavigate,useParams} from "react-router-dom"
 
