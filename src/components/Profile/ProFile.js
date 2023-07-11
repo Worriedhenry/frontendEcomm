@@ -1,6 +1,5 @@
 import { Grid} from "@mui/material"
 import React, { useEffect, useState } from "react"
-import Logo from "../Flip-Logo.jpg"
 import InventoryIcon from '@mui/icons-material/Inventory';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonalInfo from "./PersonalInfo";

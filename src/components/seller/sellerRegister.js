@@ -2,14 +2,17 @@ import  React from 'react';
 import HorizontalNonLinearStepper from './progress_steeper';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Logo from "../Flip-Logo.jpg";
+import Logo from "../Flip-Logo.png";
 import WhySell from "../WhySell.png"
 import Container from '@mui/material/Container';
 import { Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 function SellerRegister(){
   const navigate=useNavigate();
-    return (
+    return (<>
+    <head>
+      <title>Register-Seller | Fastkart</title>
+    </head>
         <div>
           <div>
             <div className='sellerRegisterHeader' style={{backgroundColor:"#047BD5" }}><img src={Logo}  onClick={()=>navigate("/")} ></img></div>
@@ -29,6 +32,7 @@ function SellerRegister(){
             </div>
           </div>
         </div>
+    </>
     )
 }
 export default SellerRegister;

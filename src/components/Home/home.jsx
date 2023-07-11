@@ -1,4 +1,3 @@
-import { Box , styled } from '@mui/material';
 import React from 'react'
 
 import Mycarousel from './carousel';
@@ -8,7 +7,7 @@ function home(){
     return(
         <>
         <head>
-            <title>Flipkart</title>
+            <title>Fastkart-Online Shooping and selling Platform</title>
         </head>
         <Nav />
         <Mycarousel />

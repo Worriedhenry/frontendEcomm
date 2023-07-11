@@ -1,7 +1,5 @@
 import { Button, Divider,styled,Typography} from "@mui/material"
 import React from "react"
-import Logo from "../Flip-Logo.jpg"
-import PersonIcon from '@mui/icons-material/Person';
 import {useNavigate,useParams} from "react-router-dom"
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
@@ -16,7 +14,12 @@ export default function SellerLeft({path}) {
     const navigate=useNavigate()
     const SellerId=useParams().SellerId
     
-    return <div className="Profile-left">
+    return (
+        <>
+        <head>
+      <title>Seller Dashboard | Fastkart</title>
+    </head>
+    <div className="Profile-left">
         
         <div className="Profile-Offers">
             <Divider />
@@ -34,5 +37,7 @@ export default function SellerLeft({path}) {
             
         </div>
     </div>
+    </>
+    )
 
 }
