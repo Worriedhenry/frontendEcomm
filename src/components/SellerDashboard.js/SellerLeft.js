@@ -16,7 +16,12 @@ export default function SellerLeft({path}) {
     const navigate=useNavigate()
     const SellerId=useParams().SellerId
     
-    return <div className="Profile-left">
+    return (
+        <>
+        <head>
+      <title>Seller Dashboard | Fastkart</title>
+    </head>
+    <div className="Profile-left">
         
         <div className="Profile-Offers">
             <Divider />
@@ -34,5 +39,7 @@ export default function SellerLeft({path}) {
             
         </div>
     </div>
+    </>
+    )
 
 }

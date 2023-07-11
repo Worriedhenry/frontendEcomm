@@ -11,6 +11,9 @@ export default function Orders(){
     // const [FilterResult, setFilterResult] = useState(false)
 
     return <>
+    <head>
+      <title>Orders | Fastkart</title>
+    </head>
     < div 
     style={{backgroundColor:"#f3f0f0",padding:" 0px 16px",display: "flex"}}
     >

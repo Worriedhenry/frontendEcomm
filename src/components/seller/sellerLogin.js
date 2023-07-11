@@ -46,7 +46,10 @@ const SellerLogin = () => {
     setPassword(event.target.value);
   };
 
-  return (
+  return (<>
+  <head>
+      <title>Login-Seller | Fastkart</title>
+    </head>
     <div className='sellerloginDiv'>
     <Container maxWidth="sm" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
       <form onSubmit={handleLogin}>
@@ -62,7 +65,7 @@ const SellerLogin = () => {
               onChange={handlePhoneNumberChange}
               {...register("phoneNumber")}
               helperText={errors.phoneNumber && <Typography style={{ fontSize: "1em", color: "red" }}>*Please enter valid 10 digit phone no. *</Typography>}
-            />
+              />
           </Grid>
           <Grid item xs={12} style={{ width: "100%" }}>
             <TextField
@@ -72,7 +75,7 @@ const SellerLogin = () => {
               fullWidth
               {...register("Password")}
               onChange={handlePasswordChange}
-            />
+              />
           </Grid>
           <Grid item xs={12} container justifyContent="space-between" alignItems="center">
             <Grid item>
@@ -86,7 +89,7 @@ const SellerLogin = () => {
                 variant="contained"
                 color="primary"
                 onClick={handleSubmit(handleLogin)}
-              >
+                >
                 Login
               </Button>
             </Grid>
@@ -95,6 +98,7 @@ const SellerLogin = () => {
       </form>
     </Container>
     </div>
+                </>
   );
 };
 

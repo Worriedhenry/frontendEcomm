@@ -9,7 +9,10 @@ import { Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 function SellerRegister(){
   const navigate=useNavigate();
-    return (
+    return (<>
+    <head>
+      <title>Register-Seller | Fastkart</title>
+    </head>
         <div>
           <div>
             <div className='sellerRegisterHeader' style={{backgroundColor:"#047BD5" }}><img src={Logo}  onClick={()=>navigate("/")} ></img></div>
@@ -29,6 +32,7 @@ function SellerRegister(){
             </div>
           </div>
         </div>
+    </>
     )
 }
 export default SellerRegister;

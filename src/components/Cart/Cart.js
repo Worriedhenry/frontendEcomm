@@ -176,7 +176,7 @@ export default function Cart() {
 
   return <>
     <head>
-      <title>Shopping Cart | Flipkart</title>
+      <title>Shopping Cart | Fastkart</title>
     </head>
     <Grid container spacing={2} justifyContent="center" className="Cart">
       <Grid  item md={8} sm={8} xs={12}  mr={1}>
