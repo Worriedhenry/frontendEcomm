@@ -78,6 +78,9 @@
 .CartItemContainer{
   min-height: 77%;
 }
+.CartItemContainer::-webkit-scrollbar{
+    display: none;
+}
 .Cart{
   background-color: #f3f0f0;
   padding: 2px 10px;

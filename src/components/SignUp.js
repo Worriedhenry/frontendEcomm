@@ -42,10 +42,12 @@ export default function SignUp() {
     const Payload={
       Phone:PhoneEmail,Password
     }
+    setError("Please Wait")
     let result=await axios.post(BackendLink+"/register",Payload)
       if(result.status===200){
           localStorage.setItem("token",result.data.token)
           setValid(result.data.id)
+          setSignOpen(false)
           navigate("/account/"+result.data.id)
       }
       else if(result.status==302){
@@ -101,7 +103,7 @@ export default function SignUp() {
             />
             </div>
       <Button style={{background:"rgb(247 114 0)",color:"white",width:"80%"}} onClick={handleSubmit(HandleSign)} variant="filled">SignUp</Button>
-
+      <Typography color="error">{Error}</Typography>
       <p style={{color:"#047BD5",cursor:"pointer"}} onClick={HandleDialogChange}><b>Already an customer ? Login</b></p>
     </Grid></Grid>
   );

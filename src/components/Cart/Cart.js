@@ -1,4 +1,4 @@
-import { Divider, Button, Rating, Stack, Skeleton } from "@mui/material"
+import { Divider, Button, Rating, Stack, Skeleton,styled } from "@mui/material"
 import Bread from "./BreadCrimb"
 import {AuthContext} from "../../Context/AuthContext"
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -9,12 +9,48 @@ import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import {useNavigate, useParams} from "react-router-dom"
 import axios from "axios";
+import { StyledButton } from "../UtlityComponents/HeaderStyledElement";
 import { CartContext } from "../../Context/CartContext";
 import { Img } from "../UtlityComponents/StyledImage";
 import emptycart from "./emptycart.png"
 import BackendLink from "../../data_resourses/BackendLink";
 // import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+const StyTypo= styled(Typography)(({ theme }) => ({
+  fontSize:"small",
+  fontWeight:"500",
+  [theme.breakpoints.down('sm')]: {
+    fontSize:"0.5em", 
+    whiteSpace:"nowrap",
+  textOverflow:"ellipsis",
+  overflow:"hidden"
+  },
+}));
+const TitleTypo= styled(Typography)(({ theme }) => ({
+  fontSize:"1.5em",
+  fontWeight:"bold",
+  [theme.breakpoints.down('sm')]: {
+    fontSize:"1em", 
+    whiteSpace:"nowrap",
+  textOverflow:"ellipsis",
+  overflow:"hidden"
+  },
+}));
+const SellingPriceTypo= styled(Typography)(({ theme }) => ({
+  fontSize:"large",
+  fontWeight:"500",
+  whiteSpace:"nowrap",
+  textOverflow:"ellipsis",
+  [theme.breakpoints.down('sm')]: {
+    fontSize:"0.8em", 
+    whiteSpace:"nowrap",
+  textOverflow:"ellipsis",
+  overflow:"hidden",
+  fontWeight:"bold",
+  },
+}));
+  
 function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }){
+  console.log(product)
   const {UserId}=useParams()
   const RemoveProductFromCart = async () => {
     let res = await axios.put(BackendLink+"/RemoveProductFromCart/"+ UserId+"/"+ product._id, { user: localStorage.getItem("user") })
@@ -25,48 +61,82 @@ function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSell
   }
   return (
     <Paper
-      elevation={3}
-      sx={{
-        p: 2,
-        margin: 1,
-        maxWidth: 900,
-        flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-      }}
+    elevation={3}
+    sx={{
+      margin:"5px"
+    }}
     >
-      <Grid container spacing={2}>
-        <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img alt="complex" src={product.ProductImages[0]} />
+      <Grid container md={11.5} xs={11.5} alignItems="center">
+        <Grid item md={2} sm={2.5} xs={3} height="fit-content">
+          <ButtonBase>
+            <Img  src={product.ProductImages[0]} />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs={12} sm={10} container direction="column" spacing={2}>
+        <Grid item p={1} container md={8} sm={8.5}  xs={9}alignItems="flex-start">
+          <Grid md={12} xs={12} item>
+            <SellingPriceTypo>
+            {product.ProductTitle}
+            </SellingPriceTypo >
+              <StyTypo  m="auto" sx={{display:"flex",alignItems:"center"}}><Rating readOnly size="small" defaultValue={product.ProductNumericalRating
+} precision={0.5} name="size-small" /> &nbsp;Rating & {product?.reviews.length} Reviews</StyTypo>
+          </Grid>
+          <Grid item md={12} xs={12} container alignItems="center">
             <Grid item >
-              <Typography gutterBottom style={{ fontWeight: "bold" }} variant="h3.heading" component="div">
-                {product.ProductTitle}
-              </Typography>
-              <Typography variant="subtitle2" gutterBottom>
-                <div style={{ marginTop: "-1px", display: "flex", fontSize: "13px" }}><span style={{ color: "#838484" }}><Rating readOnly size="small" defaultValue={4} precision={0.5} name="size-small" />
-                  <span>&nbsp; {product?.rating} Rating&nbsp; & {product?.reviews} Reviews &nbsp;</span></span></div>
-              </Typography>
-              <div>
-                <span style={{ fontSize: "20px" }}>&#8377; {product.ProductSellingPrice}</span><span style={{ marginLeft: "10px", color: "#838383" }}><strike>&#8377;{product.ProductMRP}</strike></span><span style={{ marginLeft: "10px", color: "#30B131" }}>{((product.ProductMRP * 100 - product.ProductSellingPrice * 100) / product.ProductMRP).toFixed(2)} % off</span>
-              </div>
-            </Grid>
-            <Grid item spacing={2}>
-              {/* <Button variant='contained' size='small'>Save For Later</Button> */}
-              {/* <Button variant='contained' size='small' color="error">Remove</Button> */}
-              <Button style={{ margin: "5px" }} onClick={RemoveProductFromCart} size="small" variant='contained' color="error">  Remove</Button>
-            </Grid>
+            <SellingPriceTypo>&#8377; {product.ProductSellingPrice}</SellingPriceTypo>
+             <StyTypo><strike>&#8377;{product.ProductMRP}</strike> {((product.ProductMRP * 100 - product.ProductSellingPrice * 100) / product.ProductMRP).toFixed(2)} % off</StyTypo>
+             </Grid> 
           </Grid>
           <Grid item>
-            <p style={{ background: "green", borderRadius: "5px", color: "white", padding: "5px 7.5px", margin: "5px 1px" }}>{product.quantity > 0 ? "In Stock" : "Out Of Stock"}</p>
+          <Button style={{ margin: "5px" }} onClick={RemoveProductFromCart} size="small" variant='contained' color="error"><StyTypo>Remove</StyTypo></Button>
           </Grid>
         </Grid>
+
       </Grid>
     </Paper>
+    // <Paper
+    //   elevation={3}
+    //   sx={{
+    //     p: 2,
+    //     margin: 1,
+    //     maxWidth: "100%",
+    //     flexGrow: 1,
+    //     backgroundColor: (theme) =>
+    //       theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    //   }}
+    // >
+    //   <Grid container spacing={2}>
+    //     <Grid item md={2} sm={2} xs={2}>
+    //       <ButtonBase>
+    //         <Img alt="complex" src={product.ProductImages[0]} />
+    //       </ButtonBase>
+    //     </Grid>
+    //     <Grid item md={10} sm xs={10} container>
+    //       <Grid item xs={10} sm={10} md={10} container direction="column" spacing={2}>
+    //         <Grid item md={10} xs={8} >
+    //           <SellingPriceTypo gutterBottom style={{ fontWeight: "bold",whiteSpace:"nowrap",textOverflow:"ellipsis",overflow:"hidden" }} variant="h3.heading" component="div">
+    //             {product.ProductTitle}
+    //           </SellingPriceTypo>
+    //           <StyTypo variant="subtitle2" gutterBottom>
+    //             <div style={{ marginTop: "-1px", display: "flex", fontSize: "13px" }}><span style={{ color: "#838484" }}><Rating readOnly size="small" defaultValue={4} precision={0.5} name="size-small" />
+    //               <span>&nbsp; {product?.rating} Rating&nbsp; & {product?.reviews.length} Reviews &nbsp;</span></span></div>
+    //           </StyTypo>
+    //           <div>
+    //             <SellingPriceTypo>
+    //             <span>&#8377; {product.ProductSellingPrice}</span><span style={{ marginLeft: "10px", color: "#838383" }}><strike>&#8377;{product.ProductMRP}</strike></span><span style={{ marginLeft: "10px", color: "#30B131" }}>{((product.ProductMRP * 100 - product.ProductSellingPrice * 100) / product.ProductMRP).toFixed(2)} % off</span></SellingPriceTypo>
+    //           </div>
+    //         </Grid>
+    //         <Grid item spacing={2} xs={2} md={2}>
+    //           {/* <Button variant='contained' size='small'>Save For Later</Button> */}
+    //           {/* <Button variant='contained' size='small' color="error">Remove</Button> */}
+    //           <Button style={{ margin: "5px" }} onClick={RemoveProductFromCart} size="small" variant='contained' color="error">  Remove</Button>
+    //         </Grid>
+    //       </Grid>
+    //       <Grid item md={2} xs={2}>
+    //         <StyTypo style={{ background: "green", borderRadius: "5px", color: "white", padding: "5px 7.5px", margin: "5px 1px" }}>{product.quantity > 0 ? "In Stock" : "Out Of Stock"}</StyTypo>
+    //       </Grid>
+    //     </Grid>
+    //   </Grid>
+    // </Paper>
   );
 }
 export default function Cart() {
@@ -108,11 +178,10 @@ export default function Cart() {
     <head>
       <title>Shopping Cart | Flipkart</title>
     </head>
-    <Bread />
-    <Grid container spacing={2} className="Cart">
-      <Grid  item md={8} mr={1}>
+    <Grid container spacing={2} justifyContent="center" className="Cart">
+      <Grid  item md={8} sm={8} xs={12}  mr={1}>
       <Paper >
-        <h2
+        <TitleTypo
           style={{
             maxWidth: "100%",
             height: '47px',
@@ -120,17 +189,18 @@ export default function Cart() {
             alignItems: "center",
             justifyContent: "center",
             background: "white",
-            margin: "0px"
+            margin: "0px",
+            fontWeight:"bold"
           }}
         >
           <ShoppingBagIcon color="primary"/> Cart
-        </h2>
+        </TitleTypo>
         {!Cart && <Stack spacing={1}>
           <Skeleton variant="rounded" height={140} />
           <Skeleton variant="rounded" height={140} />
           <Skeleton variant="rounded" height={140} />
         </Stack>}
-        <div style={{height:"73vh"}} className="CartItemContainer">
+        <div style={{height:"73vh",overflow:"scroll"}} className="CartItemContainer">
           {Cart && Cart.length>0 ? Cart.map((product) =>
             <>
               <CatlogCard product={product} setCart={setCart} setAllProductSellingPrice={setAllProductSellingPrice} setAllProductMRP={setAllProductMRP} AllProductMRP={AllProductMRP} AllSellingPrice={AllSellingPrice} />
@@ -149,15 +219,14 @@ export default function Cart() {
             border: "1px solid grey",
             textAlign: "right",
             position: "sticky",
-            height: "50px",
             bottom: "0px",
             display: "flex",
             justifyContent: "flex-end"
           }}
-        ><Button size="small" onClick={PlaceOrder} variant="contained">Place Orders</Button></div>
+        ><StyledButton disabled={Cart.length==0} size="large" onClick={PlaceOrder} variant="contained">Place Orders</StyledButton></div>
       </Paper>
       </Grid>
-      <Grid md={3}  item className="Cart-Right">
+      <Grid md={3} sm={3} height={240} item className="Cart-Right">
         <h4 style={{ margin: "0px" }} >Price Details</h4>
         <Divider />
         {!Cart && AllProductMRP === 0 && <Stack spacing={3} mt={5}>
@@ -169,14 +238,70 @@ export default function Cart() {
           <Skeleton height={20} />
         </Stack>}
         {AllProductMRP !== 0 && <>
-          <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Prices({Cart.length})</h5><span>&#8377;{AllProductMRP}</span></div>
+        <Grid item container mt={2} >
+          <Grid item sm={6} md={6} xs={6}>
+            <StyTypo sx={{fontWeight:"bold"}} textAlign="left">
+              Prices({Cart.length})
+            </StyTypo>
+          </Grid>
+          <Grid item sm={6} md={6} xs={6}>
+            <StyTypo sx={{fontWeight:"bold"}}  textAlign="right">
+            &#8377;{AllProductMRP}
+            </StyTypo>
+          </Grid>
+        </Grid>
+        <Grid item container mt={2}>
+          <Grid item sm={6} md={6} xs={6}>
+            <StyTypo sx={{fontWeight:"bold"}} textAlign="left">
+              Discount
+            </StyTypo>
+          </Grid>
+          <Grid item sm={6} md={6} xs={6}>
+            <StyTypo sx={{fontWeight:"bold"}}  textAlign="right">
+            &#8377;{AllProductMRP - AllSellingPrice}
+            </StyTypo>
+          </Grid>
+        </Grid>
+        <Grid item container mt={2}>
+          <Grid item sm={6} md={6} xs={6}>
+            <StyTypo sx={{fontWeight:"bold"}} textAlign="left">
+              Delivery
+            </StyTypo>
+          </Grid>
+          <Grid item sm={6} md={6} xs={6}>
+            <StyTypo sx={{fontWeight:"bold"}}  textAlign="right">
+            Free
+            </StyTypo>
+          </Grid>
+        </Grid>
+        <Grid item container mt={2} height={40}>
+          <Grid item md={12} xs={12}><Divider/></Grid>
+          <Grid item sm={6} md={6} xs={6}>
+            <StyTypo sx={{fontWeight:"bold"}} textAlign="left">
+              Price
+            </StyTypo>
+          </Grid>
+          <Grid item sm={6} md={6} xs={6} >
+            <StyTypo sx={{fontWeight:"bold",height:"100%"}}  textAlign="right">
+            &#8377;{AllSellingPrice}
+            </StyTypo>
+          </Grid>
+        </Grid>
+        <Grid>
+        <Grid item md={12} xs={12} ><Divider/></Grid>
+        <StyTypo sx={{fontWeight:"bold"}}>
+        You will save &#8377;{AllProductMRP - AllSellingPrice} in this order
+        </StyTypo>
+        </Grid>
+          </>}
+        
+          {/* <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Prices({Cart.length})</h5><span>&#8377;{AllProductMRP}</span></div>
           <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Discount</h5><span>&#8377;{AllProductMRP - AllSellingPrice}</span></div>
           <div className="Cart-RightDetails" ><h5 style={{ margin: "0px" }}>Delivery Charges</h5><span>Free</span></div>
           <Divider />
           <div className="Cart-RightDetails" ><h3 style={{ margin: "0px" }}>Prices({Cart.length})</h3><h3 style={{ margin: "0px" }}>&#8377;{AllSellingPrice}</h3></div>
           <Divider />
-          <h4>Yoy will save &#8377;{AllProductMRP - AllSellingPrice} in this order</h4>
-        </>}
+          <h4>You will save &#8377;{AllProductMRP - AllSellingPrice} in this order</h4> */}
       </Grid>
     </Grid>
   </>
