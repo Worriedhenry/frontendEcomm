@@ -1,3 +1,6 @@
+##Project Deployed Link:-https://fastkart.onrender.com/ 
+##Backend Repository Link:=https://github.com/Worriedhenry/BackendEcommerce
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
