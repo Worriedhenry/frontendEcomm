@@ -1,6 +1,6 @@
-## Project Deployed Link:-https://fastkart.onrender.com/ 
-## Backend Repository Link:=https://github.com/Worriedhenry/BackendEcommerce
-# FlipkartClone EcommerceWebite
+### Project Deployed Link:-https://fastkart.onrender.com/ 
+##3 Backend Repository Link:=https://github.com/Worriedhenry/BackendEcommerce
+# FastKart EcommerceWebite
 The goal of project was to get an hands on experience and learn more skills in MERN stack Development and related technologies like Material UI,JWT etc.
 
 The project development started in february 2023 . Initially the frontend was developed including the home page ,Profile page ,Cart and Orders. The backend development also started parallelly which includes creating models for buyer,seller,products,orders,reviews along with REST Api's .To store the images of products , we used an cloud based image storage "Cloudinary" ,which increases the scalability of projects. We rely on jwt for authorisation of every user and encryption of credentials for providing a secure exprience.. AS of now the product also contain frontend Pages for seller which includes Product Catlog,Seller Profile,Add Product and Edit Product with thier equivalent backend controllers.
