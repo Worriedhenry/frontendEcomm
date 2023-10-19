@@ -1,7 +1,8 @@
 ### Project Deployed Link:-https://fastkart.onrender.com/ 
 ### Backend Repository Link:=https://github.com/Worriedhenry/BackendEcommerce
-Dummy UserLogin-1234567899
-      Pass-123456
+Dummy   
+UserLogin-1234567899   
+Pass-123456
 # FastKart EcommerceWebite
 The goal of project was to get an hands on experience and learn more skills in MERN stack Development and related technologies like Material UI,JWT etc.
 
