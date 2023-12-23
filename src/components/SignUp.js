@@ -40,7 +40,7 @@ export default function SignUp() {
 
   const HandleSign=async ()=>{
     const Payload={
-      Phone:PhoneEmail,Password
+      Phone:PhoneEmail,Password,registerType:0
     }
     setError("Please Wait")
     let result=await axios.post(BackendLink+"/register",Payload)

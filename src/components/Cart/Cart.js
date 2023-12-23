@@ -50,7 +50,6 @@ const SellingPriceTypo= styled(Typography)(({ theme }) => ({
 }));
   
 function CatlogCard({ product, setCart, AllProductMRP, setAllProductMRP, AllSellingPrice, setAllProductSellingPrice }){
-  console.log(product)
   const {UserId}=useParams()
   const RemoveProductFromCart = async () => {
     let res = await axios.put(BackendLink+"/RemoveProductFromCart/"+ UserId+"/"+ product._id, { user: localStorage.getItem("user") })
