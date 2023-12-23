@@ -1,3 +1,15 @@
+### Project Deployed Link:-https://fastkart.onrender.com/ 
+### Backend Repository Link:=https://github.com/Worriedhenry/BackendEcommerce
+Dummy   
+UserLogin-1234567899   
+Pass-123456
+# FastKart EcommerceWebite
+The goal of project was to get an hands on experience and learn more skills in MERN stack Development and related technologies like Material UI,JWT etc.
+
+The project development started in february 2023 . Initially the frontend was developed including the home page ,Profile page ,Cart and Orders. The backend development also started parallelly which includes creating models for buyer,seller,products,orders,reviews along with REST Api's .To store the images of products , we used an cloud based image storage "Cloudinary" ,which increases the scalability of projects. We rely on jwt for authorisation of every user and encryption of credentials for providing a secure exprience.. AS of now the product also contain frontend Pages for seller which includes Product Catlog,Seller Profile,Add Product and Edit Product with thier equivalent backend controllers.
+
+Responsive Design: OurWeb-application is designed to be fully responsive, ensuring optimal user experience across various devices, including desktops, tablets, and smartphones. Users can enjoy seamless navigation and functionality, regardless of their preferred device. Material-UI Integration: We leverage the power of Material-UI, a popular React UI framework, to enhance the visual aesthetics and user interface of our e-commerce platform. The implementation of Material-UI components ensures a modern and visually appealing design that is both intuitive and familiar to users. Buyer-Friendly Interface: With a responsive and Material-UI-powered design, our platform offers buyers a user-friendly interface. They can easily browse through product categories, search for items, and complete transactions seamlessly, enhancing their overall shopping experience. Seller Empowerment: Our platform provides sellers with the tools they need to effectively showcase and sell their products. Through a user-friendly dashboard, sellers can create and manage product listings, increase inventory, and update product.. Customization and Personalization: Buyers and sellers have the ability to customize their profiles with very ease. Scalability: Built on the scalable MERN stack, our e-commerce platform is capable of accommodating a growing number of users, products, and transactions without compromising performance. It ensures a seamless experience, even during periods of high traffic because the larger assets like images are stored on a different cloud instead of encoding them and database is structured as the documents can be found with minimal efforts. . Enhanced Security: We use latest technologies like "jwt" and hashing of information ensuring the privacy and protection of sensitive information
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
