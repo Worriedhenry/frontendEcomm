@@ -10,6 +10,7 @@ const AuthState= ({children})=>{
     const [Next,setNext]=useState("/")
     const [Loading,setLoading]=useState(true)
     const [SellerValid,setSellerValid]=useState(false)
+    const [searchSuggestion,setSearchSuggestion]=useState([])
     useEffect(()=>{
         if (localStorage.getItem("token")){
               try{
@@ -42,8 +43,16 @@ const AuthState= ({children})=>{
             .catch(err => console.error(err));
         }
     },[])
+    useEffect(()=>{
+      axios
+        .get(BackendLink+"/getsearchsuggestion")
+        .then(res =>{
+          setSearchSuggestion(res.data)
+        } )
+        .catch(err => console.error(err));
+    },[])
     return (
-        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext,Loading,setLoading,SellerValid,setSellerValid}}>
+        <AuthContext.Provider value={{Valid,setValid,LoginOpen,setLoginOpen,SignOpen,setSignOpen,Next,setNext,Loading,setLoading,SellerValid,setSellerValid,searchSuggestion}}>
             {children}
         </AuthContext.Provider>
     )
